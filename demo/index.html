@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>test simple-custom-element</title>
+  <script src="/node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <link rel="stylesheet" href="/dist/search-bar.css">
+  <script src="/dist/search-bar.es5.js">
+  </script>
+  <style>
+    body {
+      background-color: gainsboro;
+    }
+  </style>
+</head>
+<body>
+  <p><code>&lt;search-bar placeholder=&quot;Find stuff&quot;&gt;&lt;/search-bar&gt;</code></p>
+  <search-bar placeholder="Find stuff"></search-bar>
+
+  <section>
+    <p>
+      <label>Term via key up events from the above search bar: </label>
+      <span id="key-up"></span>
+    </p>
+
+    <p>
+      <label>Term via submit events from the above search bar: </label>
+      <span id="submit"></span>
+    </p>
+  </section>
+  <script>
+    document.addEventListener('search-bar-input', function(event) {
+      document.getElementById('key-up').textContent = event.detail.term
+    })
+    document.addEventListener('search-bar-submit', function(event) {
+      document.getElementById('submit').textContent = event.detail.term
+    })
+  </script>
+</body>
+</html>

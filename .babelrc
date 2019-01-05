@@ -1,0 +1,3 @@
+{
+  "plugins": ["@babel/transform-classes", "@babel/transform-template-literals"]
+}
