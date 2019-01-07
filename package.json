@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "babel": "babel src/search-bar.js -o dist/search-bar.es5.js"
+    "babel": "babel src/search-bar.js -o dist/search-bar.es5.js",
+    "start": "elm reactor",
+    "test": "cd test; rm dist/*; ./run.sh"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",
@@ -8,7 +10,9 @@
     "@babel/plugin-transform-classes": "7.0.0-beta.35",
     "@babel/plugin-transform-template-literals": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
-    "node-html-parser": "^1.1.11"
+    "node-html-parser": "^1.1.11",
+    "to-pascal-case": "^1.0.0",
+    "yargs": "^12.0.5"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.1"

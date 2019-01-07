@@ -1,7 +1,28 @@
+let yargs = require('yargs')
+let argv = yargs.argv
 let babel = require('@babel/core')
 let parser = require('node-html-parser')
 let fs = require('fs')
-let elementHtml = fs.readFileSync('./src/search-bar.html') // TODO make dynamic
+let path = require('path')
+let toPascalCase = require('to-pascal-case')
+
+let input = argv.input || argv.i
+let outputFolder = argv.output || argv.o || 'dist'
+
+if (!input) {
+  console.error('I can\'t do my thing without an input file or folder. Specify one after "--input"')
+  process.exit(1)
+}
+
+let tagName = path.basename(input, '.html')
+let className = toPascalCase(tagName)
+let elementHtml = fs.readFileSync(input)
+
+if (!elementHtml) {
+  console.error('No HTML found from the input.')
+  process.exit(1)
+}
+
 let document = parser.parse(`<html>${elementHtml}</html>`, {
   lowerCaseTagName: true,
   script: true,
@@ -13,15 +34,16 @@ let script = document.querySelector('script')
 let template = document.querySelector('template')
 
 if (style && style.rawText) {
-  fs.writeFileSync('./dist/search-bar.css', style.rawText)
+  fs.writeFileSync(`${outputFolder}/${tagName}.css`, style.rawText.trim() + '\n')
 }
 
 if (script && script.rawText) {
   let ast = babel.parseSync(script.rawText)
-  let expectedCustomElementClass = 'SearchBar' // TODO make dynamic based on file name
   let classes = ast.program.body.filter(
-    bodyObject => bodyObject.type === 'ClassDeclaration' && bodyObject.id.name == expectedCustomElementClass
+    bodyObject => bodyObject.type === 'ClassDeclaration' && bodyObject.id.name == className
   )
+
+  // TODO handle when there are no classes found that match the className.
 
   if (classes.length > 1) {
     console.error('No fair. I can\'t handle more than one class for your custom element.')
@@ -37,134 +59,20 @@ if (script && script.rawText) {
     process.exit(1)
   }
 
-  connectedCallbacks[0].body.body.unshift({
-    "type": "ExpressionStatement",
-    "start": 68,
-    "end": 245,
-    "loc": {
-      "start": {
-        "line": 4,
-        "column": 4
-      },
-      "end": {
-        "line": 4,
-        "column": 181
-      }
-    },
-    "expression": {
-      "type": "AssignmentExpression",
-      "start": 68,
-      "end": 245,
-      "loc": {
-        "start": {
-          "line": 4,
-          "column": 4
-        },
-        "end": {
-          "line": 4,
-          "column": 181
-        }
-      },
-      "operator": "=",
-      "left": {
-        "type": "MemberExpression",
-        "start": 68,
-        "end": 82,
-        "loc": {
-          "start": {
-            "line": 4,
-            "column": 4
-          },
-          "end": {
-            "line": 4,
-            "column": 18
-          }
-        },
-        "object": {
-          "type": "ThisExpression",
-          "start": 68,
-          "end": 72,
-          "loc": {
-            "start": {
-              "line": 4,
-              "column": 4
-            },
-            "end": {
-              "line": 4,
-              "column": 8
-            }
-          }
-        },
-        "property": {
-          "type": "Identifier",
-          "start": 73,
-          "end": 82,
-          "loc": {
-            "start": {
-              "line": 4,
-              "column": 9
-            },
-            "end": {
-              "line": 4,
-              "column": 18
-            },
-            "identifierName": "innerHTML"
-          },
-          "name": "innerHTML"
-        },
-        "computed": false
-      },
-      "right": {
-        "type": "TemplateLiteral",
-        "start": 85,
-        "end": 245,
-        "loc": {
-          "start": {
-            "line": 4,
-            "column": 21
-          },
-          "end": {
-            "line": 4,
-            "column": 181
-          }
-        },
-        "expressions": [],
-        "quasis": [
-          {
-            "type": "TemplateElement",
-            "start": 86,
-            "end": 244,
-            "loc": {
-              "start": {
-                "line": 4,
-                "column": 22
-              },
-              "end": {
-                "line": 4,
-                "column": 180
-              }
-            },
-            "value": {
-              "raw": template.innerHTML,
-              "cooked": template.innerHTML.replace(/`/g, '\\`')
-            },
-            "tail": true
-          }
-        ]
-      }
-    }
-  })
+  let setInnerHtmlAst = require('./lib/set-inner-html-ast')
+
+  connectedCallbacks[0].body.body.unshift(setInnerHtmlAst(template.innerHTML))
 
   let classResult = babel.transformFromAstSync(ast)
 
   if (classResult.code) {
-    fs.writeFileSync('./dist/search-bar.class.js', classResult.code) // TODO make dynamic
+    fs.writeFileSync(`${outputFolder}/${tagName}.class.js`, classResult.code)
   }
 
-  let es5Result = babel.transformFromAstSync(ast, null, {configFile: './.babelrc'})
+  let es5Result = babel.transformFromAstSync(ast, null, {configFile: `${__dirname}/.babelrc`})
 
   if (es5Result.code) {
-    fs.writeFileSync('./dist/search-bar.es5.js', es5Result.code) // TODO make dynamic
+    fs.writeFileSync(`${outputFolder}/${tagName}.es5.js`, es5Result.code)
   }
 
   // TODO handle there being no connectedCallback, but a template
