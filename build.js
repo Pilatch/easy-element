@@ -1,7 +1,6 @@
 let yargs = require('yargs')
 let argv = yargs.argv
 let babel = require('@babel/core')
-let parser = require('node-html-parser')
 let fs = require('fs')
 let path = require('path')
 let toPascalCase = require('to-pascal-case')
@@ -25,22 +24,12 @@ if (!elementHtml) {
   process.exit(1)
 }
 
-let document = parser.parse(`<html>${elementHtml}</html>`, {
-  lowerCaseTagName: true,
-  script: true,
-  style: true,
-  pre: true
-})
-let style = document.querySelector('style')
-let script = document.querySelector('script')
-let template = document.querySelector('template')
+let {stylesText, scriptText, innerHTML} = require('./lib/parse-html')(elementHtml)
 
-if (style && style.rawText) {
-  require('./lib/write-css')(style.rawText, outputFolder, tagName)
-}
+require('./lib/write-css')(stylesText, outputFolder, tagName)
 
-if (script && script.rawText) {
-  let ast = babel.parseSync(script.rawText)
+if (scriptText) {
+  let ast = babel.parseSync(scriptText)
   let classes = ast.program.body.filter(
     bodyObject => bodyObject.type === 'ClassDeclaration' && bodyObject.id.name == className
   )
@@ -63,7 +52,7 @@ if (script && script.rawText) {
 
   let setInnerHtmlAst = require('./lib/set-inner-html-ast')
 
-  connectedCallbacks[0].body.body.unshift(setInnerHtmlAst(template.innerHTML))
+  connectedCallbacks[0].body.body.unshift(setInnerHtmlAst(innerHTML))
 
   let classResult = babel.transformFromAstSync(ast)
 
