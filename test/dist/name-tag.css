@@ -1,0 +1,17 @@
+name-tag {
+    border: 1px solid red;
+    display: inline-block;
+    width: 500px;
+  }
+  .name-tag_heading {
+    background-color: red;
+    color: white;
+    padding: 0.5em;
+    margin: 0;
+  }
+  .name-tag_name-container {
+    background-color: white;
+    padding: 2em 1em;
+    font-size: 3em;
+    text-align: center;
+  }
