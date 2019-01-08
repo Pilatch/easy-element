@@ -18,6 +18,7 @@ switch (fileExtension) {
     break
   case '.css':
     require('./lib/transform-css')(input, outputFolder)
+    require('./lib/copy-input-to-output')(input, outputFolder)
     break
   default:
     console.error(`Unsupported input file extension, ${fileExtension}`)
