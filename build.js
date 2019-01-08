@@ -17,9 +17,7 @@ switch (fileExtension) {
     require('./lib/transform-html')(input, outputFolder)
     break
   case '.css':
-    console.log('todo css')
-    // create a do-nothing web component
-    // output the css
+    require('./lib/transform-css')(input, outputFolder)
     break
   default:
     console.error(`Unsupported input file extension, ${fileExtension}`)

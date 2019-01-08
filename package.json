@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.1"
+  },
+  "engines" : {
+    "node" : ">=6.11 < 14"
   }
 }
