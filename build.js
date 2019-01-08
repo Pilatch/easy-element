@@ -1,79 +1,27 @@
-let yargs = require('yargs')
-let argv = yargs.argv
-let babel = require('@babel/core')
-let fs = require('fs')
 let path = require('path')
-let toPascalCase = require('to-pascal-case')
+let yargs = require('yargs')
 
+let argv = yargs.argv
 let input = argv.input || argv.i
-let outputFolder = argv.output || argv.o || 'dist'
 
 if (!input) {
   console.error('I can\'t do my thing without an input file or folder. Specify one after "--input"')
   process.exit(1)
 }
 
-let tagName = path.basename(input, '.html')
-let className = toPascalCase(tagName)
-let elementHtml = fs.readFileSync(input)
+let outputFolder = argv.output || argv.o || 'dist'
+let fileExtension = path.extname(input.toLowerCase())
 
-// TODO handle a simple thingy that only has a css file.
-
-if (!elementHtml) {
-  console.error('No HTML found from the input.')
-  process.exit(1)
-}
-
-let {stylesText, scriptText, innerHTML} = require('./lib/parse-html')(elementHtml)
-
-require('./lib/write-css')(stylesText, outputFolder, tagName)
-
-if (scriptText) {
-  let ast = babel.parseSync(scriptText)
-  let classes = ast.program.body.filter(
-    bodyObject => bodyObject.type === 'ClassDeclaration' && bodyObject.id.name == className
-  )
-
-  // TODO handle when there are no classes found that match the className.
-
-  if (classes.length > 1) {
-    console.error('No fair. I can\'t handle more than one class for your custom element.')
+switch (fileExtension) {
+  case '.html':
+    require('./lib/transform-html')(input, outputFolder)
+    break
+  case '.css':
+    console.log('todo css')
+    // create a do-nothing web component
+    // output the css
+    break
+  default:
+    console.error(`Unsupported input file extension, ${fileExtension}`)
     process.exit(1)
-  }
-
-  let connectedCallbacks = classes[0].body.body.filter(
-    bodyObject => bodyObject.type === 'ClassMethod' && bodyObject.key.name === 'connectedCallback'
-  )
-
-  if (connectedCallbacks.length > 1) {
-    console.error('Duh, I don\'t know what to do with more than one connectedCallback for your custom element class.')
-    process.exit(1)
-  }
-
-  let setInnerHtmlAst = require('./lib/set-inner-html-ast')
-
-  connectedCallbacks[0].body.body.unshift(setInnerHtmlAst(innerHTML))
-
-  let classResult = babel.transformFromAstSync(ast)
-
-  if (classResult.code) {
-    fs.writeFileSync(`${outputFolder}/${tagName}.class.js`, classResult.code)
-  }
-
-  let es5Result = babel.transformFromAstSync(ast, null, {configFile: `${__dirname}/.babelrc`})
-
-  if (es5Result.code) {
-    fs.writeFileSync(`${outputFolder}/${tagName}.es5.js`, es5Result.code)
-  }
-
-  // TODO handle there being no connectedCallback, but a template
-
-  // TODO if there is no superclass, make it HTMLElement (probably without the start and end tho)
-  // superClass:
-  //  Node {
-  //    type: 'Identifier',
-  //    start: 25,
-  //    end: 36,
-  //    loc: [SourceLocation],
-  //    name: 'HTMLElement' },
 }
