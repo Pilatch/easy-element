@@ -18,6 +18,8 @@ let tagName = path.basename(input, '.html')
 let className = toPascalCase(tagName)
 let elementHtml = fs.readFileSync(input)
 
+// TODO handle a simple thingy that only has a css file.
+
 if (!elementHtml) {
   console.error('No HTML found from the input.')
   process.exit(1)
@@ -34,7 +36,7 @@ let script = document.querySelector('script')
 let template = document.querySelector('template')
 
 if (style && style.rawText) {
-  fs.writeFileSync(`${outputFolder}/${tagName}.css`, style.rawText.trim() + '\n')
+  require('./lib/write-css')(style.rawText, outputFolder, tagName)
 }
 
 if (script && script.rawText) {
