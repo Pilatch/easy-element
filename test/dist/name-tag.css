@@ -1,7 +1,7 @@
 name-tag {
     border: 1px solid red;
     display: inline-block;
-    width: 500px;
+    width: 400px;
   }
   .name-tag_heading {
     background-color: red;
@@ -11,7 +11,7 @@ name-tag {
   }
   .name-tag_name-container {
     background-color: white;
-    padding: 2em 1em;
+    padding: 1em 0.5em;
     font-size: 3em;
     text-align: center;
   }

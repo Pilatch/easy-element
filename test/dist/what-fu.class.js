@@ -1,10 +1,7 @@
-class NameTag extends HTMLElement {
+class WhatFu extends HTMLElement {
   connectedCallback() {
     var contents = `
-  <h2 class="name-tag_heading">Hello, my name is</h2>
-  <div class="name-tag_name-container">
-    <slot></slot>
-  </div>
+  <p>I know <slot>kung</slot>-fu!</p>
 `;
 
     if (this.childNodes.length) {
@@ -24,11 +21,10 @@ class NameTag extends HTMLElement {
     } else {
       this.innerHTML = contents;
     }
-  } // TODO delete this!
-
+  }
 
 }
 
 window.addEventListener('WebComponentsReady', function () {
-  customElements.define('name-tag', NameTag);
+  customElements.define('what-fu', WhatFu);
 });

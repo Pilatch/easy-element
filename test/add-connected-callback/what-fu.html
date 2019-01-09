@@ -1,0 +1,11 @@
+<template>
+  <p>I know <slot>kung</slot>-fu!</p>
+</template>
+
+<script>
+  class WhatFu extends HTMLElement {}
+
+  window.addEventListener('WebComponentsReady', function () {
+    customElements.define('what-fu', WhatFu);
+  });
+</script>

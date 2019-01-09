@@ -12,21 +12,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-let NameTag =
+let WhatFu =
 /*#__PURE__*/
 function (_HTMLElement) {
-  _inherits(NameTag, _HTMLElement);
+  _inherits(WhatFu, _HTMLElement);
 
-  function NameTag() {
-    _classCallCheck(this, NameTag);
+  function WhatFu() {
+    _classCallCheck(this, WhatFu);
 
-    return _possibleConstructorReturn(this, (NameTag.__proto__ || Object.getPrototypeOf(NameTag)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (WhatFu.__proto__ || Object.getPrototypeOf(WhatFu)).apply(this, arguments));
   }
 
-  _createClass(NameTag, [{
+  _createClass(WhatFu, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      var contents = "\n  <h2 class=\"name-tag_heading\">Hello, my name is</h2>\n  <div class=\"name-tag_name-container\">\n    <slot></slot>\n  </div>\n";
+      var contents = "\n  <p>I know <slot>kung</slot>-fu!</p>\n";
 
       if (this.childNodes.length) {
         var template = document.createElement('div');
@@ -45,13 +45,12 @@ function (_HTMLElement) {
       } else {
         this.innerHTML = contents;
       }
-    } // TODO delete this!
-
+    }
   }]);
 
-  return NameTag;
+  return WhatFu;
 }(HTMLElement);
 
 window.addEventListener('WebComponentsReady', function () {
-  customElements.define('name-tag', NameTag);
+  customElements.define('what-fu', WhatFu);
 });
