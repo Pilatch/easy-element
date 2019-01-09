@@ -16,6 +16,12 @@
     body {
       background-color: gainsboro;
     }
+    body > p {
+      border-top: 1px solid gray;
+    }
+    body > p:first-child {
+      border-top: none;
+    }
   </style>
 </head>
 <body>
@@ -33,6 +39,9 @@
 
   <p><code>&lt;what-fu&gt;gong&lt;/what-fu&gt;</code></p>
   <what-fu>gong</what-fu>
+
+  <p><code>&lt;name-tag&gt;&lt;what-fu&gt;me&lt;/what-fu&gt;&lt;/name-tag&gt;</code></p>
+  <name-tag><what-fu>me</what-fu></name-tag>
 
   <p><code>&lt;search-bar placeholder=&quot;Find stuff&quot;&gt;&lt;/search-bar&gt;</code></p>
   <search-bar placeholder="Find stuff"></search-bar>
