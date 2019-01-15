@@ -117,9 +117,9 @@ let directoryInputs = input => {
   let cssInput = matchingCssFile && `${input}/${matchingCssFile}`
   let jsInput = matchingJsFile && `${input}/${matchingJsFile}`
   let htmlInput = matchingHtmlFile && `${input}/${matchingHtmlFile}`
-  let cssStats = fs.statSync(cssInput)
-  let htmlStats = fs.statSync(htmlInput)
-  let jsStats = fs.statSync(jsInput)
+  let cssStats = matchingCssFile && fs.statSync(cssInput)
+  let htmlStats = matchingHtmlFile && fs.statSync(htmlInput)
+  let jsStats = matchingJsFile && fs.statSync(jsInput)
 
   return {
     className: className,

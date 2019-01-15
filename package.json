@@ -1,4 +1,5 @@
 {
+  "bin": "cli.js",
   "scripts": {
     "babel": "babel src/search-bar.js -o dist/search-bar.es5.js",
     "start": "elm reactor",
