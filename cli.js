@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 let argv = require('yargs').argv
 
 require('./build')({
