@@ -24,8 +24,7 @@ class NameTag extends HTMLElement {
     } else {
       this.innerHTML = contents;
     }
-  } // TODO delete this!
-
+  }
 
 }
 

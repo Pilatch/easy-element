@@ -45,8 +45,7 @@ function (_HTMLElement) {
       } else {
         this.innerHTML = contents;
       }
-    } // TODO delete this!
-
+    }
   }]);
 
   return NameTag;
