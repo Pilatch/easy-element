@@ -8,20 +8,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-let SimpleBling =
+let ToDo =
 /*#__PURE__*/
 function (_HTMLElement) {
-  _inherits(SimpleBling, _HTMLElement);
+  _inherits(ToDo, _HTMLElement);
 
-  function SimpleBling() {
-    _classCallCheck(this, SimpleBling);
+  function ToDo() {
+    _classCallCheck(this, ToDo);
 
-    return _possibleConstructorReturn(this, (SimpleBling.__proto__ || Object.getPrototypeOf(SimpleBling)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (ToDo.__proto__ || Object.getPrototypeOf(ToDo)).apply(this, arguments));
   }
 
-  return SimpleBling;
+  return ToDo;
 }(HTMLElement);
 
 window.addEventListener('WebComponentsReady', () => {
-  customElements.define('simple-bling', SimpleBling);
+  customElements.define('to-do', ToDo);
 });

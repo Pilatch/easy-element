@@ -30,6 +30,4 @@ class RedButton extends HTMLElement {
 
 }
 
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('red-button', RedButton);
-});
+customElements.define('red-button', RedButton);

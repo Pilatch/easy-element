@@ -25,6 +25,4 @@ class WhatFu extends HTMLElement {
 
 }
 
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('what-fu', WhatFu);
-});
+customElements.define('what-fu', WhatFu);

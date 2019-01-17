@@ -43,6 +43,4 @@ class SearchBar extends HTMLElement {
 
 }
 
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('search-bar', SearchBar);
-});
+customElements.define('search-bar', SearchBar);

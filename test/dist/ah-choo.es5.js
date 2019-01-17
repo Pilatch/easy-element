@@ -51,6 +51,6 @@ function (_HTMLElement) {
   return AhChoo;
 }(HTMLElement);
 
-window.addEventListener('WebComponentsReady', function () {
+window.addEventListener('WebComponentsReady', () => {
   customElements.define('ah-choo', AhChoo);
 });

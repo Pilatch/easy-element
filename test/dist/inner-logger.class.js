@@ -15,6 +15,4 @@ class InnerLogger extends HTMLElement {
 
 }
 
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('inner-logger', InnerLogger);
-});
+customElements.define('inner-logger', InnerLogger);

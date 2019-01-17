@@ -67,6 +67,6 @@ function (_HTMLElement) {
   return SearchBar;
 }(HTMLElement);
 
-window.addEventListener('WebComponentsReady', function () {
+window.addEventListener('WebComponentsReady', () => {
   customElements.define('search-bar', SearchBar);
 });

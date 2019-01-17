@@ -6,3 +6,4 @@ node ../cli.js -i add-more-js/what-fu.html
 node ../cli.js -i dir-with-three
 node ../cli.js -i dir-with-one
 node ../cli.js -i blank-script/ah-choo.html
+node ../cli.js -i only-html/to-do.html

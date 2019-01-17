@@ -56,6 +56,6 @@ function (_HTMLElement) {
   return RedButton;
 }(HTMLElement);
 
-window.addEventListener('WebComponentsReady', function () {
+window.addEventListener('WebComponentsReady', () => {
   customElements.define('red-button', RedButton);
 });

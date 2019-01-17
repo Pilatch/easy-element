@@ -25,6 +25,4 @@ class AhChoo extends HTMLElement {
 
 }
 
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('ah-choo', AhChoo);
-});
+customElements.define('ah-choo', AhChoo);

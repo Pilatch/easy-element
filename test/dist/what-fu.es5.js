@@ -51,6 +51,6 @@ function (_HTMLElement) {
   return WhatFu;
 }(HTMLElement);
 
-window.addEventListener('WebComponentsReady', function () {
+window.addEventListener('WebComponentsReady', () => {
   customElements.define('what-fu', WhatFu);
 });

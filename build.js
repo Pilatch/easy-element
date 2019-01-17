@@ -79,7 +79,6 @@ module.exports = function(options = defaultOptions) {
         break
       case '.css':
         require('./lib/transform-css')(input, outputFolder)
-        require('./lib/copy-input-to-output')(input, outputFolder)
         break
       case '.js':
         require('./lib/transform-js')(input, outputFolder)

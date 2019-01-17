@@ -28,6 +28,4 @@ class BlueButton extends HTMLElement {
 
 }
 
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('blue-button', BlueButton);
-});
+customElements.define('blue-button', BlueButton);

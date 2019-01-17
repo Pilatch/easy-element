@@ -55,6 +55,6 @@ function (_HTMLElement) {
   return BlueButton;
 }(HTMLElement);
 
-window.addEventListener('WebComponentsReady', function () {
+window.addEventListener('WebComponentsReady', () => {
   customElements.define('blue-button', BlueButton);
 });

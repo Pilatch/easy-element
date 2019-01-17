@@ -28,6 +28,4 @@ class NameTag extends HTMLElement {
 
 }
 
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('name-tag', NameTag);
-});
+customElements.define('name-tag', NameTag);

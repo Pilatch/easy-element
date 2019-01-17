@@ -42,6 +42,6 @@ function (_HTMLElement) {
   return InnerLogger;
 }(HTMLElement);
 
-window.addEventListener('WebComponentsReady', function () {
+window.addEventListener('WebComponentsReady', () => {
   customElements.define('inner-logger', InnerLogger);
 });
