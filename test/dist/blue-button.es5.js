@@ -14,8 +14,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 let BlueButton =
 /*#__PURE__*/
-function (_HTMLElement) {
-  _inherits(BlueButton, _HTMLElement);
+function (_HTMLButtonElement) {
+  _inherits(BlueButton, _HTMLButtonElement);
 
   function BlueButton() {
     _classCallCheck(this, BlueButton);
@@ -53,8 +53,10 @@ function (_HTMLElement) {
   }]);
 
   return BlueButton;
-}(HTMLElement);
+}(HTMLButtonElement);
 
 window.addEventListener('WebComponentsReady', () => {
-  customElements.define('blue-button', BlueButton);
+  customElements.define('blue-button', BlueButton, {
+    extends: 'button'
+  });
 });

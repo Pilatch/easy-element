@@ -1,4 +1,4 @@
-class BlueButton extends HTMLElement {
+class BlueButton extends HTMLButtonElement {
   connectedCallback() {
     var contents = `<button><slot>Push this button!</slot></button>
 `;
@@ -28,4 +28,6 @@ class BlueButton extends HTMLElement {
 
 }
 
-customElements.define('blue-button', BlueButton);
+customElements.define('blue-button', BlueButton, {
+  extends: 'button'
+});

@@ -1,4 +1,4 @@
-class BlueButton extends HTMLElement {
+class BlueButton extends HTMLButtonElement {
   connectedCallback() {
     this.querySelector('button')
       .addEventListener('click', event => {
