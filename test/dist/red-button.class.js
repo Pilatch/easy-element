@@ -1,27 +1,27 @@
 class RedButton extends HTMLElement {
   connectedCallback() {
-    var contents = `
+    let shadowRoot = this.attachShadow({
+      mode: 'open'
+    });
+    shadowRoot.innerHTML = `
   <button><slot>Never click this button!</slot></button>
-`;
+<style>
+  red-button button {
+    background-color: red;
+    border: 0;
+    box-shadow: 2px 2px 2px gray;
+    color: white;
+    font-size: 1.5em;
+  }
 
-    if (this.childNodes.length) {
-      var template = document.createElement('div');
-      template.innerHTML = contents;
-      var slot = template.querySelector('slot');
-
-      while (slot.childNodes.length) {
-        slot.removeChild(slot.lastChild);
-      }
-
-      while (this.childNodes.length) {
-        slot.appendChild(this.firstChild);
-      }
-
-      this.innerHTML = template.innerHTML;
-    } else {
-      this.innerHTML = contents;
-    }
-
+  red-button.pushed button {
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    font-size: 2.5em;
+    padding: 1em;
+  }
+</style>`;
     this.querySelector('button').addEventListener('click', event => {
       this.classList.add('pushed');
       this.querySelector('slot').textContent = 'BOOM!';
