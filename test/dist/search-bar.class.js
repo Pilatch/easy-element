@@ -93,6 +93,14 @@ class SearchBar extends HTMLElement {
     this.input.value = newValue;
   }
 
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
 }
 
 customElements.define('search-bar', SearchBar);

@@ -22,6 +22,14 @@ blue-button.light button {
     });
   }
 
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
 }
 
 customElements.define('blue-button', BlueButton);

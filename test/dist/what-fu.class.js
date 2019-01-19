@@ -8,6 +8,14 @@ class WhatFu extends HTMLElement {
 `;
   }
 
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
 }
 
 customElements.define('what-fu', WhatFu);

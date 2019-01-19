@@ -29,6 +29,14 @@ class NameTag extends HTMLElement {
 </style>`;
   }
 
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
 }
 
 customElements.define('name-tag', NameTag);
