@@ -4,7 +4,7 @@ class BlueButton extends HTMLElement {
       mode: 'open'
     });
     shadowRoot.innerHTML = `<button><slot>Push this button!</slot></button>
-<style>blue-button button {
+<style>:host button {
   background-color: blue;
   border: 0;
   box-shadow: 2px 2px 2px gray;
@@ -12,11 +12,10 @@ class BlueButton extends HTMLElement {
   font-size: 1.5em;
 }
 
-blue-button.light button {
+:host.light button {
   background-color: lightblue;
   color: black;
-}
-</style>`;
+}</style>`;
     this.querySelector('button').addEventListener('click', event => {
       this.classList.toggle('light');
     });

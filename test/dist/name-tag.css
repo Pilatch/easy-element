@@ -9,6 +9,9 @@ name-tag {
     padding: 0.5em;
     margin: 0;
   }
+  name-tag.dark {
+    background-color: black;
+  }
   .name-tag_name-container {
     background-color: white;
     padding: 1em 0.5em;

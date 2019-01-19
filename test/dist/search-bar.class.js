@@ -8,15 +8,16 @@ class SearchBar extends HTMLElement {
     <input class="search-bar_input" placeholder="Search" />
     <button class="search-bar_button" type="submit">Submit to THanos!</button>
   </form>
-<style>
-.search-bar_form {
+<style>.search-bar_form {
   position: relative;
   overflow-x: hidden;
 }
+
 .search-bar_input,
 .search-bar_button {
   font-family: 'Open Sans', sans-serif;
 }
+
 .search-bar_form,
 .search-bar_input,
 .search-bar_button {
@@ -25,6 +26,7 @@ class SearchBar extends HTMLElement {
   height: 6rem;
   outline: 0;
 }
+
 .search-bar_input {
   float: left;
   font-size: 1.4rem;
@@ -34,15 +36,18 @@ class SearchBar extends HTMLElement {
   width: calc(100% - 11rem);
   transition: all .3s ease;
 }
+
 .search-bar_input::-ms-clear {
   display: none;
 }
+
 .search-bar_input:focus,
 .search-bar_button:focus,
 .search-bar_button::-moz-focus-inner {
   border: 0;
   outline: none;
 }
+
 .search-bar_button {
   color: #ffffff;
   background-color: chocolate;
@@ -51,13 +56,14 @@ class SearchBar extends HTMLElement {
   transition: all .25s ease;
   width: 11rem;
 }
+
 .search-bar_button:hover {
   background-color: sienna;
 }
+
 .search-bar_button:focus {
   background-color: sienna;
-}
-</style>`;
+}</style>`;
     this.input = this.querySelector('input');
     this.querySelector('form').addEventListener('submit', this.dispatchTerm.bind(this, 'submit'));
     this.input.addEventListener('keyup', this.dispatchTerm.bind(this, 'input'));
