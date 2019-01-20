@@ -13,7 +13,7 @@ class RedButton extends HTMLElement {
   font-size: 1.5em;
 }
 
-:host.pushed button {
+:host(.pushed) button {
   background-color: orange;
   color: black;
   font-weight: bold;

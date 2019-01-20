@@ -12,7 +12,7 @@ class BlueButton extends HTMLElement {
   font-size: 1.5em;
 }
 
-:host.light button {
+:host(.light) button {
   background-color: lightblue;
   color: black;
 }</style>`;

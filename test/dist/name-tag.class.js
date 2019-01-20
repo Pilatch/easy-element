@@ -21,7 +21,7 @@ class NameTag extends HTMLElement {
   margin: 0;
 }
 
-:host.dark {
+:host(.dark) {
   background-color: black;
 }
 
