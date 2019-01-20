@@ -12,55 +12,61 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-let RedButton =
+let SearchBar =
 /*#__PURE__*/
 function (_HTMLElement) {
-  _inherits(RedButton, _HTMLElement);
+  _inherits(SearchBar, _HTMLElement);
 
-  function RedButton() {
-    _classCallCheck(this, RedButton);
+  function SearchBar() {
+    _classCallCheck(this, SearchBar);
 
-    return _possibleConstructorReturn(this, (RedButton.__proto__ || Object.getPrototypeOf(RedButton)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).apply(this, arguments));
   }
 
-  _createClass(RedButton, [{
+  _createClass(SearchBar, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      var contents = "\n  <button><slot>Never click this button!</slot></button>\n";
+      this.innerHTML = "\n  <form class=\"search-bar_form\">\n    <input class=\"search-bar_input\" placeholder=\"Search\" />\n    <button class=\"search-bar_button\" type=\"submit\">Submit to THanos!</button>\n  </form>\n";
+      this.input = this.querySelector('input');
+      this.querySelector('form').addEventListener('submit', this.dispatchTerm.bind(this, 'submit'));
+      this.input.addEventListener('keyup', this.dispatchTerm.bind(this, 'input'));
+      var placeholder = this.getAttribute('placeholder');
+      var value = this.getAttribute('value');
 
-      if (this.childNodes.length) {
-        var template = document.createElement('div');
-        template.innerHTML = contents;
-        var slot = template.querySelector('slot');
-
-        while (slot.childNodes.length) {
-          slot.removeChild(slot.lastChild);
-        }
-
-        while (this.childNodes.length) {
-          slot.appendChild(this.firstChild);
-        }
-
-        this.innerHTML = template.innerHTML;
-      } else {
-        this.innerHTML = contents;
+      if (placeholder) {
+        this.input.setAttribute('placeholder', placeholder);
       }
 
-      this.querySelector('button').addEventListener('click', event => {
-        this.classList.add('pushed');
-        this.querySelector('slot').textContent = 'BOOM!';
+      if (typeof value === 'string') {
+        this.input.value = value;
+      }
+    }
+  }, {
+    key: "dispatchTerm",
+    value: function dispatchTerm(eventSuffix, event) {
+      event.preventDefault();
+      event = new CustomEvent('search-bar-' + eventSuffix, {
+        bubbles: true,
+        composed: true,
+        detail: {
+          term: this.input.value
+        }
       });
+      this.dispatchEvent(event);
+    }
+  }, {
+    key: "value",
+    get: function () {
+      return this.input.value;
+    },
+    set: function (newValue) {
+      this.input.value = newValue;
     }
   }]);
 
-  return RedButton;
+  return SearchBar;
 }(HTMLElement);
 
 window.addEventListener('WebComponentsReady', () => {
-  customElements.define('red-button', RedButton);
+  customElements.define('search-bar', SearchBar);
 });
-;(function () {
-  var style = document.createElement('style')
-  style.textContent = '  red-button button {    background-color: red;    border: 0;    box-shadow: 2px 2px 2px gray;    color: white;    font-size: 1.5em;  }  red-button.pushed button {    background-color: orange;    color: black;    font-weight: bold;    font-size: 2.5em;    padding: 1em;  }'
-  document.head.appendChild(style)
-})();
