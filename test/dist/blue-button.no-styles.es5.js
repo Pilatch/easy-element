@@ -12,21 +12,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-let RedButton =
+let BlueButton =
 /*#__PURE__*/
 function (_HTMLElement) {
-  _inherits(RedButton, _HTMLElement);
+  _inherits(BlueButton, _HTMLElement);
 
-  function RedButton() {
-    _classCallCheck(this, RedButton);
+  function BlueButton() {
+    _classCallCheck(this, BlueButton);
 
-    return _possibleConstructorReturn(this, (RedButton.__proto__ || Object.getPrototypeOf(RedButton)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (BlueButton.__proto__ || Object.getPrototypeOf(BlueButton)).apply(this, arguments));
   }
 
-  _createClass(RedButton, [{
+  _createClass(BlueButton, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      var contents = "\n  <button><slot>Never click this button!</slot></button>\n";
+      var contents = "<button><slot>Push this button!</slot></button>\n";
 
       if (this.childNodes.length) {
         var template = document.createElement('div');
@@ -47,20 +47,14 @@ function (_HTMLElement) {
       }
 
       this.querySelector('button').addEventListener('click', event => {
-        this.classList.add('pushed');
-        this.querySelector('slot').textContent = 'BOOM!';
+        this.classList.toggle('light');
       });
     }
   }]);
 
-  return RedButton;
+  return BlueButton;
 }(HTMLElement);
 
 window.addEventListener('WebComponentsReady', () => {
-  customElements.define('red-button', RedButton);
+  customElements.define('blue-button', BlueButton);
 });
-;(function () {
-  var style = document.createElement('style')
-  style.textContent = '  red-button button {    background-color: red;    border: 0;    box-shadow: 2px 2px 2px gray;    color: white;    font-size: 1.5em;  }  red-button.pushed button {    background-color: orange;    color: black;    font-weight: bold;    font-size: 2.5em;    padding: 1em;  }'
-  document.head.appendChild(style)
-})();
