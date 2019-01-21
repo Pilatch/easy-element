@@ -82,6 +82,8 @@ Just add the element's class-based script to your HTML.
 
 Take a look at [the repository's test/src folder](https://github.com/Pilatch/easy-element/tree/master/test/src) to see the different elements we built to test Easy Element.
 
+[`<pilatch-card>`](https://github.com/Pilatch/pilatch-card) is built with Easy Element.
+
 ## Adding functionality
 
 For components that _do_ stuff, you'll need some JavaScript. Here's a button that changes color when clicked.
@@ -128,7 +130,7 @@ Then it's built by running
 $ easy-element build src
 ```
 
-## Run
+## Build
 
 ```bash
 # Build from one source file, output to dist.
