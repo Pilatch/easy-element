@@ -1,3 +1,4 @@
 {
-  "plugins": ["@babel/transform-classes", "@babel/transform-template-literals"]
+  "plugins": ["@babel/transform-classes", "@babel/transform-template-literals"],
+  "presets": ["@babel/preset-env"]
 }
