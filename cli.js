@@ -41,7 +41,7 @@ switch (command) {
     })
 
   case 'demo':
-    return console.log('TODO, demo')
+    return require('./lib/demo-page')(input, argv.output)
 
   case 'watch':
     let watcher = require('chokidar').watch(input, {
