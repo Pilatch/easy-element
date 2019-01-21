@@ -1,0 +1,8 @@
+/**
+This file is intended to test the watcher functionality.
+Change the background-color and see if your page automatically refreshes.
+**/
+
+:host {
+  background-color: yellow;
+}

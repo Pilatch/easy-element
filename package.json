@@ -6,7 +6,8 @@
   "scripts": {
     "babel": "babel src/search-bar.js -o dist/search-bar.es5.js",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
-    "test": "cd test; rm dist/*; ./run.sh"
+    "test": "cd test; rm dist/*; ./run.sh;",
+    "test/watch": "./cli.js watch -o test/dist test/src/watch-me"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",
@@ -14,6 +15,7 @@
     "@babel/plugin-transform-classes": "7.0.0-beta.35",
     "@babel/plugin-transform-template-literals": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
+    "chokidar": "^2.0.4",
     "css": "^2.2.4",
     "mkdirp": "^0.5.1",
     "node-html-parser": "^1.1.11",

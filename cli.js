@@ -33,17 +33,36 @@ if (!input) {
   process.exit(1)
 }
 
-
 switch (command) {
   case 'build':
     return require('./build')({
       input: input,
       outputFolder: argv.output,
     })
+
   case 'demo':
     return console.log('TODO, demo')
+
   case 'watch':
-    return console.log('TODO, watch')
+    let watcher = require('chokidar').watch(input, {
+      persistent: true,
+    })
+    let build = require('./build')
+    let rebuild = _ => {
+      build({
+        input: input,
+        outputFolder: argv.output,
+      })
+    }
+
+    rebuild()
+
+    watcher.on('add', rebuild)
+    watcher.on('change', rebuild)
+    watcher.on('unlink', rebuild)
+    watcher.on('error', error => console.error(`Error while watching ${input}`, error))
+    return
+
   default:
     yargs.showHelp()
 }
