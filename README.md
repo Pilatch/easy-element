@@ -78,6 +78,10 @@ Just add the element's class-based script to your HTML.
 <srcipt src="/dist/name-tag.class.js"></script>
 ```
 
+### Examples
+
+Take a look at [the repository's test/src folder](https://github.com/Pilatch/easy-element/tree/master/test/src) to see the different elements we built to test Easy Element.
+
 ## Adding functionality
 
 For components that _do_ stuff, you'll need some JavaScript. Here's a button that changes color when clicked.
@@ -176,6 +180,12 @@ my-element.enabled { ... }
 
 The reverse is true for the `.class.js` output file where Shadow DOM is a real thing. CSS selectors containing your custom element's name are transformed to use `:host` and `:host(...)` as necessary.
 
+### Automatic stuff
+
+The JavaScript `class` you define will automatically `extend HTMLElement` so you don't have to.
+
+We'll also do `customElements.define(...)` at the appropriate time.
+
 ### Querying
 
 `this.querySelector` and `this.querySelectorAll` are transformed into `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output.
@@ -201,3 +211,7 @@ Only one non-named `<slot>` element is supported on the ES5-side at this point. 
 No attempt is made to polyfill shadow DOM for old browsers. The ES5 output will add your template's contents to the element's inner HTML, and your styles will be appended to `document.head`. So encapsulate your styles by starting your selectors with your element's tag-name or `:host` or use something like [BEM](http://getbem.com/).
 
 The class-based output will use shadow DOM.
+
+## Extending
+
+Extending things other than `HTMLElement` hasn't really been tested yet. Assume it's McBusted.
