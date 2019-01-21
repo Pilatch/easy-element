@@ -56,7 +56,6 @@ switch (command) {
     }
 
     rebuild()
-
     watcher.on('add', rebuild)
     watcher.on('change', rebuild)
     watcher.on('unlink', rebuild)
