@@ -12,7 +12,7 @@ let argv = yargs
   .usage('$0 command input')
   .command('build', 'build a custom element', positionalInput)
   .command('watch', 'watch a file or folder and re-build on chages', positionalInput)
-  .command('demo', 'create a demo HTML page')
+  .command('demo', 'create a demo HTML page', positionalInput)
   .demandCommand(1, 'please supply a command as the first argument')
   .option('output', {
     alias: 'o',
