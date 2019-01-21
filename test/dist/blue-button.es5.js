@@ -55,11 +55,14 @@ function (_HTMLElement) {
   return BlueButton;
 }(HTMLElement);
 
+;
+
+(function () {
+  var style = document.createElement('style');
+  style.textContent = 'blue-button button {  background-color: blue;  border: 0;  box-shadow: 2px 2px 2px gray;  color: white;  font-size: 1.5em;}blue-button.light button {  background-color: lightblue;  color: black;}';
+  document.head.appendChild(style);
+})();
+
 window.addEventListener('WebComponentsReady', () => {
   customElements.define('blue-button', BlueButton);
 });
-;(function () {
-  var style = document.createElement('style')
-  style.textContent = 'blue-button button {  background-color: blue;  border: 0;  box-shadow: 2px 2px 2px gray;  color: white;  font-size: 1.5em;}blue-button.light button {  background-color: lightblue;  color: black;}'
-  document.head.appendChild(style)
-})();
