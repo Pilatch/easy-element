@@ -1,10 +1,10 @@
-simple-bling {
+:host {
   background-color: black;
   color: gold;
   font-weight: bold;
   padding: 0.25em;
 }
-simple-bling:hover {
+:host(:hover) {
   background-color: gold;
   color: black;
 }
