@@ -13,7 +13,7 @@ $ npm install --save-dev easy-element
 
 ## Usage
 
-![Hello, my name is Easy Element name-tag](readme-images/name-tag.png)
+![Hello, my name is Easy Element name-tag](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/name-tag.png)
 
 For a purely visual element like this `<name-tag>` you can create one HTML file with only a `template` and a `style`.
 
@@ -88,8 +88,8 @@ Take a look at [the repository's test/src folder](https://github.com/Pilatch/eas
 
 For components that _do_ stuff, you'll need some JavaScript. Here's a button that changes color when clicked.
 
-![A dark blue button saying it's sad in French.](readme-images/dark-blue-button.png)
-![A light blue button saying it's sad in French.](readme-images/light-blue-button.png)
+![A dark blue button saying it's sad in French.](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/dark-blue-button.png)
+![A light blue button saying it's sad in French.](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/light-blue-button.png)
 
 We'll split it up into three files in our `src` folder.
 
