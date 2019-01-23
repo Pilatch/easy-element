@@ -1,6 +1,6 @@
 {
   "name": "easy-element",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "bin": {
     "easy-element": "cli.js"
   },
