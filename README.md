@@ -165,7 +165,7 @@ New stuff like `const`, `let`, `class`, and arrow functions are compiled down to
 
 ### :host
 
-Shadow DOM has the concept of the "host" element. We don't support that in ES5-land because polyfills are slow. So when you have a CSS selectors that use `:host` ...
+Shadow DOM has the concept of the "host" element. We don't support that in ES5-land because polyfills are slow. So when you have CSS selectors that use `:host` ...
 
 ```css
 /* my-element.css */
