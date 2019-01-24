@@ -190,17 +190,7 @@ We'll also do `customElements.define(...)` at the appropriate time.
 
 ### Querying
 
-`this.querySelector` and `this.querySelectorAll` are transformed into `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output.
-
-# Intent
-
-The goal of Easy Element is to allow creation of custom elements without worry about browser support while leveraging technologies web developers are already familiar with.
-
-For example if web developers want to handle events within a custom element, they can do so using native JavaScript like `addEventListener`. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
-
-Easy Element is intended for simple custom elements. If you want something more complex, there are [more feature-complete libraries](https://www.webcomponents.org/introduction#libraries-for-building-web-components) out there.
-
-Or you can use Easy Element as a starting point to build your custom element, then use the generated JavaScript in the `.class.js` file with other tools, as it is V1 spec compliant.
+`this.querySelector` and `this.querySelectorAll` are aliased `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output.
 
 # Limitations
 
@@ -214,6 +204,18 @@ No attempt is made to polyfill shadow DOM for old browsers. The ES5 output will 
 
 The class-based output will use shadow DOM.
 
+Do _not_ rely on `this.shadowDom` in your JavaScript class, as that will not work in the ES5 output. To manipulate the innards of your web component and retain feature parity, limit yourself to use of `this.querySelector` and `this.querySelectorAll` to get references to elements. Anything else (such as `this.innerHTML` and `this.lastElementChild` etc.) would not return the same answers between the ES5 and class-based implementations.
+
 ## Extending
 
 Extending things other than `HTMLElement` hasn't really been tested yet. Assume it's McBusted.
+
+# Intent
+
+The goal of Easy Element is to allow creation of custom elements without worry about browser support while leveraging technologies web developers are already familiar with.
+
+For example if web developers want to handle events within a custom element, they can do so using native JavaScript like `addEventListener`. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
+
+Easy Element is intended for simple custom elements. If you want something more complex, there are [more feature-complete libraries](https://www.webcomponents.org/introduction#libraries-for-building-web-components) out there.
+
+Or you can use Easy Element as a starting point to build your custom element, then use the generated JavaScript in the `.class.js` file with other tools, as it is V1 spec compliant.
