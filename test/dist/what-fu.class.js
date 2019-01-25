@@ -1,9 +1,9 @@
 class WhatFu extends HTMLElement {
   connectedCallback() {
-    let shadowRoot = this.attachShadow({
+    this.attachShadow({
       mode: 'open'
     });
-    shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = `
   <p>I know <slot>kung</slot>-fu!</p>
 `;
   }

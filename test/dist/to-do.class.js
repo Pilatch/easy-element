@@ -1,9 +1,9 @@
 class ToDo extends HTMLElement {
   connectedCallback() {
-    let shadowRoot = this.attachShadow({
+    this.attachShadow({
       mode: 'open'
     });
-    shadowRoot.innerHTML = `<h2>To-do list:</h2>
+    this.shadowRoot.innerHTML = `<h2>To-do list:</h2>
 <ol>
   <li>Smile</li>
   <li>Say thanks</li>

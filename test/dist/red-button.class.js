@@ -1,9 +1,9 @@
 class RedButton extends HTMLElement {
   connectedCallback() {
-    let shadowRoot = this.attachShadow({
+    this.attachShadow({
       mode: 'open'
     });
-    shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = `
   <button><slot>Never click this button!</slot></button>
 <style>:host button {
   background-color: red;

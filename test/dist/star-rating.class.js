@@ -1,9 +1,9 @@
 class StarRating extends HTMLElement {
   connectedCallback() {
-    let shadowRoot = this.attachShadow({
+    this.attachShadow({
       mode: 'open'
     });
-    shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = `
   <div class="star-rating_container">
     <div class="star-rating_star" data-position="1"></div>
     <div class="star-rating_star" data-position="2"></div>

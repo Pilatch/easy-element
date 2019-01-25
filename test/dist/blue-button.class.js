@@ -1,9 +1,9 @@
 class BlueButton extends HTMLElement {
   connectedCallback() {
-    let shadowRoot = this.attachShadow({
+    this.attachShadow({
       mode: 'open'
     });
-    shadowRoot.innerHTML = `<button><slot>Push this button!</slot></button>
+    this.shadowRoot.innerHTML = `<button><slot>Push this button!</slot></button>
 <style>:host button {
   background-color: blue;
   border: 0;

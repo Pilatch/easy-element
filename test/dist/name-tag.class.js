@@ -1,9 +1,9 @@
 class NameTag extends HTMLElement {
   connectedCallback() {
-    let shadowRoot = this.attachShadow({
+    this.attachShadow({
       mode: 'open'
     });
-    shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = `
   <h2 class="name-tag_heading">Hello, my name is</h2>
   <div class="name-tag_name-container">
     <slot></slot>
