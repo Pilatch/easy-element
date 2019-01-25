@@ -196,7 +196,9 @@ We'll also do `customElements.define(...)` at the appropriate time.
 
 ## Slots
 
-Only one non-named `<slot>` element is supported on the ES5-side at this point. It may be enhanced to support named slots in the future.
+Only one non-named `<slot>` element is supported on the ES5-side at this point. It may be enhanced to inject content into named slots in the future.
+
+Slots behave differently between the generated ES5 code and the class-based output with Shadow DOM. For instance, [assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) won't return what you want in ES5-land. If you want full slot support, look elsewhere.
 
 ## Shadow DOM
 
