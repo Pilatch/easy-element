@@ -31,6 +31,7 @@ class NameTag extends HTMLElement {
   font-size: 3em;
   text-align: center;
 }</style>`;
+    var slot = 'I should not cause a namespace collision!';
   }
 
   querySelector(selector) {

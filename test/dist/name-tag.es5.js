@@ -50,6 +50,8 @@ function (_HTMLElement) {
       } else {
         this.innerHTML = contents;
       }
+
+      var slot = 'I should not cause a namespace collision!';
     }
   }]);
 
