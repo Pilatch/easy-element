@@ -37,14 +37,15 @@ function (_HTMLElement) {
       if (this.childNodes.length) {
         var template = document.createElement('div');
         template.innerHTML = contents;
-        var slot = template.querySelector('slot');
 
-        while (slot.childNodes.length) {
-          slot.removeChild(slot.lastChild);
+        var __slot__ = template.querySelector('slot');
+
+        while (__slot__.childNodes.length) {
+          __slot__.removeChild(__slot__.lastChild);
         }
 
         while (this.childNodes.length) {
-          slot.appendChild(this.firstChild);
+          __slot__.appendChild(this.firstChild);
         }
 
         this.innerHTML = template.innerHTML;

@@ -52,13 +52,13 @@ switch (command) {
     })
     let build = require('./build')
     let rebuild = _ => {
+      console.error(`Building ${input} to ${argv.output}`)
       build({
         input: input,
         outputFolder: argv.output,
       })
     }
 
-    rebuild()
     watcher.on('add', rebuild)
     watcher.on('change', rebuild)
     watcher.on('unlink', rebuild)

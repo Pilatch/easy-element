@@ -1,9 +1,9 @@
 class MyHeart extends HTMLElement {
   connectedCallback() {
-    let shadowRoot = this.attachShadow({
+    this.attachShadow({
       mode: 'open'
     });
-    shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = `
   <div class="my-heart_heart-container">
   </div>
 <style>/* Thanks to https: //codepen.io/hana-mignon/pen/HxGmr */
@@ -91,7 +91,13 @@ class MyHeart extends HTMLElement {
     this.querySelector('.my-heart_heart-container').appendChild(innerHeart);
     setInterval(() => {
       // Test querySelectorAll in both ES5 and shadowDOM
-      this.querySelectorAll('.my-heart_inner-heart')[0].toggleAttribute('thump');
+      let inner = this.querySelectorAll('.my-heart_inner-heart')[0]; // .toggleAttribute doesn't exist in old IE
+
+      if (inner.getAttribute('thump')) {
+        inner.removeAttribute('thump');
+      } else {
+        inner.setAttribute('thump', "");
+      }
     }, 1000);
   }
 

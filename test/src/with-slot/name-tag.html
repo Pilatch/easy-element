@@ -29,5 +29,9 @@
 </style>
 
 <script>
-  class NameTag extends HTMLElement {}
+  class NameTag extends HTMLElement {
+    connectedCallback() {
+      var slot = 'I should not cause a namespace collision!'
+    }
+  }
 </script>

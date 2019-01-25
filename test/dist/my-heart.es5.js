@@ -39,7 +39,14 @@ function (_HTMLElement) {
       this.querySelector('.my-heart_heart-container').appendChild(innerHeart);
       setInterval(function () {
         // Test querySelectorAll in both ES5 and shadowDOM
-        _this.querySelectorAll('.my-heart_inner-heart')[0].toggleAttribute('thump');
+        var inner = _this.querySelectorAll('.my-heart_inner-heart')[0]; // .toggleAttribute doesn't exist in old IE
+
+
+        if (inner.getAttribute('thump')) {
+          inner.removeAttribute('thump');
+        } else {
+          inner.setAttribute('thump', "");
+        }
       }, 1000);
     }
   }]);

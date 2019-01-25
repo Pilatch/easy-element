@@ -1,9 +1,9 @@
 class SearchBar extends HTMLElement {
   connectedCallback() {
-    let shadowRoot = this.attachShadow({
+    this.attachShadow({
       mode: 'open'
     });
-    shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = `
   <form class="search-bar_form">
     <input class="search-bar_input" placeholder="Search" />
     <button class="search-bar_button" type="submit">Submit to THanos!</button>
