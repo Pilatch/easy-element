@@ -45,7 +45,7 @@ function (_HTMLElement) {
         if (inner.getAttribute('thump')) {
           inner.removeAttribute('thump');
         } else {
-          inner.setAttribute('thump');
+          inner.setAttribute('thump', "");
         }
       }, 1000);
     }
