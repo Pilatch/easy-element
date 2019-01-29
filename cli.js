@@ -50,19 +50,27 @@ switch (command) {
     let watcher = require('chokidar').watch(input, {
       persistent: true,
     })
+    let reportError = error => {
+      console.error(`Error while watching ${input}`, error)
+      process.stderr.write('\x07') // System bell sound
+    }
     let build = require('./build')
     let rebuild = _ => {
       console.error(`Building ${input} to ${argv.output}`)
-      build({
-        input: input,
-        outputFolder: argv.output,
-      })
+      try {
+        build({
+          input: input,
+          outputFolder: argv.output,
+        })
+      } catch (error) {
+        reportError(error)
+      }
     }
 
     watcher.on('add', rebuild)
     watcher.on('change', rebuild)
     watcher.on('unlink', rebuild)
-    watcher.on('error', error => console.error(`Error while watching ${input}`, error))
+    watcher.on('error', reportError)
     return
 
   default:
