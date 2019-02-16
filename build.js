@@ -35,7 +35,7 @@ module.exports = (options = defaultOptions) => {
       let htmlParseResult = require('./lib/parse-html')(fs.readFileSync(htmlInput))
 
       if (htmlParseResult) {
-        stylesText = htmlParseResult.stylesText // TODO apply preprocessor to this
+        stylesText = htmlParseResult.stylesText
         scriptText = htmlParseResult.scriptText
         innerHTML = htmlParseResult.innerHTML
 
@@ -59,7 +59,7 @@ module.exports = (options = defaultOptions) => {
       innerHTML = fs.readFileSync(htmlInput, 'utf8')
     }
 
-    resolveStyles(stylesText, cssStats, cssInput, preprocessor)
+    require('./lib/css-input')(stylesText, cssStats, cssInput, preprocessor)
       .then(resolvedStylesText => {
         require('./lib/transform')({
           innerHTML: innerHTML,
@@ -78,8 +78,7 @@ module.exports = (options = defaultOptions) => {
         require('./lib/transform-html')(input, outputFolder)
         break
       case '.css':
-        // TODO apply preprocessor in transform-css.js
-        require('./lib/transform-css')(input, outputFolder)
+        require('./lib/transform-css')(input, outputFolder, preprocessor)
         break
       case '.js':
         require('./lib/transform-js')(input, outputFolder)
@@ -89,28 +88,4 @@ module.exports = (options = defaultOptions) => {
         process.exit(1)
     }
   }
-}
-
-
-// Returns a Promise.
-let resolveStyles = (stylesText, cssStats, cssInput, preprocessor) => {
-  if (!stylesText && cssStats) {
-    return getStyles(cssInput, preprocessor)
-  }
-
-  return Promise.resolve(stylesText)
-}
-
-let getStyles = (cssInput, preprocessor) => {
-  if (preprocessor) {
-    // Returns a Promise.
-    return require('./lib/preprocess-css')(preprocessor, fs.readFileSync(cssInput, 'utf8'))
-  }
-
-  return new Promise((resolve, _r) => {
-    fs.readFile(cssInput, 'utf8', (_e, stylesText) => {
-      // We assume there's no error reading the file because we did a stat on it above.
-      resolve(stylesText)
-    })
-  })
 }

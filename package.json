@@ -7,7 +7,7 @@
   "scripts": {
     "babel": "babel src/search-bar.js -o dist/search-bar.es5.js",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
-    "test": "cd test; rm dist/*; ./run.sh;",
+    "test": "cd test; ./run.sh;",
     "test/watch": "./cli.js watch -o test/dist test/src/watch-me"
   },
   "dependencies": {

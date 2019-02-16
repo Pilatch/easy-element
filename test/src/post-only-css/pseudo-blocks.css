@@ -1,0 +1,32 @@
+:root {
+  --green: rgb(8, 223, 16);
+  --yellow: rgb(255, 239, 16);
+}
+
+:host {
+  display: inline-block;
+  background-color: var(--green);
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+
+:host::after {
+  background-color: var(--yellow);
+  content: '';
+  height: 25px;
+  left: 25px;
+  position: absolute;
+  top: 25px;
+  width: 25px;
+}
+
+:host::before {
+  background-color: var(--yellow);
+  content: '';
+  height: 25px;
+  left: 50px;
+  position: absolute;
+  top: 50px;
+  width: 25px;
+}
