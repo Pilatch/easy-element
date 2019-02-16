@@ -10,3 +10,4 @@ node ../cli.js build src/only-html/to-do.html
 node ../cli.js build src/escape-backwhack
 node ../cli.js build src/with-love
 node ../cli.js build src/watch-me
+node ../cli.js build src/post-css --preprocessor postcss

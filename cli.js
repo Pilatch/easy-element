@@ -22,6 +22,11 @@ let argv = yargs
     describe: 'where the output files should go',
     type: 'string',
   })
+  .option('preprocessor', {
+    alias: 'p',
+    describe: 'CSS preprocessor to use, such as "postcss"',
+    type: 'string',
+  })
   .help()
   .argv
 
@@ -41,6 +46,7 @@ switch (command) {
     return require('./build')({
       input: input,
       outputFolder: argv.output,
+      preprocessor: argv.preprocessor,
     })
 
   case 'demo':

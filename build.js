@@ -7,7 +7,7 @@ let defaultOptions = {
 }
 
 module.exports = (options = defaultOptions) => {
-  let {input, outputFolder} = options
+  let {input, outputFolder, preprocessor} = options
 
   if (!input) {
     console.error('I can\'t do my thing without an input file or folder.')
@@ -35,7 +35,7 @@ module.exports = (options = defaultOptions) => {
       let htmlParseResult = require('./lib/parse-html')(fs.readFileSync(htmlInput))
 
       if (htmlParseResult) {
-        stylesText = htmlParseResult.stylesText
+        stylesText = htmlParseResult.stylesText // TODO apply preprocessor to this
         scriptText = htmlParseResult.scriptText
         innerHTML = htmlParseResult.innerHTML
 
@@ -51,10 +51,6 @@ module.exports = (options = defaultOptions) => {
       }
     }
 
-    if (!stylesText && cssStats) {
-      stylesText = fs.readFileSync(cssInput, 'utf8')
-    }
-
     if (!scriptText && jsStats) {
       scriptText = fs.readFileSync(jsInput, 'utf8')
     }
@@ -63,14 +59,28 @@ module.exports = (options = defaultOptions) => {
       innerHTML = fs.readFileSync(htmlInput, 'utf8')
     }
 
-    require('./lib/transform')({
-      innerHTML: innerHTML,
-      scriptText: scriptText,
-      stylesText: stylesText,
-      className: className,
-      tagName: tagName,
-      outputFolder: outputFolder,
-    })
+    if (!stylesText && cssStats) {
+      getStyles(cssInput, preprocessor)
+        .then(promisedStylesText => {
+          require('./lib/transform')({
+            innerHTML: innerHTML,
+            scriptText: scriptText,
+            stylesText: promisedStylesText,
+            className: className,
+            tagName: tagName,
+            outputFolder: outputFolder,
+          })
+        })
+    } else {
+      require('./lib/transform')({
+        innerHTML: innerHTML,
+        scriptText: scriptText,
+        stylesText: stylesText,
+        className: className,
+        tagName: tagName,
+        outputFolder: outputFolder,
+      })
+    }
   } else {
     let fileExtension = path.extname(input.toLowerCase())
 
@@ -79,6 +89,7 @@ module.exports = (options = defaultOptions) => {
         require('./lib/transform-html')(input, outputFolder)
         break
       case '.css':
+        // TODO apply preprocessor in transform-css.js
         require('./lib/transform-css')(input, outputFolder)
         break
       case '.js':
@@ -89,4 +100,18 @@ module.exports = (options = defaultOptions) => {
         process.exit(1)
     }
   }
+}
+
+let getStyles = (cssInput, preprocessor) => {
+  if (preprocessor) {
+    // Returns a Promise.
+    return require('./lib/preprocess-css')(preprocessor, fs.readFileSync(cssInput, 'utf8'))
+  }
+
+  return new Promise((resolve, _r) => {
+    fs.readFile(cssInput, 'utf8', (_e, stylesText) => {
+      // We assume there's no error reading the file because we did a stat on it above.
+      resolve(stylesText)
+    })
+  })
 }
