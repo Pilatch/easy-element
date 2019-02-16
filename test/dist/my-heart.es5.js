@@ -42,7 +42,7 @@ function (_HTMLElement) {
         var inner = _this.querySelectorAll('.my-heart_inner-heart')[0]; // .toggleAttribute doesn't exist in old IE
 
 
-        if (inner.getAttribute('thump')) {
+        if (inner.getAttribute('thump') === '') {
           inner.removeAttribute('thump');
         } else {
           inner.setAttribute('thump', "");
