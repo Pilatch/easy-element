@@ -59,28 +59,17 @@ module.exports = (options = defaultOptions) => {
       innerHTML = fs.readFileSync(htmlInput, 'utf8')
     }
 
-    if (!stylesText && cssStats) {
-      getStyles(cssInput, preprocessor)
-        .then(promisedStylesText => {
-          require('./lib/transform')({
-            innerHTML: innerHTML,
-            scriptText: scriptText,
-            stylesText: promisedStylesText,
-            className: className,
-            tagName: tagName,
-            outputFolder: outputFolder,
-          })
+    resolveStyles(stylesText, cssStats, cssInput, preprocessor)
+      .then(resolvedStylesText => {
+        require('./lib/transform')({
+          innerHTML: innerHTML,
+          scriptText: scriptText,
+          stylesText: resolvedStylesText,
+          className: className,
+          tagName: tagName,
+          outputFolder: outputFolder,
         })
-    } else {
-      require('./lib/transform')({
-        innerHTML: innerHTML,
-        scriptText: scriptText,
-        stylesText: stylesText,
-        className: className,
-        tagName: tagName,
-        outputFolder: outputFolder,
       })
-    }
   } else {
     let fileExtension = path.extname(input.toLowerCase())
 
@@ -100,6 +89,16 @@ module.exports = (options = defaultOptions) => {
         process.exit(1)
     }
   }
+}
+
+
+// Returns a Promise.
+let resolveStyles = (stylesText, cssStats, cssInput, preprocessor) => {
+  if (!stylesText && cssStats) {
+    return getStyles(cssInput, preprocessor)
+  }
+
+  return Promise.resolve(stylesText)
 }
 
 let getStyles = (cssInput, preprocessor) => {
