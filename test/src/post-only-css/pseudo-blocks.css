@@ -9,24 +9,25 @@
   height: 100px;
   position: relative;
   width: 100px;
+
+  &::after {
+    background-color: var(--yellow);
+    content: '';
+    height: 25px;
+    left: 25px;
+    position: absolute;
+    top: 25px;
+    width: 25px;
+  }
+
+  &::before {
+    background-color: var(--yellow);
+    content: '';
+    height: 25px;
+    left: 50px;
+    position: absolute;
+    top: 50px;
+    width: 25px;
+  }
 }
 
-:host::after {
-  background-color: var(--yellow);
-  content: '';
-  height: 25px;
-  left: 25px;
-  position: absolute;
-  top: 25px;
-  width: 25px;
-}
-
-:host::before {
-  background-color: var(--yellow);
-  content: '';
-  height: 25px;
-  left: 50px;
-  position: absolute;
-  top: 50px;
-  width: 25px;
-}

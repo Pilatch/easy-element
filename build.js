@@ -59,7 +59,7 @@ module.exports = (options = defaultOptions) => {
       innerHTML = fs.readFileSync(htmlInput, 'utf8')
     }
 
-    require('./lib/css-input')(stylesText, cssStats, cssInput, preprocessor)
+    require('./lib/css-input')(stylesText, cssStats && cssInput, preprocessor)
       .then(resolvedStylesText => {
         require('./lib/transform')({
           innerHTML: innerHTML,
@@ -75,7 +75,7 @@ module.exports = (options = defaultOptions) => {
 
     switch (fileExtension) {
       case '.html':
-        require('./lib/transform-html')(input, outputFolder)
+        require('./lib/transform-html')(input, outputFolder, preprocessor)
         break
       case '.css':
         require('./lib/transform-css')(input, outputFolder, preprocessor)

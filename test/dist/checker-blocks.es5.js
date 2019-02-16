@@ -16,23 +16,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var PseudoBlocks =
+var CheckerBlocks =
 /*#__PURE__*/
 function (_HTMLElement) {
-  _inherits(PseudoBlocks, _HTMLElement);
+  _inherits(CheckerBlocks, _HTMLElement);
 
-  function PseudoBlocks() {
-    _classCallCheck(this, PseudoBlocks);
+  function CheckerBlocks() {
+    _classCallCheck(this, CheckerBlocks);
 
-    return _possibleConstructorReturn(this, (PseudoBlocks.__proto__ || Object.getPrototypeOf(PseudoBlocks)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (CheckerBlocks.__proto__ || Object.getPrototypeOf(CheckerBlocks)).apply(this, arguments));
   }
 
-  _createClass(PseudoBlocks, [{
+  _createClass(CheckerBlocks, [{
     key: "connectedCallback",
-    value: function connectedCallback() {}
+    value: function connectedCallback() {
+      this.innerHTML = "\n  <div class=\"checker-blocks-row\">\n    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>\n  </div>\n  <div class=\"checker-blocks-row\">\n    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>\n  </div>\n  <div class=\"checker-blocks-row\">\n    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>\n  </div>\n  <div class=\"checker-blocks-row\">\n    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>\n  </div>\n  <div class=\"checker-blocks-row\">\n    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>\n  </div>\n  <div class=\"checker-blocks-row\">\n    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>\n  </div>\n  <div class=\"checker-blocks-row\">\n    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>\n  </div>\n  <div class=\"checker-blocks-row\">\n    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>\n  </div>\n";
+    }
   }]);
 
-  return PseudoBlocks;
+  return CheckerBlocks;
 }(HTMLElement);
 
 "use strict";
@@ -41,12 +43,12 @@ function (_HTMLElement) {
 
 (function () {
   var style = document.createElement('style');
-  style.textContent = 'pseudo-blocks {  display: inline-block;  background-color: rgb(8, 223, 16);  height: 100px;  position: relative;  width: 100px;}pseudo-blocks::after {  background-color: rgb(255, 239, 16);  content: \'\';  height: 25px;  left: 25px;  position: absolute;  top: 25px;  width: 25px;}pseudo-blocks::before {  background-color: rgb(255, 239, 16);  content: \'\';  height: 25px;  left: 50px;  position: absolute;  top: 50px;  width: 25px;}';
+  style.textContent = 'checker-blocks {  display: flex;  height: 400px;  width: 400px;}.checker-blocks-row {  height: calc(400px / 8);  width: 400px;}.checker-blocks-row i {  display: flex;  height: 50px;  width: 50px;}.checker-blocks-row:nth-child(2n+1) i:nth-child(2n) {  background-color: rgb(16, 16, 16);}.checker-blocks-row:nth-child(2n+1) i:nth-child(2n + 1) {  background-color: rgb(255, 12, 12);}.checker-blocks-row:nth-child(2n) i:nth-child(2n) {  background-color: rgb(255, 12, 12);}.checker-blocks-row:nth-child(2n) i:nth-child(2n + 1) {  background-color: rgb(16, 16, 16);}';
   document.head.appendChild(style);
 })();
 
 "use strict";
 
 window.addEventListener('WebComponentsReady', function () {
-  customElements.define('pseudo-blocks', PseudoBlocks);
+  customElements.define('checker-blocks', CheckerBlocks);
 });

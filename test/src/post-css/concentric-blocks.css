@@ -9,22 +9,22 @@
   height: 100px;
   position: relative;
   width: 100px;
-}
 
-:host div {
-  background-color: var(--orange);
-  height: 25px;
-  left: 25px;
-  position: absolute;
-  top: 25px;
-  width: 25px;
-}
+  div {
+    background-color: var(--orange);
+    height: 25px;
+    left: 25px;
+    position: absolute;
+    top: 25px;
+    width: 25px;
+  }
 
-:host span {
-  background-color: var(--orange);
-  height: 25px;
-  left: 50px;
-  position: absolute;
-  top: 50px;
-  width: 25px;
+  span {
+    background-color: var(--orange);
+    height: 25px;
+    left: 50px;
+    position: absolute;
+    top: 50px;
+    width: 25px;
+  }
 }
