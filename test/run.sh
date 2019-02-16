@@ -14,4 +14,4 @@ node ../cli.js build src/with-love
 node ../cli.js build src/watch-me
 node ../cli.js build src/post-css --preprocessor postcss
 node ../cli.js build src/post-only-css/pseudo-blocks.css --preprocessor postcss
-node ../cli.js build src/post-css-in-html/checker-blocks.html --preprocessor postcss
+node ../cli.js build src/post-css-in-html/checker-blocks.html
