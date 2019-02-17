@@ -15,4 +15,4 @@ node ../cli.js build src/watch-me
 node ../cli.js build src/post-css --preprocessor postcss
 node ../cli.js build src/post-only-css/pseudo-blocks.css -p postcss
 node ../cli.js build src/post-css-in-html/checker-blocks.html
-node ../cli.js build src/post-css-import/deeper/deep-purple.html -p postcss
+node ../cli.js build src/post-css-import/deeper -p postcss

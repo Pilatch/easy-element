@@ -26,11 +26,14 @@ module.exports = (options = defaultOptions) => {
     let { className, tagName, cssInput, jsInput, htmlInput, cssStats, htmlStats, jsStats } = inputs.fromDirectory(input)
 
     if (!cssStats && !jsStats && !htmlStats) {
-      console.error('Expected to find an html and/or css and/or js file in directory.')
+      console.error(`Expected to find an html and/or css and/or js file in directory ${input}`)
       process.exit(1)
     }
 
     let stylesText, scriptText, innerHTML
+    // The source of the styles could be a CSS file, or an HTML file.
+    // Assume it might be a CSS file until further inspection.
+    let stylesSource = cssStats && cssInput
 
     if (htmlStats) {
       let htmlParseResult = require('./lib/parse-html')(fs.readFileSync(htmlInput))
@@ -50,17 +53,21 @@ module.exports = (options = defaultOptions) => {
           process.exit(1)
         }
       }
+
+      if (!scriptText && !stylesText && !innerHTML) {
+        innerHTML = fs.readFileSync(htmlInput, 'utf8')
+      }
+
+      if (stylesText && !cssStats) {
+        stylesSource = htmlInput
+      }
     }
 
     if (!scriptText && jsStats) {
       scriptText = fs.readFileSync(jsInput, 'utf8')
     }
 
-    if (!innerHTML && htmlStats) {
-      innerHTML = fs.readFileSync(htmlInput, 'utf8')
-    }
-
-    require('./lib/css-input')(stylesText, cssStats && cssInput, preprocessor)
+    require('./lib/css-input')(stylesText, stylesSource, preprocessor)
       .then(resolvedStylesText => {
         require('./lib/transform')({
           innerHTML: innerHTML,
