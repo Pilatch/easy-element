@@ -4,10 +4,11 @@ let path = require('path')
 let defaultOptions = {
   input: null,
   outputFolder: 'dist',
+  preprocessor: null,
 }
 
 module.exports = (options = defaultOptions) => {
-  let {input, outputFolder} = options
+  let {input, outputFolder, preprocessor} = options
 
   if (!input) {
     console.error('I can\'t do my thing without an input file or folder.')
@@ -51,10 +52,6 @@ module.exports = (options = defaultOptions) => {
       }
     }
 
-    if (!stylesText && cssStats) {
-      stylesText = fs.readFileSync(cssInput, 'utf8')
-    }
-
     if (!scriptText && jsStats) {
       scriptText = fs.readFileSync(jsInput, 'utf8')
     }
@@ -63,23 +60,26 @@ module.exports = (options = defaultOptions) => {
       innerHTML = fs.readFileSync(htmlInput, 'utf8')
     }
 
-    require('./lib/transform')({
-      innerHTML: innerHTML,
-      scriptText: scriptText,
-      stylesText: stylesText,
-      className: className,
-      tagName: tagName,
-      outputFolder: outputFolder,
-    })
+    require('./lib/css-input')(stylesText, cssStats && cssInput, preprocessor)
+      .then(resolvedStylesText => {
+        require('./lib/transform')({
+          innerHTML: innerHTML,
+          scriptText: scriptText,
+          stylesText: resolvedStylesText,
+          className: className,
+          tagName: tagName,
+          outputFolder: outputFolder,
+        })
+      })
   } else {
     let fileExtension = path.extname(input.toLowerCase())
 
     switch (fileExtension) {
       case '.html':
-        require('./lib/transform-html')(input, outputFolder)
+        require('./lib/transform-html')(input, outputFolder, preprocessor)
         break
       case '.css':
-        require('./lib/transform-css')(input, outputFolder)
+        require('./lib/transform-css')(input, outputFolder, preprocessor)
         break
       case '.js':
         require('./lib/transform-js')(input, outputFolder)

@@ -1,0 +1,67 @@
+<template>
+  <div class="checker-blocks-row">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="checker-blocks-row">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="checker-blocks-row">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="checker-blocks-row">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="checker-blocks-row">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="checker-blocks-row">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="checker-blocks-row">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="checker-blocks-row">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+</template>
+<style preprocessor="postcss">
+:root {
+  --dark: rgb(16, 16, 16);
+  --light: rgb(255, 12, 12);
+  --full-width: 400px;
+  --square-side: calc(var(--full-width) / 8);
+}
+
+:host {
+  display: flex;
+  height: var(--full-width);
+  width: var(--full-width);
+}
+
+.checker-blocks-row {
+  height: var(--square-side);
+  width: var(--full-width);
+
+  i {
+    display: flex;
+    height: 50px;
+    width: 50px;
+  }
+
+  &:nth-child(2n+1) i:nth-child(2n) {
+    background-color: var(--dark);
+  }
+
+  &:nth-child(2n+1) i:nth-child(2n + 1) {
+    background-color: var(--light);
+  }
+
+  &:nth-child(2n) i:nth-child(2n) {
+    background-color: var(--light);
+  }
+
+  &:nth-child(2n) i:nth-child(2n + 1) {
+    background-color: var(--dark);
+  }
+}
+</style>

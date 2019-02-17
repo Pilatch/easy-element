@@ -1,0 +1,30 @@
+:root {
+  --blue: #001199;
+  --orange: #ff9911;
+}
+
+:host {
+  display: inline-block;
+  background-color: var(--blue);
+  height: 100px;
+  position: relative;
+  width: 100px;
+
+  div {
+    background-color: var(--orange);
+    height: 25px;
+    left: 25px;
+    position: absolute;
+    top: 25px;
+    width: 25px;
+  }
+
+  span {
+    background-color: var(--orange);
+    height: 25px;
+    left: 50px;
+    position: absolute;
+    top: 50px;
+    width: 25px;
+  }
+}
