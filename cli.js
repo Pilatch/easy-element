@@ -67,6 +67,7 @@ switch (command) {
         build({
           input: input,
           outputFolder: argv.output,
+          preprocessor: argv.preprocessor,
         })
       } catch (error) {
         reportError(error)
