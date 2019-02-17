@@ -1,0 +1,5 @@
+@import '../import-me.css';
+
+:host {
+  color: white;
+}
