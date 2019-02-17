@@ -4,6 +4,7 @@ let path = require('path')
 let defaultOptions = {
   input: null,
   outputFolder: 'dist',
+  preprocessor: null,
 }
 
 module.exports = (options = defaultOptions) => {

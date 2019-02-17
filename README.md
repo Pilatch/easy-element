@@ -91,7 +91,7 @@ For components that _do_ stuff, you'll need some JavaScript. Here's a button tha
 ![A dark blue button saying it's sad in French.](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/dark-blue-button.png)
 ![A light blue button saying it's sad in French.](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/light-blue-button.png)
 
-We'll split it up into three files in our `src` folder.
+We'll split it up into three files in our `src` folder... because we can.
 
 ```html
 <!-- src/blue-button.html -->
@@ -147,11 +147,28 @@ $ easy-element watch src
 
 # Create demo-page/index.html to show off my-element.
 $ easy-element demo --output demo-page src/my-element.html
+
+# Build using postcss as the CSS preprocessor.
+$ easy-element build --preprocessor postcss src/my-element.html
 ```
 
 Files are output to a folder named `dist` by default. You can change this with the `--output` option, or `-o` for short.
 
 For help, use the `--help` option.
+
+### CSS Preprocessing
+
+![postcss-logo](readme-images/postcss.svg)
+
+Right now only [postcss](https://postcss.org/) is supported. To use it, place a `postcss.config.js` file at the base of your project. Then build with the `--preprocessor postcss` option on the command line, or `-p` for short.
+
+Or if you're building an HTML file you can specify the preprocessor in your style tag.
+
+```html
+<style preprocessor="postcss">
+/* ... */
+</style>
+```
 
 ## Browser Support
 
@@ -190,7 +207,7 @@ We'll also do `customElements.define(...)` at the appropriate time.
 
 ### Querying
 
-`this.querySelector` and `this.querySelectorAll` are aliased `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output.
+`this.querySelector` and `this.querySelectorAll` are aliased to `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output.
 
 # Limitations
 
@@ -206,7 +223,7 @@ No attempt is made to polyfill shadow DOM for old browsers. The ES5 output will 
 
 The class-based output will use shadow DOM.
 
-Do _not_ rely on `this.shadowDom` in your JavaScript class, as that will not work in the ES5 output. To manipulate the innards of your web component and retain feature parity, limit yourself to use of `this.querySelector` and `this.querySelectorAll` to get references to elements. Anything else (such as `this.innerHTML` and `this.lastElementChild` etc.) would not return the same answers between the ES5 and class-based implementations.
+Do _not_ rely on `this.shadowRoot` in your JavaScript class, as that will not work in the ES5 output. To manipulate the innards of your web component and retain feature parity, limit yourself to use of `this.querySelector` and `this.querySelectorAll` to get references to elements. Anything else (such as `this.innerHTML` and `this.lastElementChild` etc.) would _not_ return the same answers between the ES5 and class-based implementations.
 
 ## Extending
 
@@ -216,7 +233,7 @@ Extending things other than `HTMLElement` hasn't really been tested yet. Assume 
 
 The goal of Easy Element is to allow creation of custom elements without worry about browser support while leveraging technologies web developers are already familiar with.
 
-For example if web developers want to handle events within a custom element, they can do so using native JavaScript like `addEventListener`. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
+For example, if web developers want to handle events within a custom element, they can do so using native JavaScript like `addEventListener`. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
 
 Easy Element is intended for simple custom elements. If you want something more complex, there are [more feature-complete libraries](https://www.webcomponents.org/introduction#libraries-for-building-web-components) out there.
 
