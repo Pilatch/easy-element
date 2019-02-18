@@ -38,9 +38,15 @@ module.exports = (options = defaultOptions) => {
       let htmlParseResult = require('./lib/parse-html')(fs.readFileSync(htmlInput))
 
       if (htmlParseResult) {
+        if (preprocessor && htmlParseResult.preprocessor && (preprocessor !== htmlParseResult.preprocessor)) {
+          console.error(`You specified a preprocessor of "${preprocessor}", but also specied "${htmlParseResult.preprocessor}" in ${htmlInput}.`)
+          process.exit(1)
+        }
+
         stylesText = htmlParseResult.stylesText
         scriptText = htmlParseResult.scriptText
         innerHTML = htmlParseResult.innerHTML
+        preprocessor = preprocessor || htmlParseResult.preprocessor
 
         if (stylesText && cssStats) {
           console.error('Found CSS in both HTML and in a separate file. Please choose one option or the other.')

@@ -16,6 +16,9 @@ node ../cli.js build src/post-css --preprocessor postcss
 node ../cli.js build src/post-only-css/pseudo-blocks.css -p postcss
 node ../cli.js build src/post-css-in-html/checker-blocks.html
 node ../cli.js build src/post-css-import/deeper -p postcss
-node ../cli.js build src/sassy/deepness/pill-text.scss
-node ../cli.js build src/sassy/deeply/junk-trunk.html
 node ../cli.js build src/sassy/deepening
+# Build both ways to test each method doesn't blow up
+node ../cli.js build src/sassy/deepness/pill-text.scss
+node ../cli.js build src/sassy/deepness
+node ../cli.js build src/sassy/deeply
+node ../cli.js build src/sassy/deeply/junk-trunk.html
