@@ -1,15 +1,16 @@
 @import '../_colors';
+@import 'pretend-sass-thingy/stupid-vars';
 
 :host {
   background-color: $babyblue;
-  border-radius: 1em;
-  padding-left: .5em;
+  border-radius: $oneEm;
+  padding-left: $pointFiveEm;
 
   &::after {
     background-color: $rosypink;
     content: '?';
     display: inline-block;
-    width: 1.5em;
+    width: $onePointFiveEm;
     text-align: center;
   }
 }
