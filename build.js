@@ -1,5 +1,4 @@
 let fs = require('fs')
-let inputs = require('./lib/inputs')
 let path = require('path')
 let defaultOptions = {
   input: null,
@@ -23,7 +22,7 @@ module.exports = (options = defaultOptions) => {
   }
 
   if (inputStats.isDirectory()) {
-    let { className, tagName, cssInput, jsInput, htmlInput, cssStats, htmlStats, jsStats } = inputs.fromDirectory(input)
+    let { className, tagName, cssInput, jsInput, htmlInput, cssStats, htmlStats, jsStats, inferredPreprocessor } = require('./lib/inputs').fromDirectory(input)
 
     if (!cssStats && !jsStats && !htmlStats) {
       console.error(`Expected to find an html and/or css and/or js file in directory ${input}`)
@@ -39,9 +38,15 @@ module.exports = (options = defaultOptions) => {
       let htmlParseResult = require('./lib/parse-html')(fs.readFileSync(htmlInput))
 
       if (htmlParseResult) {
+        if (preprocessor && htmlParseResult.preprocessor && (preprocessor !== htmlParseResult.preprocessor)) {
+          console.error(`You specified a preprocessor of "${preprocessor}", but also specied "${htmlParseResult.preprocessor}" in ${htmlInput}. Choose only one, please!`)
+          process.exit(1)
+        }
+
         stylesText = htmlParseResult.stylesText
         scriptText = htmlParseResult.scriptText
         innerHTML = htmlParseResult.innerHTML
+        preprocessor = preprocessor || htmlParseResult.preprocessor
 
         if (stylesText && cssStats) {
           console.error('Found CSS in both HTML and in a separate file. Please choose one option or the other.')
@@ -67,7 +72,12 @@ module.exports = (options = defaultOptions) => {
       scriptText = fs.readFileSync(jsInput, 'utf8')
     }
 
-    require('./lib/css-input')(stylesText, stylesSource, preprocessor)
+    if (preprocessor && inferredPreprocessor && (preprocessor !== inferredPreprocessor)) {
+      console.error(`You specified a preprocessor of "${preprocessor}", but we inferred "${inferredPreprocessor}" based on directory contents.`)
+      process.exit(1)
+    }
+
+    require('./lib/css-input')(stylesText, stylesSource, preprocessor || inferredPreprocessor)
       .then(resolvedStylesText => {
         require('./lib/transform')({
           innerHTML: innerHTML,
@@ -87,6 +97,22 @@ module.exports = (options = defaultOptions) => {
         break
       case '.css':
         require('./lib/transform-css')(input, outputFolder, preprocessor)
+        break
+      case '.scss':
+        if (preprocessor && preprocessor !== 'scss') {
+          console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .scss file, where "scss" would be the preprocessor.`)
+          process.exit(1)
+        }
+
+        require('./lib/transform-css')(input, outputFolder, 'scss', fileExtension)
+        break
+      case '.sass':
+        if (preprocessor && preprocessor !== 'sass') {
+          console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .sass file, where "sass" would be the preprocessor.`)
+          process.exit(1)
+        }
+
+        require('./lib/transform-css')(input, outputFolder, 'sass', fileExtension)
         break
       case '.js':
         require('./lib/transform-js')(input, outputFolder)

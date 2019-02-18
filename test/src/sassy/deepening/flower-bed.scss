@@ -1,0 +1,223 @@
+@import '../colors';
+@import 'pretend-sass-thingy/stupid-vars';
+
+//! Credit to https://codepen.io/selenacarmooshe/pen/qdzvdq
+
+:host {
+  background-color: $skyBlue;
+  display: block;
+  height: 505px;
+
+  .garden {
+    margin-left: -50px;
+  }
+
+  .flower {
+    margin-left: -70px;
+  }
+
+  .flower-01 { margin-left: 0; }
+
+  @mixin stem($width, $height, $rotate) {
+    .stem {
+      width: $width;
+      height: $height;
+      @if ($rotate) {
+        transform: translate(-50%) rotate($rotate);
+      }
+      @else {
+        transform: translate(-50%);
+      }
+    }
+  }
+
+  @mixin fivePetalFlower($petalColor, $middleColor, $petalWidth, $petalLength, $middleDiameter) {
+
+    height: $petalLength * 2;
+    width: $petalLength * 2;
+
+    .base {
+      &:before {
+        background-color: $middleColor;
+        width: $middleDiameter;
+        height: $middleDiameter;
+      }
+    }
+
+    .petal {
+      &:before {
+        background-color: $petalColor;
+        height: $petalLength;
+        width: $petalWidth;
+      }
+    }
+  }
+
+  @mixin InfiniteRotatePetals($speed, $reverse: "") {
+    .petals {
+      transform-origin: 50% 50%;
+      @if ($reverse == "") {
+        animation: spinning-flowers $speed linear infinite;
+      }
+      @else {
+        animation: spinning-flowers $speed linear infinite reverse;
+      }
+    }
+  }
+
+
+
+   /* ////////  */
+
+
+  .flower-01 {
+    @include fivePetalFlower($blue, #efd34f, 50px, 150px, 50px);
+      @include InfiniteRotatePetals(20s);
+      @include stem(7px, 200px, 2deg);
+  }
+
+
+  .flower-02 {
+    @include fivePetalFlower($purple, #ffc260, 50px, $hundredPickles, 60px);
+    @include InfiniteRotatePetals(7s, reverse);
+    @include stem(10px, 300px, 3deg);
+
+  }
+
+  .flower-03 {
+    @include fivePetalFlower($magenta, #efd34f, 90px, 120px, 75px);
+    @include InfiniteRotatePetals(20s);
+    @include stem(15px, 300px, -2deg);
+
+  }
+
+  .flower-03b {
+    @extend .flower-03;
+    transform: scale(0.7);
+    @include InfiniteRotatePetals(10s);
+    .petal {
+      &:before {
+        background-color: $magenta;
+      }
+    }
+  }
+
+  .flower-04 {
+      @include fivePetalFlower(#3542ce, #ffc260, 30px, 120px, 40px);
+    @include InfiniteRotatePetals(20s, reverse);
+    @include stem(7px, 300px, 1deg);
+
+  }
+
+
+
+  /* /////////// */
+
+
+
+  /* Flower base styles */
+  .stem {
+    background-color: $green;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+
+  .flower {
+    display: inline-block;
+    position: relative;
+
+    .base {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      height: $hundredPickles; // Do not modify
+      width: $hundredPickles;  // Do not modify
+      &:before {
+        content: '';
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        z-index:100;
+        border-radius: 50%;
+      }
+    }
+    .petals {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+    .petal {
+      height: 75px; // Do not modify
+      width: 1px;
+      background-color: transparent;
+      position: absolute;
+      z-index:99;
+      &:before {
+        content: '';
+        position: absolute;
+        transform: translateX(-50%);
+        border-radius: 50%;
+      }
+    }
+
+     .petal1 {
+      top: -75px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .petal2 {
+      transform: rotate(70deg);
+      top: -15px;
+      right: -30px;
+    }
+
+    .petal3 {
+      bottom: -55px;
+      right: 0px;
+      transform: rotate(145deg);
+    }
+
+    .petal4 {
+      bottom: -55px;
+      left: 0px;
+      transform: rotate(215deg);
+    }
+
+    .petal5 {
+      transform: rotate(290deg);
+      top: -15px;
+      left: -30px;
+    }
+  }
+
+
+
+  .no-animate {
+    animation: 0 none !important;
+  }
+
+
+
+
+  @-webkit-keyframes spinning-flowers {
+    from {
+              transform:rotate(0deg);
+    }
+    to {
+              transform:rotate(360deg);
+    }
+  }
+
+  @keyframes spinning-flowers {
+    from {
+              transform:rotate(0deg);
+    }
+    to {
+              transform:rotate(360deg);
+    }
+  }
+}

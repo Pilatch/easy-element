@@ -1,0 +1,16 @@
+@import '../_colors';
+@import 'pretend-sass-thingy/stupid-vars';
+
+:host {
+  background-color: $babyblue;
+  border-radius: $oneEm;
+  padding-left: $pointFiveEm;
+
+  &::after {
+    background-color: $rosypink;
+    content: '?';
+    display: inline-block;
+    width: $onePointFiveEm;
+    text-align: center;
+  }
+}
