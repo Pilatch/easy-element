@@ -39,7 +39,7 @@ module.exports = (options = defaultOptions) => {
 
       if (htmlParseResult) {
         if (preprocessor && htmlParseResult.preprocessor && (preprocessor !== htmlParseResult.preprocessor)) {
-          console.error(`You specified a preprocessor of "${preprocessor}", but also specied "${htmlParseResult.preprocessor}" in ${htmlInput}.`)
+          console.error(`You specified a preprocessor of "${preprocessor}", but also specied "${htmlParseResult.preprocessor}" in ${htmlInput}. Choose only one, please!`)
           process.exit(1)
         }
 
@@ -99,9 +99,16 @@ module.exports = (options = defaultOptions) => {
         require('./lib/transform-css')(input, outputFolder, preprocessor)
         break
       case '.scss':
+        if (preprocessor && preprocessor !== 'scss') {
+          console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .scss file, where "scss" would be the preprocessor.`)
+          process.exit(1)
+        }
+
+        require('./lib/transform-css')(input, outputFolder, 'scss', fileExtension)
+        break
       case '.sass':
         if (preprocessor && preprocessor !== 'sass') {
-          console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .scss file, where "sass" would be the preprocessor.`)
+          console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .sass file, where "sass" would be the preprocessor.`)
           process.exit(1)
         }
 

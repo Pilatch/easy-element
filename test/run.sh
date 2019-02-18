@@ -22,3 +22,6 @@ node ../cli.js build src/sassy/deepness/pill-text.scss
 node ../cli.js build src/sassy/deepness
 node ../cli.js build src/sassy/deeply
 node ../cli.js build src/sassy/deeply/junk-trunk.html
+node ../cli.js build src/sassy/deepdoodle/pill-text-2.sass
+node ../cli.js build src/sassy/deepinhammer
+node ../cli.js build src/sassy/deeplink/minish-link.html --preprocessor sass

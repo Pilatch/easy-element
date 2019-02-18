@@ -24,10 +24,10 @@ let argv = yargs
   })
   .option('preprocessor', {
     alias: 'p',
-    describe: 'CSS preprocessor to use, such as "postcss" or "sass"',
+    describe: 'CSS preprocessor to use, such as "postcss", "scss", or "sass"',
     type: 'string',
   })
-  .choices('preprocessor', ['postcss', 'sass'])
+  .choices('preprocessor', ['postcss', 'scss', 'sass'])
   .help()
   .argv
 
