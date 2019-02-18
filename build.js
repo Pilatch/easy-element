@@ -88,6 +88,15 @@ module.exports = (options = defaultOptions) => {
       case '.css':
         require('./lib/transform-css')(input, outputFolder, preprocessor)
         break
+      case '.scss':
+      // TODO case '.sass' ?
+        if (preprocessor && preprocessor !== 'sass') {
+          console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .scss file, where "sass" would be the preprocessor.`)
+          process.exit(1)
+        }
+
+        require('./lib/transform-css')(input, outputFolder, 'sass', fileExtension)
+        break
       case '.js':
         require('./lib/transform-js')(input, outputFolder)
         break

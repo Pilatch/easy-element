@@ -1,0 +1,15 @@
+@import '../_colors';
+
+:host {
+  background-color: $babyblue;
+  border-radius: 1em;
+  padding-left: .5em;
+
+  &::after {
+    background-color: $rosypink;
+    content: '?';
+    display: inline-block;
+    width: 1.5em;
+    text-align: center;
+  }
+}
