@@ -1,0 +1,16 @@
+<template>
+  <p>Your Junk: <slot></slot></p>
+</template>
+<style preprocessor="sass">
+  @import '../colors';
+
+  junk-trunk {
+    background-color: $brown;
+    color: $eggshell;
+    display: inline-block;
+    font-family: sans-serif;
+    p {
+      padding: 0 .25em;
+    }
+  }
+</style>
