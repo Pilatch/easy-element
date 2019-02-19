@@ -57,7 +57,7 @@ It will create two JavaScript files: `dist/name-tag.es5.js` and `dist/name-tag.c
 
 ### New browsers
 
-If you only support new browsers, ongratulations! Just add the element's class-based script to your HTML.
+If you only support new browsers, congratulations! Just add the element's class-based script to your HTML.
 
 ```html
 <srcipt src="/dist/name-tag.class.js"></script>
