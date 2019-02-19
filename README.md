@@ -157,8 +157,10 @@ For help, use the `--help` option.
 
 ### CSS Preprocessing
 
-![postcss-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/postcss.svg)
-![sass-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/sass.svg)
+`https://raw.githubusercontent.com/Pilatch/easy-element/master/`
+
+![postcss-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/postcss-logo.png)
+![sass-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/sass-logo.png)
 
 Supported CSS preprocessors include [postcss](https://postcss.org/) and [Sass](https://sass-lang.com/).
 
