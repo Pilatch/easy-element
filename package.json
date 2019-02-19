@@ -1,6 +1,6 @@
 {
   "name": "easy-element",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "bin": {
     "easy-element": "cli.js"
   },
@@ -42,9 +42,20 @@
     "easy",
     "element",
     "web component",
-    "custom-element",
+    "custom element",
     "v1",
+    "v1 spec",
     "simple",
-    "es5"
+    "es5",
+    "easy element",
+    "cross browser custom element",
+    "cross-browser custom element",
+    "cross browser web component",
+    "cross-browser web component",
+    "easy element",
+    "web-component",
+    "custom-element",
+    "easy web component",
+    "easy custom element"
   ]
 }
