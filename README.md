@@ -157,8 +157,6 @@ For help, use the `--help` option.
 
 ### CSS Preprocessing
 
-`https://raw.githubusercontent.com/Pilatch/easy-element/master/`
-
 ![postcss-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/postcss-logo.png)
 ![sass-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/sass-logo.png)
 
