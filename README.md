@@ -2,6 +2,8 @@
 
 Easily create cross-browser web components (custom elements) from HTML, CSS, and [JavaScript classes](https://developers.google.com/web/fundamentals/web-components/customelements).
 
+![Hello, my name is Easy Element name-tag](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/name-tag-big.png)
+
 ## Install
 
 ```bash
@@ -14,9 +16,7 @@ $ yo easy-element
 
 ## Usage
 
-![Hello, my name is Easy Element name-tag](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/name-tag.png)
-
-For a purely visual element like this `<name-tag>` you can create one HTML file with only a `template` and a `style`.
+For a purely visual element, like our `<name-tag>` logo at the top, you can create one HTML file with only a `template` and a `style`.
 
 ```html
 <!-- src/name-tag.html -->
@@ -157,8 +157,8 @@ For help, use the `--help` option.
 
 ### CSS Preprocessing
 
-![postcss-logo](readme-images/postcss.svg)
-![sass-logo](readme-images/sass.svg)
+![postcss-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/postcss.svg)
+![sass-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/sass.svg)
 
 Supported CSS preprocessors include [postcss](https://postcss.org/) and [Sass](https://sass-lang.com/).
 

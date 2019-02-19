@@ -9,13 +9,14 @@ class NameTag extends HTMLElement {
     <slot></slot>
   </div>
 <style>:host {
-  border: 1px solid red;
   display: inline-block;
   width: 400px;
 }
 
 .name-tag_heading {
   background-color: red;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   color: white;
   padding: 0.5em;
   margin: 0;
@@ -27,6 +28,9 @@ class NameTag extends HTMLElement {
 
 .name-tag_name-container {
   background-color: white;
+  border: 1px solid red;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   padding: 1em 0.5em;
   font-size: 3em;
   text-align: center;
