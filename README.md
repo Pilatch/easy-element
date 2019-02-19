@@ -1,14 +1,15 @@
 # Easy Element
 
-Easily create web components (custom elements) from HTML, CSS, and [JavaScript classes](https://developers.google.com/web/fundamentals/web-components/customelements).
+Easily create cross-browser web components (custom elements) from HTML, CSS, and [JavaScript classes](https://developers.google.com/web/fundamentals/web-components/customelements).
 
 ## Install
 
 ```bash
 $ npm install -g easy-element
 
-# or locally
-$ npm install --save-dev easy-element
+# Or to create a new web component project with Yeoman:
+$ npm install -g yo generator-easy-element
+$ yo easy-element
 ```
 
 ## Usage
@@ -49,14 +50,22 @@ For a purely visual element like this `<name-tag>` you can create one HTML file 
 Then on your command line, you can build the custom element for use in browsers.
 
 ```bash
-$ easy-element build src/name-tag.html
+$ easy-element build src
 ```
 
 It will create two JavaScript files: `dist/name-tag.es5.js` and `dist/name-tag.class.js` for old and new browsers respectively.
 
-### In older browsers
+### New browsers
 
-To start using `<name-tag>` in older browsers install `@webcomponents/webcomponentsjs` for your project.
+If you only support new browsers, ongratulations! Just add the element's class-based script to your HTML.
+
+```html
+<srcipt src="/dist/name-tag.class.js"></script>
+```
+
+### Most browsers
+
+For a wider range of browser support install `@webcomponents/webcomponentsjs` polyfills to use `<name-tag>`.
 
 ```bash
 $ npm install --save '@webcomponents/webcomponentsjs'
@@ -70,19 +79,9 @@ Then include these scripts in your HTML.
 <srcipt src="/dist/name-tag.es5.js"></script>
 ```
 
-### In new browsers
+## Browser Support
 
-Just add the element's class-based script to your HTML.
-
-```html
-<srcipt src="/dist/name-tag.class.js"></script>
-```
-
-### Examples
-
-Take a look at [the repository's test/src folder](https://github.com/Pilatch/easy-element/tree/master/test/src) to see the different elements we built to test Easy Element.
-
-[`<pilatch-card>`](https://github.com/Pilatch/pilatch-card) is built with Easy Element.
+Tested with Chrome, IE 10, Edge, FireFox, and Safari.
 
 ## Adding functionality
 
@@ -159,20 +158,39 @@ For help, use the `--help` option.
 ### CSS Preprocessing
 
 ![postcss-logo](readme-images/postcss.svg)
+![sass-logo](readme-images/sass.svg)
 
-Right now only [postcss](https://postcss.org/) is supported. To use it, place a `postcss.config.js` file at the base of your project. Then build with the `--preprocessor postcss` option on the command line, or `-p` for short.
+Supported CSS preprocessors include [postcss](https://postcss.org/) and [Sass](https://sass-lang.com/).
 
-Or if you're building an HTML file you can specify the preprocessor in your style tag.
+You can specify this on the command line with the `--preprocessor` option, or `-p` for short. Supported preprocessors:
+
+ - `scss`
+ - `sass`
+ - `postcss`.
+
+Example:
+
+```bash
+$ easy-element build src --preprocessor sass
+```
+
+To use postcss you must also place a `postcss.config.js` file at the base of your project.
+
+If you're building an HTML file you can specify the preprocessor in your style tag.
 
 ```html
-<style preprocessor="postcss">
+<style preprocessor="scss">
 /* ... */
 </style>
 ```
 
-## Browser Support
+If your styles live in a file ending in `.scss` or `.sass` then easy-element will figure which preprocesser syntax to use.
 
-Tested with Chrome, IE 10, Edge, FireFox, and Safari.
+### Examples
+
+Take a look at [the repository's test/src folder](https://github.com/Pilatch/easy-element/tree/master/test/src) to see the different elements we built to test Easy Element.
+
+[`<pilatch-card>`](https://github.com/Pilatch/pilatch-card) is an actual _thing_ built with Easy Element.
 
 ## Transformations
 
