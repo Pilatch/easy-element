@@ -22,7 +22,7 @@ module.exports = (options = defaultOptions) => {
   }
 
   if (inputStats.isDirectory()) {
-    let { className, tagName, cssInput, jsInput, htmlInput, cssStats, htmlStats, jsStats, inferredPreprocessor } = require('./lib/inputs').fromDirectory(input)
+    let {className, tagName, cssInput, jsInput, htmlInput, cssStats, htmlStats, jsStats, inferredPreprocessor} = require('./lib/inputs').fromDirectory(input)
 
     if (!cssStats && !jsStats && !htmlStats) {
       console.error(`Expected to find an html and/or css and/or js file in directory ${input}`)
@@ -92,34 +92,34 @@ module.exports = (options = defaultOptions) => {
     let fileExtension = path.extname(input.toLowerCase())
 
     switch (fileExtension) {
-      case '.html':
-        require('./lib/transform-html')(input, outputFolder, preprocessor)
-        break
-      case '.css':
-        require('./lib/transform-css')(input, outputFolder, preprocessor)
-        break
-      case '.scss':
-        if (preprocessor && preprocessor !== 'scss') {
-          console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .scss file, where "scss" would be the preprocessor.`)
-          process.exit(1)
-        }
-
-        require('./lib/transform-css')(input, outputFolder, 'scss', fileExtension)
-        break
-      case '.sass':
-        if (preprocessor && preprocessor !== 'sass') {
-          console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .sass file, where "sass" would be the preprocessor.`)
-          process.exit(1)
-        }
-
-        require('./lib/transform-css')(input, outputFolder, 'sass', fileExtension)
-        break
-      case '.js':
-        require('./lib/transform-js')(input, outputFolder)
-        break
-      default:
-        console.error(`Unsupported input file extension, ${fileExtension}`)
+    case '.html':
+      require('./lib/transform-html')(input, outputFolder, preprocessor)
+      break
+    case '.css':
+      require('./lib/transform-css')(input, outputFolder, preprocessor)
+      break
+    case '.scss':
+      if (preprocessor && preprocessor !== 'scss') {
+        console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .scss file, where "scss" would be the preprocessor.`)
         process.exit(1)
+      }
+
+      require('./lib/transform-css')(input, outputFolder, 'scss', fileExtension)
+      break
+    case '.sass':
+      if (preprocessor && preprocessor !== 'sass') {
+        console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .sass file, where "sass" would be the preprocessor.`)
+        process.exit(1)
+      }
+
+      require('./lib/transform-css')(input, outputFolder, 'sass', fileExtension)
+      break
+    case '.js':
+      require('./lib/transform-js')(input, outputFolder)
+      break
+    default:
+      console.error(`Unsupported input file extension, ${fileExtension}`)
+      process.exit(1)
     }
   }
 }

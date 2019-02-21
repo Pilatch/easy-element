@@ -43,44 +43,46 @@ if (!input) {
 }
 
 switch (command) {
-  case 'build':
-    return require('./build')({
-      input: input,
-      outputFolder: argv.output,
-      preprocessor: argv.preprocessor,
-    })
+case 'build':
+  require('./build')({
+    input: input,
+    outputFolder: argv.output,
+    preprocessor: argv.preprocessor,
+  })
+  break
 
-  case 'demo':
-    return require('./lib/demo-page')(input, argv.output)
+case 'demo':
+  require('./lib/demo-page')(input, argv.output)
+  break
 
-  case 'watch':
-    let watcher = require('chokidar').watch(input, {
-      persistent: true,
-    })
-    let reportError = error => {
-      console.error(`Error while watching ${input}`, error)
-      process.stderr.write('\x07') // System bell sound
+case 'watch':
+  let watcher = require('chokidar').watch(input, {
+    persistent: true,
+  })
+  let reportError = error => {
+    console.error(`Error while watching ${input}`, error)
+    process.stderr.write('\x07') // System bell sound
+  }
+  let build = require('./build')
+  let rebuild = _ => {
+    console.error(`Building ${input} to ${argv.output}`)
+    try {
+      build({
+        input: input,
+        outputFolder: argv.output,
+        preprocessor: argv.preprocessor,
+      })
+    } catch (error) {
+      reportError(error)
     }
-    let build = require('./build')
-    let rebuild = _ => {
-      console.error(`Building ${input} to ${argv.output}`)
-      try {
-        build({
-          input: input,
-          outputFolder: argv.output,
-          preprocessor: argv.preprocessor,
-        })
-      } catch (error) {
-        reportError(error)
-      }
-    }
+  }
 
-    watcher.on('add', rebuild)
-    watcher.on('change', rebuild)
-    watcher.on('unlink', rebuild)
-    watcher.on('error', reportError)
-    return
+  watcher.on('add', rebuild)
+  watcher.on('change', rebuild)
+  watcher.on('unlink', rebuild)
+  watcher.on('error', reportError)
+  break
 
-  default:
-    yargs.showHelp()
+default:
+  yargs.showHelp()
 }
