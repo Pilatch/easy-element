@@ -4,5 +4,5 @@ module.exports = {
     directory: true,
   },
   open: false,
-  notify: false
+  notify: false,
 }
