@@ -1,5 +1,6 @@
 let fs = require('fs')
 let path = require('path')
+let fail = require('./lib/fail')
 let defaultOptions = {
   input: null,
   outputFolder: 'dist',
@@ -10,23 +11,20 @@ module.exports = (options = defaultOptions) => {
   let {input, outputFolder, preprocessor} = options
 
   if (!input) {
-    console.error('I can\'t do my thing without an input file or folder.')
-    process.exit(1)
+    fail('I can\'t do my thing without an input file or folder.')
   }
 
   let inputStats = fs.statSync(input)
 
   if (!inputStats) {
-    console.error(`Could not find input file or folder, ${input}`)
-    process.exit(1)
+    fail(`Could not find input file or folder, ${input}`)
   }
 
   if (inputStats.isDirectory()) {
     let {className, tagName, cssInput, jsInput, htmlInput, cssStats, htmlStats, jsStats, inferredPreprocessor} = require('./lib/inputs').fromDirectory(input)
 
     if (!cssStats && !jsStats && !htmlStats) {
-      console.error(`Expected to find an html and/or css and/or js file in directory ${input}`)
-      process.exit(1)
+      fail(`Expected to find an html and/or css and/or js file in directory ${input}`)
     }
 
     let stylesText, scriptText, innerHTML
@@ -39,8 +37,7 @@ module.exports = (options = defaultOptions) => {
 
       if (htmlParseResult) {
         if (preprocessor && htmlParseResult.preprocessor && (preprocessor !== htmlParseResult.preprocessor)) {
-          console.error(`You specified a preprocessor of "${preprocessor}", but also specied "${htmlParseResult.preprocessor}" in ${htmlInput}. Choose only one, please!`)
-          process.exit(1)
+          fail(`You specified a preprocessor of "${preprocessor}", but also specied "${htmlParseResult.preprocessor}" in ${htmlInput}. Choose only one, please!`)
         }
 
         stylesText = htmlParseResult.stylesText
@@ -49,13 +46,11 @@ module.exports = (options = defaultOptions) => {
         preprocessor = preprocessor || htmlParseResult.preprocessor
 
         if (stylesText && cssStats) {
-          console.error('Found CSS in both HTML and in a separate file. Please choose one option or the other.')
-          process.exit(1)
+          fail('Found CSS in both HTML and in a separate file. Please choose one option or the other.')
         }
 
         if (jsStats && scriptText) {
-          console.error('Found JS in both HTML and in a separate file. Please choose one option or the other.')
-          process.exit(1)
+          fail('Found JS in both HTML and in a separate file. Please choose one option or the other.')
         }
       }
 
@@ -73,8 +68,7 @@ module.exports = (options = defaultOptions) => {
     }
 
     if (preprocessor && inferredPreprocessor && (preprocessor !== inferredPreprocessor)) {
-      console.error(`You specified a preprocessor of "${preprocessor}", but we inferred "${inferredPreprocessor}" based on directory contents.`)
-      process.exit(1)
+      fail(`You specified a preprocessor of "${preprocessor}", but we inferred "${inferredPreprocessor}" based on directory contents.`)
     }
 
     require('./lib/css-input')(stylesText, stylesSource, preprocessor || inferredPreprocessor)
@@ -100,16 +94,14 @@ module.exports = (options = defaultOptions) => {
       break
     case '.scss':
       if (preprocessor && preprocessor !== 'scss') {
-        console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .scss file, where "scss" would be the preprocessor.`)
-        process.exit(1)
+        fail(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .scss file, where "scss" would be the preprocessor.`)
       }
 
       require('./lib/transform-css')(input, outputFolder, 'scss', fileExtension)
       break
     case '.sass':
       if (preprocessor && preprocessor !== 'sass') {
-        console.error(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .sass file, where "sass" would be the preprocessor.`)
-        process.exit(1)
+        fail(`"${preprocessor}" was specified as the preprocessor, but we're trying to read a .sass file, where "sass" would be the preprocessor.`)
       }
 
       require('./lib/transform-css')(input, outputFolder, 'sass', fileExtension)
@@ -118,8 +110,7 @@ module.exports = (options = defaultOptions) => {
       require('./lib/transform-js')(input, outputFolder)
       break
     default:
-      console.error(`Unsupported input file extension, ${fileExtension}`)
-      process.exit(1)
+      fail(`Unsupported input file extension, ${fileExtension}`)
     }
   }
 }

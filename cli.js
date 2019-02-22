@@ -56,6 +56,8 @@ case 'demo':
   break
 
 case 'watch':
+  require('./lib/fail').tossMode()
+
   let watcher = require('chokidar').watch(input, {
     persistent: true,
   })
