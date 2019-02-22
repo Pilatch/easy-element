@@ -56,6 +56,8 @@ case 'demo':
   break
 
 case 'watch':
+  require('./lib/fail').tossMode()
+
   let watcher = require('chokidar').watch(input, {
     persistent: true,
   })
@@ -64,9 +66,6 @@ case 'watch':
     process.stderr.write('\x07') // System bell sound
   }
   let build = require('./build')
-  let fail = require('./lib/fail')
-
-  fail.mode = 'toss'
   let rebuild = _ => {
     console.error(`Building ${input} to ${argv.output}`)
     try {
