@@ -33,7 +33,7 @@ class StarRating extends HTMLElement {
   left: 0;
 }</style>`;
     this._rating = 0;
-    this.querySelector('.star-rating_container').addEventListener('click', event => {
+    this.addEventListener('click', event => {
       let positionClicked = parseInt(event.target.getAttribute('data-position'), 10);
       this.rating = positionClicked;
     });
@@ -63,6 +63,10 @@ class StarRating extends HTMLElement {
 
   querySelectorAll(selector) {
     return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
 }

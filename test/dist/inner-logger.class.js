@@ -11,6 +11,9 @@ class InnerLogger extends HTMLElement {
       fontSize: '2em',
       fontWeight: 'bold'
     });
+    this.addEventListener('click', event => {
+      console.log('click event!', event);
+    });
   }
 
 }

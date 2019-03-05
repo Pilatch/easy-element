@@ -46,6 +46,10 @@ class NameTag extends HTMLElement {
     return this.shadowRoot.querySelectorAll(selector);
   }
 
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
 }
 
 customElements.define('name-tag', NameTag);

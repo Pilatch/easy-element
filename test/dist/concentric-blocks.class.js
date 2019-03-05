@@ -40,6 +40,10 @@ class ConcentricBlocks extends HTMLElement {
     return this.shadowRoot.querySelectorAll(selector);
   }
 
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
 }
 
 customElements.define('concentric-blocks', ConcentricBlocks);
