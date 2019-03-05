@@ -40,6 +40,9 @@ function (_HTMLElement) {
         fontSize: '2em',
         fontWeight: 'bold'
       });
+      this.addEventListener('click', function (event) {
+        console.log('click event!', event);
+      });
     }
   }]);
 
