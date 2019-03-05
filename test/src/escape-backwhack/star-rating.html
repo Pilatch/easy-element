@@ -32,7 +32,7 @@
   class StarRating {
     connectedCallback() {
       this._rating = 0
-      this.querySelector('.star-rating_container').addEventListener('click', event => {
+      this.addEventListener('click', event => {
         let positionClicked = parseInt(event.target.getAttribute('data-position'), 10)
         this.rating = positionClicked
       })

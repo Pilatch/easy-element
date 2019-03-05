@@ -34,7 +34,7 @@ function (_HTMLElement) {
 
       this.innerHTML = "\n  <div class=\"star-rating_container\">\n    <div class=\"star-rating_star\" data-position=\"1\"></div>\n    <div class=\"star-rating_star\" data-position=\"2\"></div>\n    <div class=\"star-rating_star\" data-position=\"3\"></div>\n    <div class=\"star-rating_star\" data-position=\"4\"></div>\n    <div class=\"star-rating_star\" data-position=\"5\"></div>\n  </div>\n";
       this._rating = 0;
-      this.querySelector('.star-rating_container').addEventListener('click', function (event) {
+      this.addEventListener('click', function (event) {
         var positionClicked = parseInt(event.target.getAttribute('data-position'), 10);
         _this.rating = positionClicked;
       });
