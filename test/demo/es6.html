@@ -21,6 +21,7 @@
   <script src="/test/dist/pill-text.class.js"></script>
   <script src="/test/dist/pill-text-2.class.js"></script>
   <script src="/test/dist/junk-trunk.class.js"></script>
+  <script src="/test/dist/login-form.class.js"></script>
   <script src="/test/dist/flower-bed.class.js"></script>
   <script src="/test/dist/jack-hammer.class.js"></script>
   <script src="/test/dist/minish-link.class.js"></script>
@@ -96,6 +97,21 @@
 
   <p><code>&lt;junk-trunk&gt;My Bike&lt;/junk-trunk&gt;</code></p>
   <junk-trunk>My Bike</junk-trunk>
+
+  <p><code>&lt;login-form&gt;&lt;/login-form&gt;</code></p>
+  <login-form></login-form>
+
+  <p><code>
+    &lt;login-form&gt;<br />
+    &nbsp;&nbsp;&lt;span slot=&quot;username-label&quot;&gt;Hooziername&lt;/span&gt;<br />
+    &nbsp;&nbsp;&lt;span slot=&quot;password-label&quot;&gt;Jazzwurd&lt;/span&gt;<br />
+    &lt;/login-form&gt;
+  </code></p>
+
+  <login-form>
+    <span slot="username-label">Hooziername</span>
+    <span slot="password-label">Jazzwurd</span>
+  </login-form>
 
   <p><code>&lt;flower-bed&gt;&lt;/flower-bed&gt;</code></p>
   <flower-bed></flower-bed>
