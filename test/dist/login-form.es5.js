@@ -82,6 +82,16 @@ function (_HTMLElement) {
 
 "use strict";
 
+;
+
+(function () {
+  var style = document.createElement('style');
+  style.textContent = 'login-form label {  font-family: sans-serif;}';
+  document.head.appendChild(style);
+})();
+
+"use strict";
+
 window.addEventListener('WebComponentsReady', function () {
   customElements.define('login-form', LoginForm);
 });

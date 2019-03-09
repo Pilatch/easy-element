@@ -8,7 +8,9 @@ class LoginForm extends HTMLElement {
     <label><slot name="username-label">Username</slot>:<input type="text" name="username"  /></label>
     <label><slot name="password-label">Password</slot>:<input type="text" name="password"  /></label>
   </form>
-`;
+<style>:host label {
+  font-family: sans-serif;
+}</style>`;
   }
 
   querySelector(selector) {
