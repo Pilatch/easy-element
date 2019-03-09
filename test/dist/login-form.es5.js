@@ -36,7 +36,8 @@ function (_HTMLElement) {
         var template = document.createElement('div');
         template.innerHTML = contents;
 
-        this.__handleSlots__(template)
+        this.__distributeContentToSlots__(template);
+
         this.innerHTML = template.innerHTML;
       } else {
         this.innerHTML = contents;
@@ -48,45 +49,33 @@ function (_HTMLElement) {
       while (destinationSlot.childNodes.length) {
         destinationSlot.removeChild(destinationSlot.lastChild);
       }
-      destinationSlot.appendChild(content)
+
+      destinationSlot.appendChild(content);
     }
   }, {
-    key: "__handleSlots__",
-    value: function __handleSlots__(template) {
-      let toSlot = this.querySelectorAll('[slot]')
-      let namedSlots = template.querySelectorAll('slot[name]')
+    key: "__distributeContentToSlots__",
+    value: function __distributeContentToSlots__(template) {
+      var _this = this;
 
-      if (toSlot.length > namedSlots.length) {
-        console.error(`The login-form template has ${namedSlots.length} <slot> elements, but is being sent ${toSlot.length}. Offending element:`)
-        console.log(this)
-      } else if (namedSlots) {
-        namedSlots.forEach(destinationSlot => {
-          let name = destinationSlot.getAttribute('name')
+      var lightDomElements = this.querySelectorAll('[slot]');
+      var namedSlots = template.querySelectorAll('slot[name]');
 
-          if (name) {
-            let matchingContent = this.querySelector(`[slot="${name}"]`)
-
-            if (matchingContent) {
-              this.__fillSlot__(destinationSlot, matchingContent)
-            }
-          }
-        })
+      if (lightDomElements.length > namedSlots.length) {
+        console.error("The ".concat(this.tagName.toLowerCase(), " template has ").concat(namedSlots.length, " <slot> elements, but is being sent ").concat(lightDomElements.length, ".\nOffending element:"));
+        console.log(this);
       } else {
-        let singleDestinationSlot = template.querySelector('slot')
+        namedSlots.forEach(function (destinationSlot) {
+          var name = destinationSlot.getAttribute('name');
 
-        if (singleDestinationSlot) {
-          while (singleDestinationSlot.childNodes.length) {
-            singleDestinationSlot.removeChild(singleDestinationSlot.lastChild);
-          }
+          var matchingContent = _this.querySelector("[slot=\"".concat(name, "\"]"));
 
-          while (this.childNodes.length) {
-            singleDestinationSlot.appendChild(this.firstChild);
+          if (matchingContent) {
+            _this.__fillSlot__(destinationSlot, matchingContent);
           }
-        }
+        });
       }
     }
-  }
-  ]);
+  }]);
 
   return LoginForm;
 }(HTMLElement);
