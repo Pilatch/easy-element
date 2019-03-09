@@ -225,13 +225,13 @@ We'll also do `customElements.define(...)` at the appropriate time.
 
 ### Querying
 
-`this.querySelector` and `this.querySelectorAll` are aliased to `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output.
+Only query with `this.querySelector` and `this.querySelectorAll`. See the section on limitations for an explanation why.
+
+`this.querySelector` and `this.querySelectorAll` are aliased to `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output, so you can expect the same results in both old and new browsers.
 
 # Limitations
 
 ## Slots
-
-Only one non-named `<slot>` element is supported on the ES5-side at this point. It may be enhanced to inject content into named slots in the future.
 
 Slots behave differently between the generated ES5 code and the class-based output with Shadow DOM. For instance, [assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) won't return what you want in ES5-land. If you want full slot support, look elsewhere.
 
@@ -241,7 +241,7 @@ No attempt is made to polyfill shadow DOM for old browsers. The ES5 output will 
 
 The class-based output will use shadow DOM.
 
-Do _not_ rely on `this.shadowRoot` in your JavaScript class, as that will not work in the ES5 output. To manipulate the innards of your web component and retain feature parity, limit yourself to use of `this.querySelector` and `this.querySelectorAll` to get references to elements. Anything else (such as `this.innerHTML` and `this.lastElementChild` etc.) would _not_ return the same answers between the ES5 and class-based implementations.
+Do _not_ rely on `this.shadowRoot` in your JavaScript class, as that will not work in the ES5 output. To manipulate the innards of your web component and retain feature parity, limit yourself to use of `this.querySelector` and `this.querySelectorAll` to get references to elements. Anything else (such as `this.innerHTML` or `this.lastElementChild` or `this.childNodes` or `this.shadowRoot` etc.) would _not_ return the same answers between the ES5 and class-based implementations.
 
 ## Extending
 
