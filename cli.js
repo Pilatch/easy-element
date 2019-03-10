@@ -33,6 +33,11 @@ let argv = yargs
 
 let command = argv._[0]
 let input = argv._[1]
+let options = {
+  input: input,
+  outputFolder: argv.output,
+  preprocessor: argv.preprocessor,
+}
 
 if (!input) {
   console.error('An input file or folder is required as the last argument.')
@@ -56,6 +61,16 @@ case 'demo':
   break
 
 case 'watch':
+  let inputStats
+
+  try {
+    inputStats = require('fs').statSync(input)
+  } catch (error) {
+    // Stop the process immediately if the input file or directory does not exist.
+    require('./lib/fail')(`Could not stat input file or directory, ${input}`)
+  }
+
+  // Make further failures throw errors instead of killing the watch process.
   require('./lib/fail').tossMode()
 
   let watcher = require('chokidar').watch(input, {
@@ -67,6 +82,8 @@ case 'watch':
   }
   let build = require('./build')
   let rebuild = _ => {
+    // TODO each event type needs to be handled differently.
+    // Probably need to debounce on add.
     console.error(`Building ${input} to ${argv.output}`)
     try {
       build({
@@ -79,8 +96,8 @@ case 'watch':
     }
   }
 
-  watcher.on('add', rebuild)
-  watcher.on('change', rebuild)
+  // watcher.on('add', rebuild) // TODO re-enable this after we have an intelligent add handler
+  watcher.on('change', require('./lib/watch').onChange(build, options, reportError, inputStats))
   watcher.on('unlink', rebuild)
   watcher.on('error', reportError)
   break
