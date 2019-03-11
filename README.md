@@ -90,7 +90,7 @@ For components that _do_ stuff, you'll need some JavaScript. Here's a button tha
 ![A dark blue button saying it's sad in French.](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/dark-blue-button.png)
 ![A light blue button saying it's sad in French.](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/light-blue-button.png)
 
-We'll split it up into three files in our `src` folder... because we can.
+We'll split it between three files in our `src` folder... because we can.
 
 ```html
 <!-- src/blue-button.html -->
@@ -184,7 +184,7 @@ If you're building an HTML file you can specify the preprocessor in your style t
 </style>
 ```
 
-If your styles live in a file ending in `.scss` or `.sass` then easy-element will figure which preprocesser syntax to use.
+If your styles live in a file ending in `.scss` or `.sass` then easy-element will figure out which preprocesser syntax to use.
 
 ### Examples
 
