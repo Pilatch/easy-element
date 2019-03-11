@@ -80,13 +80,10 @@ case 'watch':
     console.error(`Error while watching ${input}`, error)
     process.stderr.write('\x07') // System bell sound
   }
-  let build = require('./build')
   let rebuild = _ => {
-    // TODO each event type needs to be handled differently.
-    // Probably need to debounce on add.
     console.error(`Building ${input} to ${argv.output}`)
     try {
-      build({
+      require('./build')({
         input: input,
         outputFolder: argv.output,
         preprocessor: argv.preprocessor,
@@ -96,8 +93,8 @@ case 'watch':
     }
   }
 
-  // watcher.on('add', rebuild) // TODO re-enable this after we have an intelligent add handler
-  watcher.on('change', require('./lib/watch').onChange(build, options, reportError, inputStats))
+  watcher.on('add', require('./lib/watch').onAdd(options, reportError, inputStats))
+  watcher.on('change', require('./lib/watch').onChange(options, reportError, inputStats))
   watcher.on('unlink', rebuild)
   watcher.on('error', reportError)
   break
