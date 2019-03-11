@@ -247,6 +247,10 @@ Do _not_ rely on `this.shadowRoot` in your JavaScript class, as that will not wo
 
 Extending things other than `HTMLElement` hasn't really been tested yet. Assume it's McBusted.
 
+## Directory structure
+
+Building multi-level directory trees is not yet supported. So put your element code in one flat folder. Easy Element won't do recursive directory traversal to search for your source code.
+
 # Intent
 
 The goal of Easy Element is to allow creation of custom elements without worry about browser support while leveraging technologies web developers are already familiar with.
