@@ -33,6 +33,11 @@ let argv = yargs
 
 let command = argv._[0]
 let input = argv._[1]
+let options = {
+  input: input,
+  outputFolder: argv.output,
+  preprocessor: argv.preprocessor,
+}
 
 if (!input) {
   console.error('An input file or folder is required as the last argument.')
@@ -56,6 +61,22 @@ case 'demo':
   break
 
 case 'watch':
+  let inputIsDirectory
+
+  try {
+    let inputStats = require('fs').statSync(input)
+
+    inputIsDirectory = inputStats.isDirectory()
+    if (!inputIsDirectory && !inputStats.isFile()) {
+      // Stop the process immediately if the input isn't a file or directory. It could be a socket, I suppose.
+      require('./lib/fail')(`Input ${input} is neither a file nor directory. So I dunno what to do with it.`)
+    }
+  } catch (error) {
+    // Stop the process immediately if the input file or directory does not exist.
+    require('./lib/fail')(`Could not stat input file or directory, ${input}`)
+  }
+
+  // Make further failures throw errors instead of killing the watch process.
   require('./lib/fail').tossMode()
 
   let watcher = require('chokidar').watch(input, {
@@ -65,11 +86,10 @@ case 'watch':
     console.error(`Error while watching ${input}`, error)
     process.stderr.write('\x07') // System bell sound
   }
-  let build = require('./build')
   let rebuild = _ => {
     console.error(`Building ${input} to ${argv.output}`)
     try {
-      build({
+      require('./build')({
         input: input,
         outputFolder: argv.output,
         preprocessor: argv.preprocessor,
@@ -79,8 +99,8 @@ case 'watch':
     }
   }
 
-  watcher.on('add', rebuild)
-  watcher.on('change', rebuild)
+  watcher.on('add', require('./lib/watch').onAdd(options, reportError, inputIsDirectory))
+  watcher.on('change', require('./lib/watch').onChange(options, reportError, inputIsDirectory))
   watcher.on('unlink', rebuild)
   watcher.on('error', reportError)
   break
