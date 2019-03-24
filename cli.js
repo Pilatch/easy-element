@@ -16,6 +16,11 @@ let argv = yargs
   .command('watch', 'watch a file or folder and re-build on chages', positionalInput('watch'))
   .command('demo', 'create a demo HTML page', positionalInput('demo'))
   .demandCommand(1, 'please supply a command as the first argument')
+  .option('bundle', {
+    default: false,
+    describe: 'bundle output when building multiple elements at once',
+    type: 'boolean',
+  })
   .option('output', {
     alias: 'o',
     default: 'dist',
@@ -50,6 +55,7 @@ if (!input) {
 switch (command) {
 case 'build':
   require('./build')({
+    bundle: argv.bundle,
     input: input,
     outputFolder: argv.output,
     preprocessor: argv.preprocessor,
