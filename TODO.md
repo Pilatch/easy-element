@@ -1,6 +1,4 @@
-BUG
-  Bundling multiple components
-    StarRating declared twice in bundle.class.js
+Bundle on watch command
 
 Test for build failure error messages, such as:
   trying to build a file that does not exist
