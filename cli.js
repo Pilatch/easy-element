@@ -96,6 +96,7 @@ case 'watch':
     console.error(`Building ${input} to ${argv.output}`)
     try {
       require('./build')({
+        bundle: argv.bundle,
         input: input,
         outputFolder: argv.output,
         preprocessor: argv.preprocessor,
