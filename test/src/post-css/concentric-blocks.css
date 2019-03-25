@@ -10,6 +10,18 @@
   position: relative;
   width: 100px;
 
+  &:after { /* testing how the browser handles :host(:after) rather than :host(::after) */
+    background-color: var(--orange);
+    content: '!';
+    height: 25px;
+    left: 0;
+    line-height: 25px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 25px;
+  }
+
   div {
     background-color: var(--orange);
     height: 25px;
