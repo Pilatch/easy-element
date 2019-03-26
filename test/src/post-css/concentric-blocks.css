@@ -1,6 +1,7 @@
 :root {
   --blue: #001199;
   --orange: #ff9911;
+  --purple: #9f11bb;
 }
 
 :host {
@@ -27,6 +28,10 @@
     top: 50px;
     width: 25px;
   }
+}
+
+concentric-blocks:hover {
+  background-color: var(--purple);
 }
 
 concentric-blocks::after {

@@ -31,7 +31,11 @@ class ConcentricBlocks extends HTMLElement {
   width: 25px;
 }
 
-:host(::after) {
+:host(:hover) {
+  background-color: #9f11bb;
+}
+
+:host::after {
   background-color: #ff9911;
   content: '!';
   height: 25px;
