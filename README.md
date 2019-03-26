@@ -243,6 +243,17 @@ The class-based output will use shadow DOM.
 
 Do _not_ rely on `this.shadowRoot` in your JavaScript class, as that will not work in the ES5 output. To manipulate the innards of your web component and retain feature parity, limit yourself to use of `this.querySelector` and `this.querySelectorAll` to get references to elements. Anything else (such as `this.innerHTML` or `this.lastElementChild` or `this.childNodes` or `this.shadowRoot` etc.) would _not_ return the same answers between the ES5 and class-based implementations.
 
+Easy Element has no way of knowing whether your CSS selector was intended to style the element itself or one of its child elements. This can be an issue when stlying shadow DOM because, for most elements, all the styles get dumped into the shadow root. That means if you have an element that renders like this:
+
+```html
+<vehicle-picker class="electric">
+  <an-option>car</an-option>
+  <an-option>motorcycle</an-option>
+</vehicle-picker>
+```
+
+Then your styles that include a rule of `.electric { ... }` would not style the host element in the class-based output, but a rule like `:host(.electric) { ... }` would have the desired effect. In the ES5 output, your custom element would probably be rendered as you intended either way.
+
 ## Extending
 
 Extending things other than `HTMLElement` hasn't really been tested yet. Assume it's McBusted.
