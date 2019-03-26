@@ -30,11 +30,12 @@
   }
 }
 
-concentric-blocks:hover {
-  background-color: var(--purple);
-}
+concentric-blocks {
+  &:hover {
+    background-color: var(--purple);
+  }
 
-concentric-blocks::after {
+  &::after {
     background-color: var(--orange);
     content: '!';
     height: 25px;
@@ -45,3 +46,4 @@ concentric-blocks::after {
     top: 0;
     width: 25px;
   }
+}
