@@ -13,18 +13,6 @@ class ConcentricBlocks extends HTMLElement {
   width: 100px;
 }
 
-:host:after {
-  background-color: #ff9911;
-  content: '!';
-  height: 25px;
-  left: 0;
-  line-height: 25px;
-  position: absolute;
-  text-align: center;
-  top: 0;
-  width: 25px;
-}
-
 :host div {
   background-color: #ff9911;
   height: 25px;
@@ -40,6 +28,22 @@ class ConcentricBlocks extends HTMLElement {
   left: 50px;
   position: absolute;
   top: 50px;
+  width: 25px;
+}
+
+:host(:hover) {
+  background-color: #9f11bb;
+}
+
+:host::after {
+  background-color: #ff9911;
+  content: '!';
+  height: 25px;
+  left: 0;
+  line-height: 25px;
+  position: absolute;
+  text-align: center;
+  top: 0;
   width: 25px;
 }</style>`;
   }
