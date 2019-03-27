@@ -1,6 +1,6 @@
 # Easy Element
 
-Easily create cross-browser web components (custom elements) from HTML, CSS, and [JavaScript classes](https://developers.google.com/web/fundamentals/web-components/customelements).
+Lets web developers leverage technologies they are already familiar with to create cross-browser web components (custom elements) from HTML, CSS, and [JavaScript classes](https://developers.google.com/web/fundamentals/web-components/customelements).
 
 ![Hello, my name is Easy Element name-tag](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/name-tag-big.png)
 
@@ -229,6 +229,10 @@ Only query with `this.querySelector` and `this.querySelectorAll`. See the sectio
 
 `this.querySelector` and `this.querySelectorAll` are aliased to `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output, so you can expect the same results in both old and new browsers.
 
+### Events
+
+You can use `this.addEventListener` and expect feature parity in old and new browsers. It'll be aliased to `this.shadowRoot.addEventListener` in the class-based output.
+
 # Limitations
 
 ## Slots
@@ -237,7 +241,7 @@ Slots behave differently between the generated ES5 code and the class-based outp
 
 ## Shadow DOM
 
-No attempt is made to polyfill shadow DOM for old browsers. The ES5 output will add your template's contents to the element's inner HTML, and your styles will be appended to `document.head`. So encapsulate your styles by starting your selectors with your element's tag-name or `:host` or use something like [BEM](http://getbem.com/).
+No attempt is made to polyfill shadow DOM for old browsers. The ES5 output will add your `<template>`'s contents to the element's inner HTML, and your styles will be appended to `document.head`. So encapsulate your styles by starting your selectors with your element's tag-name or `:host` or use something like [BEM](http://getbem.com/).
 
 The class-based output will use shadow DOM.
 
@@ -262,12 +266,12 @@ Extending things other than `HTMLElement` hasn't really been tested yet. Assume 
 
 Building multi-level directory trees is not yet supported. So put your element code in one flat folder. Easy Element won't do recursive directory traversal to search for your source code.
 
-# Intent
+# Distinctions
 
-The goal of Easy Element is to allow creation of custom elements without worry about browser support while leveraging technologies web developers are already familiar with.
+What makes Easy Element different from other options?
 
-For example, if web developers want to handle events within a custom element, they can do so using native JavaScript like `addEventListener`. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
+Well, if web developers want to handle events within a custom element, Easy ELement lets them do so using native JavaScript like `addEventListener`. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
 
 Easy Element is intended for simple custom elements. If you want something more complex, there are [more feature-complete libraries](https://www.webcomponents.org/introduction#libraries-for-building-web-components) out there.
 
-Or you can use Easy Element as a starting point to build your custom element, then use the generated JavaScript in the `.class.js` file with other tools, as it is V1 spec compliant.
+Or you can use Easy Element as a starting point to build your custom element, then use the generated JavaScript in the `.class.js` file with other tools, as it is [V1 spec](https://www.webcomponents.org/specs) compliant.
