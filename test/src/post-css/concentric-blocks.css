@@ -30,6 +30,7 @@
   }
 }
 
+/* Testing `:host(::after)` bug. It should output `:host::after`. */
 concentric-blocks {
   &:hover {
     background-color: var(--purple);
