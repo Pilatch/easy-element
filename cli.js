@@ -39,6 +39,7 @@ let argv = yargs
 let command = argv._[0]
 let input = argv._[1]
 let options = {
+  bundle: argv.bundle,
   input: input,
   outputFolder: argv.output,
   preprocessor: argv.preprocessor,
@@ -54,12 +55,7 @@ if (!input) {
 
 switch (command) {
 case 'build':
-  require('./build')({
-    bundle: argv.bundle,
-    input: input,
-    outputFolder: argv.output,
-    preprocessor: argv.preprocessor,
-  })
+  require('./build')(options)
   break
 
 case 'demo':
@@ -95,19 +91,14 @@ case 'watch':
   let rebuild = _ => {
     console.error(`Building ${input} to ${argv.output}`)
     try {
-      require('./build')({
-        bundle: argv.bundle,
-        input: input,
-        outputFolder: argv.output,
-        preprocessor: argv.preprocessor,
-      })
+      require('./build')(options)
     } catch (error) {
       reportError(error)
     }
   }
 
-  watcher.on('add', require('./lib/watch').onAdd(options, reportError, inputIsDirectory))
-  watcher.on('change', require('./lib/watch').onChange(options, reportError, inputIsDirectory))
+  watcher.on('add', require('./lib/watch').onAdd(options, reportError, inputIsDirectory, rebuild))
+  watcher.on('change', require('./lib/watch').onChange(options, reportError, inputIsDirectory, rebuild))
   watcher.on('unlink', rebuild)
   watcher.on('error', reportError)
   break

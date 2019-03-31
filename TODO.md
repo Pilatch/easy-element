@@ -1,4 +1,4 @@
-Bundle on watch command
+Demo page should respect the bundle flag too
 
 Test for build failure error messages, such as:
   trying to build a file that does not exist
