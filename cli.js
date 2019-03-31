@@ -17,6 +17,7 @@ let argv = yargs
   .command('demo', 'create a demo HTML page', positionalInput('demo'))
   .demandCommand(1, 'please supply a command as the first argument')
   .option('bundle', {
+    alias: 'b',
     default: false,
     describe: 'bundle output when building multiple elements at once',
     type: 'boolean',

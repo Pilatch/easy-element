@@ -7,7 +7,7 @@ Lets web developers leverage technologies they are already familiar with to crea
 ## Install
 
 ```bash
-$ npm install -g easy-element
+$ npm install --save-dev easy-element
 
 # Or to create a new web component project with Yeoman:
 $ npm install -g yo generator-easy-element
@@ -50,7 +50,7 @@ For a purely visual element, like our `<name-tag>` logo at the top, you can crea
 Then on your command line, you can build the custom element for use in browsers.
 
 ```bash
-$ easy-element build src
+$ npx easy-element build src/name-tag.html
 ```
 
 It will create two JavaScript files: `dist/name-tag.es5.js` and `dist/name-tag.class.js` for old and new browsers respectively.
@@ -126,53 +126,97 @@ class BlueButton {
 Then it's built by running
 
 ```bash
-$ easy-element build src
+$ npx easy-element build src
 ```
 
-## Build
+## Commands
+
+### `build`
 
 ```bash
-# Build from one source file, output to dist.
-$ easy-element build src/my-element.html
+# Build from one source file, output to dist
+$ npx easy-element build src/my-element.html
 
-# Build from one source file, output to public.
-$ easy-element build --output public src/my-element.html
+# Build from one source file, output to public
+$ npx easy-element build src/my-element.html --output public
 
-# Read .html, .css, and .js files from my-element-directory to build.
-$ easy-element build my-element-directory
+# Build from .html, .css, and .js files in my-element-directory
+$ npx easy-element build my-element-directory
 
-# Watch the src folder and re-build when its contents change.
-$ easy-element watch src
-
-# Create demo-page/index.html to show off my-element.
-$ easy-element demo --output demo-page src/my-element.html
-
-# Build using postcss as the CSS preprocessor.
-$ easy-element build --preprocessor postcss src/my-element.html
+# Build all the .html, .css, and .js files in src into bundles
+$ npx easy-element build src --bundle
 ```
 
-Files are output to a folder named `dist` by default. You can change this with the `--output` option, or `-o` for short.
+### `watch`
 
-For help, use the `--help` option.
+Make sure you have [NodeJS version 10 or later](https://nodejs.org/fr/blog/release/v10.0.0/), otherwise the watcher may quit unexpectedly.
+
+```bash
+# Watch the src folder and re-build to dist when its contents change
+$ npx easy-element watch src
+
+# Watch the src folder and re-build to public when its contents change
+$ npx easy-element watch src --output public
+
+# Watch the src folder and build bundles its contents change
+$ npx easy-element watch src --bundle
+```
+
+### `demo`
+
+Make demo pages for your custom elements. Will create one for old browsers, and one for new. If you specify the output folder to be somewhere other than where your custom elements' built files live, you'll probably have to edit your demo page.
+
+```bash
+# Create dist/index.html to show off <my-element>
+$ npx easy-element demo src/my-element.html
+
+# Create public/index.html to show off <my-element>
+$ npx easy-element demo --output public src/my-element.html
+
+# Create dist/index.html to show off all the elements you're building from src as a bundle
+$ npx easy-element demo src --bundle
+```
+
+### Options
+
+#### `--help`
+
+Show the help text and quit.
+
+#### `--output` or `-o`
+
+Change folder that your generated `.es5.js` and `.class.js` files are written to. Files are output to a folder named `dist` by default.
+
+```bash
+# Output to a folder named exports
+$ npx build src --output exports
+```
+
+#### `--bundle` or `-b`
+
+Bundle all the elements you're building together. Normally when you build a directory with a command such as `easy-element build src` it will output a pair of files (`.class.js` and `.es5.js`) for each element it builds. With the `--bundle` flag, it will instead produce only one pair of files for the whole group: `bundle.class.js` and `bundle.es5.js`. Especially good if you're curating a library of custom elements instead of making individual repositories for each.
+
+#### `--preprocessor` or `-p`
+
+Specify which CSS preprocessor to use. Valid options:
+
+ - `scss`
+ - `sass`
+ - `postcss`
+
+```bash
+# Build from the src folder with SASS syntax
+$ npx easy-element build src --preprocessor sass
+```
+
+[Learn more about that below.](#css-preprocessing)
 
 ### CSS Preprocessing
 
 ![postcss-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/postcss-logo.png)
 ![sass-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/sass-logo.png)
 
-Supported CSS preprocessors include [postcss](https://postcss.org/) and [Sass](https://sass-lang.com/).
-
-You can specify this on the command line with the `--preprocessor` option, or `-p` for short. Supported preprocessors:
-
- - `scss`
- - `sass`
- - `postcss`.
-
-Example:
-
-```bash
-$ easy-element build src --preprocessor sass
-```
+Supported CSS preprocessors are [postcss](https://postcss.org/) and [Sass](https://sass-lang.com/).
 
 To use postcss you must also place a `postcss.config.js` file at the base of your project.
 
@@ -217,7 +261,7 @@ my-element.enabled { ... }
 
 The reverse is true for the `.class.js` output file where Shadow DOM is a real thing. CSS selectors containing your custom element's name are transformed to use `:host` and `:host(...)` as necessary.
 
-### Automatic stuff
+### Boilerplate
 
 The JavaScript `class` you define will automatically `extend HTMLElement` so you don't have to.
 
@@ -233,13 +277,13 @@ Only query with `this.querySelector` and `this.querySelectorAll`. See the sectio
 
 You can use `this.addEventListener` and expect feature parity in old and new browsers. It'll be aliased to `this.shadowRoot.addEventListener` in the class-based output.
 
-# Limitations
+## Limitations
 
-## Slots
+### Slots
 
 Slots behave differently between the generated ES5 code and the class-based output with Shadow DOM. For instance, [assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) won't return what you want in ES5-land. If you want full slot support, look elsewhere.
 
-## Shadow DOM
+### Shadow DOM
 
 No attempt is made to polyfill shadow DOM for old browsers. The ES5 output will add your `<template>`'s contents to the element's inner HTML, and your styles will be appended to `document.head`. So encapsulate your styles by starting your selectors with your element's tag-name or `:host` or use something like [BEM](http://getbem.com/).
 
@@ -258,15 +302,15 @@ Easy Element has no way of knowing whether your CSS selector was intended to sty
 
 Then your styles that include a rule of `.electric { ... }` would not style the host element in the class-based output, but a rule like `:host(.electric) { ... }` would have the desired effect. In the ES5 output, your custom element would probably be rendered as you intended either way.
 
-## Extending
+### Extending
 
 Extending things other than `HTMLElement` hasn't really been tested yet. Assume it's McBusted.
 
-## Directory structure
+### Directory structure
 
-Building multi-level directory trees is not yet supported. So put your element code in one flat folder. Easy Element won't do recursive directory traversal to search for your source code.
+Building multi-level directory trees is not supported. Easy Element won't do recursive directory traversal to search for your source code. So put your element code in one flat folder.
 
-# Distinctions
+## Distinctions
 
 What makes Easy Element different from other options?
 
