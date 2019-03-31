@@ -14,7 +14,17 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
+
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 "use strict";
 
@@ -26,7 +36,7 @@ function (_HTMLElement) {
   function AhChoo() {
     _classCallCheck(this, AhChoo);
 
-    return _possibleConstructorReturn(this, (AhChoo.__proto__ || Object.getPrototypeOf(AhChoo)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(AhChoo).apply(this, arguments));
   }
 
   _createClass(AhChoo, [{
@@ -56,7 +66,7 @@ function (_HTMLElement) {
   }]);
 
   return AhChoo;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -74,7 +84,7 @@ function (_HTMLElement) {
   function BlueButton() {
     _classCallCheck(this, BlueButton);
 
-    return _possibleConstructorReturn(this, (BlueButton.__proto__ || Object.getPrototypeOf(BlueButton)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(BlueButton).apply(this, arguments));
   }
 
   _createClass(BlueButton, [{
@@ -110,7 +120,7 @@ function (_HTMLElement) {
   }]);
 
   return BlueButton;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -138,7 +148,7 @@ function (_HTMLElement) {
   function IPad() {
     _classCallCheck(this, IPad);
 
-    return _possibleConstructorReturn(this, (IPad.__proto__ || Object.getPrototypeOf(IPad)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(IPad).apply(this, arguments));
   }
 
   _createClass(IPad, [{
@@ -149,7 +159,7 @@ function (_HTMLElement) {
   }]);
 
   return IPad;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -177,7 +187,7 @@ function (_HTMLElement) {
   function LoginForm() {
     _classCallCheck(this, LoginForm);
 
-    return _possibleConstructorReturn(this, (LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(LoginForm).apply(this, arguments));
   }
 
   _createClass(LoginForm, [{
@@ -231,7 +241,7 @@ function (_HTMLElement) {
   }]);
 
   return LoginForm;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -259,7 +269,7 @@ function (_HTMLElement) {
   function MyHeart() {
     _classCallCheck(this, MyHeart);
 
-    return _possibleConstructorReturn(this, (MyHeart.__proto__ || Object.getPrototypeOf(MyHeart)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(MyHeart).apply(this, arguments));
   }
 
   _createClass(MyHeart, [{
@@ -287,7 +297,7 @@ function (_HTMLElement) {
   }]);
 
   return MyHeart;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -315,7 +325,7 @@ function (_HTMLElement) {
   function NameTag() {
     _classCallCheck(this, NameTag);
 
-    return _possibleConstructorReturn(this, (NameTag.__proto__ || Object.getPrototypeOf(NameTag)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(NameTag).apply(this, arguments));
   }
 
   _createClass(NameTag, [{
@@ -347,7 +357,7 @@ function (_HTMLElement) {
   }]);
 
   return NameTag;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -375,7 +385,7 @@ function (_HTMLElement) {
   function PillText2() {
     _classCallCheck(this, PillText2);
 
-    return _possibleConstructorReturn(this, (PillText2.__proto__ || Object.getPrototypeOf(PillText2)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(PillText2).apply(this, arguments));
   }
 
   _createClass(PillText2, [{
@@ -384,7 +394,7 @@ function (_HTMLElement) {
   }]);
 
   return PillText2;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -412,7 +422,7 @@ function (_HTMLElement) {
   function RadioButton() {
     _classCallCheck(this, RadioButton);
 
-    return _possibleConstructorReturn(this, (RadioButton.__proto__ || Object.getPrototypeOf(RadioButton)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(RadioButton).apply(this, arguments));
   }
 
   _createClass(RadioButton, [{
@@ -423,7 +433,7 @@ function (_HTMLElement) {
   }]);
 
   return RadioButton;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -451,7 +461,7 @@ function (_HTMLElement) {
   function StarRating() {
     _classCallCheck(this, StarRating);
 
-    return _possibleConstructorReturn(this, (StarRating.__proto__ || Object.getPrototypeOf(StarRating)).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(StarRating).apply(this, arguments));
   }
 
   _createClass(StarRating, [{
@@ -488,7 +498,7 @@ function (_HTMLElement) {
   }]);
 
   return StarRating;
-}(HTMLElement);
+}(_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
