@@ -59,7 +59,7 @@ case 'build':
   break
 
 case 'demo':
-  require('./lib/demo-page')(input, argv.output)
+  require('./lib/demo-page')(options)
   break
 
 case 'watch':
