@@ -2,6 +2,7 @@ let fs = require('fs')
 let fail = require('./lib/fail')
 let helpers = require('./lib/build-helpers')
 let defaultOptions = {
+  bundle: false,
   input: null,
   outputFolder: 'dist',
   preprocessor: null,

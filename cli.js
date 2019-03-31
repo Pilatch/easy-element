@@ -16,6 +16,11 @@ let argv = yargs
   .command('watch', 'watch a file or folder and re-build on chages', positionalInput('watch'))
   .command('demo', 'create a demo HTML page', positionalInput('demo'))
   .demandCommand(1, 'please supply a command as the first argument')
+  .option('bundle', {
+    default: false,
+    describe: 'bundle output when building multiple elements at once',
+    type: 'boolean',
+  })
   .option('output', {
     alias: 'o',
     default: 'dist',
@@ -34,6 +39,7 @@ let argv = yargs
 let command = argv._[0]
 let input = argv._[1]
 let options = {
+  bundle: argv.bundle,
   input: input,
   outputFolder: argv.output,
   preprocessor: argv.preprocessor,
@@ -49,15 +55,11 @@ if (!input) {
 
 switch (command) {
 case 'build':
-  require('./build')({
-    input: input,
-    outputFolder: argv.output,
-    preprocessor: argv.preprocessor,
-  })
+  require('./build')(options)
   break
 
 case 'demo':
-  require('./lib/demo-page')(input, argv.output)
+  require('./lib/demo-page')(options)
   break
 
 case 'watch':
@@ -89,18 +91,14 @@ case 'watch':
   let rebuild = _ => {
     console.error(`Building ${input} to ${argv.output}`)
     try {
-      require('./build')({
-        input: input,
-        outputFolder: argv.output,
-        preprocessor: argv.preprocessor,
-      })
+      require('./build')(options)
     } catch (error) {
       reportError(error)
     }
   }
 
-  watcher.on('add', require('./lib/watch').onAdd(options, reportError, inputIsDirectory))
-  watcher.on('change', require('./lib/watch').onChange(options, reportError, inputIsDirectory))
+  watcher.on('add', require('./lib/watch').onAdd(options, reportError, inputIsDirectory, rebuild))
+  watcher.on('change', require('./lib/watch').onChange(options, reportError, inputIsDirectory, rebuild))
   watcher.on('unlink', rebuild)
   watcher.on('error', reportError)
   break
