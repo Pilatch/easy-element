@@ -79,7 +79,7 @@ Then include these scripts in your HTML.
 <srcipt src="/dist/name-tag.es5.js"></script>
 ```
 
-## Browser Support
+#### Browser Support
 
 Tested with Chrome, IE 10, Edge, FireFox, and Safari.
 
@@ -90,7 +90,7 @@ For components that _do_ stuff, you'll need some JavaScript. Here's a button tha
 ![A dark blue button saying it's sad in French.](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/dark-blue-button.png)
 ![A light blue button saying it's sad in French.](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/light-blue-button.png)
 
-We'll split it between three files in our `src` folder... because we can.
+We'll split it between three files in our `src` folder, because we can.
 
 ```html
 <!-- src/blue-button.html -->
@@ -177,13 +177,13 @@ $ npx easy-element demo --output public src/my-element.html
 $ npx easy-element demo src --bundle
 ```
 
-### Options
+## Options
 
-#### `--help`
+### `--help`
 
 Show the help text and quit.
 
-#### `--output` or `-o`
+### `--output` or `-o`
 
 Change folder that your generated `.es5.js` and `.class.js` files are written to. Files are output to a folder named `dist` by default.
 
@@ -192,11 +192,11 @@ Change folder that your generated `.es5.js` and `.class.js` files are written to
 $ npx build src --output exports
 ```
 
-#### `--bundle` or `-b`
+### `--bundle` or `-b`
 
-Bundle all the elements you're building together. Normally when you build a directory with a command such as `easy-element build src` it will output a pair of files (`.class.js` and `.es5.js`) for each element it builds. With the `--bundle` flag, it will instead produce only one pair of files for the whole group: `bundle.class.js` and `bundle.es5.js`. Especially good if you're curating a library of custom elements instead of making individual repositories for each.
+Bundle all the elements you're building together. Normally when you build a directory with a command such as `npx easy-element build src` it will output a pair of files (`.class.js` and `.es5.js`) for each element it builds. With the `--bundle` flag, it will instead produce only one pair of files for the whole group: `bundle.class.js` and `bundle.es5.js`. This is especially useful if you're curating a library of custom elements instead of making individual repositories for each.
 
-#### `--preprocessor` or `-p`
+### `--preprocessor` or `-p`
 
 Specify which CSS preprocessor to use. Valid options:
 
@@ -211,7 +211,7 @@ $ npx easy-element build src --preprocessor sass
 
 [Learn more about that below.](#css-preprocessing)
 
-### CSS Preprocessing
+## CSS Preprocessing
 
 ![postcss-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/postcss-logo.png)
 ![sass-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/sass-logo.png)
@@ -230,11 +230,11 @@ If you're building an HTML file you can specify the preprocessor in your style t
 
 If your styles live in a file ending in `.scss` or `.sass` then easy-element will figure out which preprocesser syntax to use.
 
-### Examples
+## Example Elements
 
 Take a look at [the repository's test/src folder](https://github.com/Pilatch/easy-element/tree/master/test/src) to see the different elements we built to test Easy Element.
 
-[`<pilatch-card>`](https://github.com/Pilatch/pilatch-card) is an actual _thing_ built with Easy Element.
+[`<pilatch-card>`](https://github.com/Pilatch/pilatch-card) is an actual _thing_ built with Easy Element, and the reason this tool exists.
 
 ## Transformations
 
@@ -244,7 +244,7 @@ New stuff like `const`, `let`, `class`, and arrow functions are compiled down to
 
 ### :host
 
-Shadow DOM has the concept of the "host" element. We don't support that in ES5-land because polyfills are slow. So when you have CSS selectors that use `:host` ...
+Shadow DOM has the concept of the [host element](https://developer.mozilla.org/en-US/docs/Web/CSS/:host()). We don't support that in ES5-land because polyfills are slow. So when you have CSS selectors that use `:host` ...
 
 ```css
 /* my-element.css */
