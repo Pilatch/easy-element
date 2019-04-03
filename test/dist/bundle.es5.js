@@ -140,6 +140,43 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
+var BlueSquare =
+/*#__PURE__*/
+function (_HTMLElement) {
+  _inherits(BlueSquare, _HTMLElement);
+
+  function BlueSquare() {
+    _classCallCheck(this, BlueSquare);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(BlueSquare).apply(this, arguments));
+  }
+
+  _createClass(BlueSquare, [{
+    key: "connectedCallback",
+    value: function connectedCallback() {}
+  }]);
+
+  return BlueSquare;
+}(_wrapNativeSuper(HTMLElement));
+
+"use strict";
+
+;
+
+(function () {
+  var style = document.createElement('style');
+  style.textContent = 'blue-square {  background-color: blue;  opacity: 0.4;  display: inline-block;  width: 30px;  height: 30px;}';
+  document.head.appendChild(style);
+})();
+
+"use strict";
+
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('blue-square', BlueSquare);
+});
+
+"use strict";
+
 var IPad =
 /*#__PURE__*/
 function (_HTMLElement) {
@@ -257,6 +294,45 @@ function (_HTMLElement) {
 
 window.addEventListener('WebComponentsReady', function () {
   customElements.define('login-form', LoginForm);
+});
+
+"use strict";
+
+var MultiSquare =
+/*#__PURE__*/
+function (_HTMLElement) {
+  _inherits(MultiSquare, _HTMLElement);
+
+  function MultiSquare() {
+    _classCallCheck(this, MultiSquare);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(MultiSquare).apply(this, arguments));
+  }
+
+  _createClass(MultiSquare, [{
+    key: "connectedCallback",
+    value: function connectedCallback() {
+      this.innerHTML = "\n  <blue-square></blue-square>\n  <red-square></red-square>\n";
+    }
+  }]);
+
+  return MultiSquare;
+}(_wrapNativeSuper(HTMLElement));
+
+"use strict";
+
+;
+
+(function () {
+  var style = document.createElement('style');
+  style.textContent = 'multi-square {  display: inline-block;  width: 45px;  height: 30px;  position: relative;}multi-square blue-square,multi-square red-square {  position: absolute;  left: 0;  top: 0;}multi-square blue-square {  left: 15px;}';
+  document.head.appendChild(style);
+})();
+
+"use strict";
+
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('multi-square', MultiSquare);
 });
 
 "use strict";
@@ -449,6 +525,43 @@ function (_HTMLElement) {
 
 window.addEventListener('WebComponentsReady', function () {
   customElements.define('radio-button', RadioButton);
+});
+
+"use strict";
+
+var RedSquare =
+/*#__PURE__*/
+function (_HTMLElement) {
+  _inherits(RedSquare, _HTMLElement);
+
+  function RedSquare() {
+    _classCallCheck(this, RedSquare);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(RedSquare).apply(this, arguments));
+  }
+
+  _createClass(RedSquare, [{
+    key: "connectedCallback",
+    value: function connectedCallback() {}
+  }]);
+
+  return RedSquare;
+}(_wrapNativeSuper(HTMLElement));
+
+"use strict";
+
+;
+
+(function () {
+  var style = document.createElement('style');
+  style.textContent = 'red-square {  background-color: red;  opacity: 0.4;  display: inline-block;  width: 30px;  height: 30px;}';
+  document.head.appendChild(style);
+})();
+
+"use strict";
+
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('red-square', RedSquare);
 });
 
 "use strict";

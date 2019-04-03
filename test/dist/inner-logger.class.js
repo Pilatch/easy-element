@@ -5,6 +5,10 @@ class InnerLogger extends HTMLElement {
   }
 
   connectedCallback() {
+    this.attachShadow({
+      mode: 'open'
+    });
+    this.shadowRoot.innerHTML = `<slot></slot>`;
     Object.assign(this.style, {
       fontFamily: `"Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace`,
       color: 'green',
@@ -14,6 +18,18 @@ class InnerLogger extends HTMLElement {
     this.addEventListener('click', event => {
       console.log('click event!', event);
     });
+  }
+
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
 }
