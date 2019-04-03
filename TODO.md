@@ -1,3 +1,6 @@
+Minify both CSS before being injected into AST,
+  and JS output.
+
 Test for build failure error messages, such as:
   trying to build a file that does not exist
   building with the wrong preprocessor
