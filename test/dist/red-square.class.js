@@ -1,15 +1,14 @@
-class HighLight extends HTMLElement {
+class RedSquare extends HTMLElement {
   connectedCallback() {
     this.attachShadow({
       mode: 'open'
     });
-    this.shadowRoot.innerHTML = `<slot></slot><style>/**
-This file is intended to test the watcher functionality.
-Change the background-color and see if your page automatically refreshes.
-**/
-
-:host {
-  background-color: yellow;
+    this.shadowRoot.innerHTML = `<slot></slot><style>:host {
+  background-color: red;
+  opacity: 0.4;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
 }</style>`;
   }
 
@@ -27,4 +26,4 @@ Change the background-color and see if your page automatically refreshes.
 
 }
 
-customElements.define('high-light', HighLight);
+customElements.define('red-square', RedSquare);

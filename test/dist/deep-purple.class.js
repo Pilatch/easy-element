@@ -1,14 +1,29 @@
 class DeepPurple extends HTMLElement {
-  connectedCallback() {}
-
+  connectedCallback() {
+    this.attachShadow({
+      mode: 'open'
+    });
+    this.shadowRoot.innerHTML = `<slot></slot><style>:host {
+  background-color: purple;
 }
 
-;
+:host {
+  color: white;
+}</style>`;
+  }
 
-(function () {
-  var style = document.createElement('style');
-  style.textContent = 'deep-purple {  background-color: purple;}deep-purple {  color: white;}';
-  document.head.appendChild(style);
-})();
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+}
 
 customElements.define('deep-purple', DeepPurple);

@@ -1,14 +1,35 @@
 class PillText extends HTMLElement {
-  connectedCallback() {}
-
+  connectedCallback() {
+    this.attachShadow({
+      mode: 'open'
+    });
+    this.shadowRoot.innerHTML = `<slot></slot><style>:host {
+  background-color: #8080ff;
+  border-radius: 1em;
+  padding-left: 0.5em;
 }
 
-;
+:host::after {
+  background-color: #ff8080;
+  content: "?";
+  display: inline-block;
+  width: 1.5em;
+  text-align: center;
+}</style>`;
+  }
 
-(function () {
-  var style = document.createElement('style');
-  style.textContent = 'pill-text {  background-color: #8080ff;  border-radius: 1em;  padding-left: 0.5em;}pill-text::after {  background-color: #ff8080;  content: "?";  display: inline-block;  width: 1.5em;  text-align: center;}';
-  document.head.appendChild(style);
-})();
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+}
 
 customElements.define('pill-text', PillText);

@@ -63,6 +63,36 @@ class BlueButton extends HTMLElement {
 
 customElements.define('blue-button', BlueButton);
 
+class BlueSquare extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({
+      mode: 'open'
+    });
+    this.shadowRoot.innerHTML = `<slot></slot><style>:host {
+  background-color: blue;
+  opacity: 0.4;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}</style>`;
+  }
+
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+}
+
+customElements.define('blue-square', BlueSquare);
+
 class IPad extends HTMLElement {
   connectedCallback() {
     this.attachShadow({
@@ -134,6 +164,49 @@ class LoginForm extends HTMLElement {
 }
 
 customElements.define('login-form', LoginForm);
+
+class MultiSquare extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({
+      mode: 'open'
+    });
+    this.shadowRoot.innerHTML = `
+  <blue-square></blue-square>
+  <red-square></red-square>
+<style>:host {
+  display: inline-block;
+  width: 45px;
+  height: 30px;
+  position: relative;
+}
+
+:host blue-square,
+:host red-square {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+:host blue-square {
+  left: 15px;
+}</style>`;
+  }
+
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+}
+
+customElements.define('multi-square', MultiSquare);
 
 class MyHeart extends HTMLElement {
   connectedCallback() {
@@ -311,17 +384,38 @@ class NameTag extends HTMLElement {
 customElements.define('name-tag', NameTag);
 
 class PillText2 extends HTMLElement {
-  connectedCallback() {}
-
+  connectedCallback() {
+    this.attachShadow({
+      mode: 'open'
+    });
+    this.shadowRoot.innerHTML = `<slot></slot><style>:host {
+  background-color: #80ff80;
+  border-radius: 1em;
+  padding-left: 0.5em;
 }
 
-;
+:host::after {
+  background-color: #ffd076;
+  content: "!";
+  display: inline-block;
+  width: 1.5em;
+  text-align: center;
+}</style>`;
+  }
 
-(function () {
-  var style = document.createElement('style');
-  style.textContent = 'pill-text-2 {  background-color: #80ff80;  border-radius: 1em;  padding-left: 0.5em;}pill-text-2::after {  background-color: #ffd076;  content: "!";  display: inline-block;  width: 1.5em;  text-align: center;}';
-  document.head.appendChild(style);
-})();
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+}
 
 customElements.define('pill-text-2', PillText2);
 
@@ -449,6 +543,36 @@ class RadioButton extends HTMLElement {
 }
 
 customElements.define('radio-button', RadioButton);
+
+class RedSquare extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({
+      mode: 'open'
+    });
+    this.shadowRoot.innerHTML = `<slot></slot><style>:host {
+  background-color: red;
+  opacity: 0.4;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}</style>`;
+  }
+
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+}
+
+customElements.define('red-square', RedSquare);
 
 class StarRating extends HTMLElement {
   connectedCallback() {

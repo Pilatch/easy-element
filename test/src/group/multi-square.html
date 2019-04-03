@@ -1,0 +1,30 @@
+<template>
+  <blue-square></blue-square>
+  <red-square></red-square>
+</template>
+<style preprocessor="scss">
+:host {
+  display: inline-block;
+  width: 45px;
+  height: 30px;
+  position: relative;
+}
+:host blue-square, :host red-square {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+:host blue-square {
+  left: 15px;
+}
+</style>
+<!--
+<script>
+  // Behavior in the form of a JS class
+  class MultiSquare {
+    connectedCallback() {
+      // ...
+    }
+  }
+</script>
+-->
