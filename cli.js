@@ -22,6 +22,12 @@ let argv = yargs
     describe: 'bundle output when building multiple elements at once',
     type: 'boolean',
   })
+  .option('minify', {
+    alias: 'm',
+    default: false,
+    describe: 'squish your output',
+    type: 'boolean',
+  })
   .option('output', {
     alias: 'o',
     default: 'dist',
@@ -43,6 +49,7 @@ let options = {
   bundle: argv.bundle,
   input: input,
   outputFolder: argv.output,
+  minify: argv.minify,
   preprocessor: argv.preprocessor,
 }
 
