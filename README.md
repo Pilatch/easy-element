@@ -196,6 +196,10 @@ $ npx build src --output exports
 
 Bundle all the elements you're building together. Normally when you build a directory with a command such as `npx easy-element build src` it will output a pair of files (`.class.js` and `.es5.js`) for each element it builds. With the `--bundle` flag, it will instead produce only one pair of files for the whole group: `bundle.class.js` and `bundle.es5.js`. This is especially useful if you're curating a library of custom elements instead of making individual repositories for each.
 
+### `--minify` or `-m`
+
+Squish your output code down to one line.
+
 ### `--preprocessor` or `-p`
 
 Specify which CSS preprocessor to use. Valid options:
