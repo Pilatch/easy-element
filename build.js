@@ -9,7 +9,7 @@ let defaultOptions = {
 }
 
 module.exports = (options = defaultOptions) => {
-  let {input, outputFolder, preprocessor} = options
+  let {input} = options
   let inputStats
 
   if (!input) {
@@ -25,6 +25,6 @@ module.exports = (options = defaultOptions) => {
   if (inputStats.isDirectory()) {
     helpers.buildDirectory(options, input)
   } else {
-    helpers.buildOneFile(input, outputFolder, preprocessor)
+    helpers.buildOneFile(options)
   }
 }
