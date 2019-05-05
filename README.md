@@ -158,13 +158,13 @@ $ npx easy-element watch src
 # Watch the src folder and re-build to public when its contents change
 $ npx easy-element watch src --output public
 
-# Watch the src folder and build bundles its contents change
+# Watch the src folder and build bundles when its contents change
 $ npx easy-element watch src --bundle
 ```
 
 ### `demo`
 
-Make demo pages for your custom elements. Will create one for old browsers, and one for new. If you specify the output folder to be somewhere other than where your custom elements' built files live, you'll probably have to edit your demo page.
+Make demo pages for your custom elements. Will create one for old browsers, and one for new. If you specify the output folder to be somewhere other than where your custom elements' built files live, you'll probably have to edit the script paths in your demo page.
 
 ```bash
 # Create dist/index.html to show off <my-element>
@@ -202,7 +202,7 @@ Squish your output code down to one line.
 
 ### `--preprocessor` or `-p`
 
-Specify which CSS preprocessor to use. Valid options:
+Specify which CSS preprocessor to use. Valid options are:
 
  - `scss`
  - `sass`
