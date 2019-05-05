@@ -1,12 +1,6 @@
-Minify both CSS before being injected into AST,
-  and JS output.
-
 Test for build failure error messages, such as:
+  css syntax error
   trying to build a file that does not exist
   building with the wrong preprocessor
 
 Better compiled output without multiple "use strict" and other nonsese.
-
-Build and watch folders that keep component files at varying depths?
-
-Fail on CSS syntax errors in non-preprocessor land?

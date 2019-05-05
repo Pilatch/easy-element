@@ -1,0 +1,6 @@
+While processing SASS in errors/scss-only-syntax-error.scss, Error: expected ";".
+  ╷
+4 │   font-weight: bold;
+  │              ^
+  ╵
+  errors/scss-only-syntax-error.scss 4:14  root stylesheet
