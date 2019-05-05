@@ -23,3 +23,7 @@ node ../cli.js build src/sassy/deepinhammer
 node ../cli.js build src/sassy/deeplink/minish-link.html --preprocessor sass
 
 node ../cli.js build --bundle src/group
+
+# Error message testing.
+# Diffs expected vs actual.
+node ../cli.js build errors/scss-only-syntax-error.scss 2>&1 | diff -u - errors/scss-only-syntax-error.txt
