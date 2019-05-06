@@ -1,0 +1,1 @@
+You specified a preprocessor of "scss", but we inferred "sass" based on directory contents.

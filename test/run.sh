@@ -33,3 +33,6 @@ node ../cli.js build errors/beerflap-does-not-exist 2>&1 | diff -u - errors/buil
 node ../cli.js build 2>&1 | grep 'Please specify an input' | diff -u - errors/no-input.txt
 node ../cli.js build errors/empty-dir 2>&1 | diff -u - errors/empty-dir.txt
 node ../cli.js build -p scss errors/preprocessor-conflict.html 2>&1 | diff -u - errors/preprocessor-conflict.txt
+node ../cli.js build errors/extra-css 2>&1 | diff -u - errors/extra-css.txt
+node ../cli.js build errors/extra-js 2>&1 | diff -u - errors/extra-js.txt
+node ../cli.js build errors/extra-sass -p scss 2>&1 | diff -u - errors/inferred-preprocessor-conflict.txt

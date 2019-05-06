@@ -1,0 +1,1 @@
+Found JS in both HTML and in a separate file. Please choose one option or the other.
