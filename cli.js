@@ -7,11 +7,11 @@ let positionalInput = command => _ => {
     describe: 'file or directory to use as input for your custom element',
     type: 'string',
   })
-  yargs.usage(`$0 ${command} [-o <output>] <input>`)
+  yargs.usage(`$0 ${command} <input> [options]`)
 }
 
 let argv = yargs
-  .usage('$0 <command> [-o <output>] <input>')
+  .usage('$0 <command> <input> [options]')
   .command('build', 'build a custom element', positionalInput('build'))
   .command('watch', 'watch a file or folder and re-build on chages', positionalInput('watch'))
   .command('demo', 'create a demo HTML page', positionalInput('demo'))
@@ -54,8 +54,8 @@ let options = {
 }
 
 if (!input) {
-  console.error('An input file or folder is required as the last argument.')
-  console.error(`Try running a command like this:\n${argv.$0} ${command} --output dist src/my-element.html\n`)
+  console.error(`Please specify an input file or folder to ${command}.`)
+  console.error(`Try running a command like this:\n${argv.$0} ${command} src/my-element.html\n`)
   console.error('Usage:')
   yargs.showHelp()
   process.exit(1)

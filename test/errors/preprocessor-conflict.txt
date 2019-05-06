@@ -1,0 +1,2 @@
+The preprocessor option "scss" was given, but the <style> has a preprocessor attribute of "sass".
+Remove one or the other.
