@@ -2,7 +2,7 @@
 
 Lets web developers leverage technologies they are already familiar with to create cross-browser web components (custom elements) from HTML, CSS, and [JavaScript classes](https://developers.google.com/web/fundamentals/web-components/customelements).
 
-![Hello, my name is Easy Element name-tag](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/name-tag-big.png)
+![Hello, my name is Easy Element name-tag](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/name-tag-logo.png)
 
 ## Install
 
