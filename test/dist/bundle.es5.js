@@ -177,6 +177,39 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
+var ConStruct =
+/*#__PURE__*/
+function (_HTMLElement) {
+  _inherits(ConStruct, _HTMLElement);
+
+  function ConStruct() {
+    var _this;
+
+    _classCallCheck(this, ConStruct);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ConStruct).call(this));
+    console.log('I wuz con-structed.'); // Look in the console on the demo page.
+    // This shouldn't throw any errors complaining about a lack of super()
+
+    return _this;
+  }
+
+  _createClass(ConStruct, [{
+    key: "connectedCallback",
+    value: function connectedCallback() {}
+  }]);
+
+  return ConStruct;
+}(_wrapNativeSuper(HTMLElement));
+
+"use strict";
+
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('con-struct', ConStruct);
+});
+
+"use strict";
+
 var IPad =
 /*#__PURE__*/
 function (_HTMLElement) {
