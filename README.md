@@ -189,7 +189,7 @@ Change folder that your generated `.es5.js` and `.class.js` files are written to
 
 ```bash
 # Output to a folder named exports
-$ npx build src --output exports
+$ npx easy-element build src --output exports
 ```
 
 ### `--bundle` or `-b`
