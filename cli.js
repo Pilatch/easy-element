@@ -105,8 +105,11 @@ case 'watch':
     }
   }
 
-  watcher.on('add', require('./lib/watch').onAdd(options, reportError, inputIsDirectory, rebuild))
-  watcher.on('change', require('./lib/watch').onChange(options, reportError, inputIsDirectory, rebuild))
+  let watch = require('./lib/watch')
+
+  watch.nodeVersionCheck()
+  watcher.on('add', watch.onAdd(options, reportError, inputIsDirectory, rebuild))
+  watcher.on('change', watch.onChange(options, reportError, inputIsDirectory, rebuild))
   watcher.on('unlink', rebuild)
   watcher.on('error', reportError)
   break

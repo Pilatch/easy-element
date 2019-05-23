@@ -4,3 +4,6 @@ Test for build failure error messages, such as:
   building with the wrong preprocessor
 
 Better compiled output without multiple "use strict" and other nonsese.
+
+Build nested file structure to match what watch.js does. See TODO in there.
+  Then delete the limitation warning in the README.
