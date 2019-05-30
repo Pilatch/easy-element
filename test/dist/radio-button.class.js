@@ -30,20 +30,20 @@ class RadioButton extends HTMLElement {
   margin-bottom: 20px;
 }
 
-:host.off {
+:host(.off) {
   background: #fff;
 }
 
-:host.off .bar {
+:host(.off) .bar {
   background: #ccc;
   left: 136px;
 }
 
-:host.off label[for=on] {
+:host(.off) label[for=on] {
   color: #626262;
 }
 
-:host.off label[for=off] {
+:host(.off) label[for=off] {
   color: #000;
 }
 

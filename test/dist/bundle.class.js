@@ -481,20 +481,20 @@ class RadioButton extends HTMLElement {
   margin-bottom: 20px;
 }
 
-:host.off {
+:host(.off) {
   background: #fff;
 }
 
-:host.off .bar {
+:host(.off) .bar {
   background: #ccc;
   left: 136px;
 }
 
-:host.off label[for=on] {
+:host(.off) label[for=on] {
   color: #626262;
 }
 
-:host.off label[for=off] {
+:host(.off) label[for=off] {
   color: #000;
 }
 
@@ -574,36 +574,6 @@ class RadioButton extends HTMLElement {
 
 customElements.define('radio-button', RadioButton);
 
-class RedSquare extends HTMLElement {
-  connectedCallback() {
-    this.attachShadow({
-      mode: 'open'
-    });
-    this.shadowRoot.innerHTML = `<slot></slot><style>:host {
-  background-color: red;
-  opacity: 0.4;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-}</style>`;
-  }
-
-  querySelector(selector) {
-    return this.shadowRoot.querySelector(selector);
-  }
-
-  querySelectorAll(selector) {
-    return this.shadowRoot.querySelectorAll(selector);
-  }
-
-  addEventListener() {
-    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
-  }
-
-}
-
-customElements.define('red-square', RedSquare);
-
 class StarRating extends HTMLElement {
   connectedCallback() {
     this.attachShadow({
@@ -678,3 +648,33 @@ class StarRating extends HTMLElement {
 }
 
 customElements.define('star-rating', StarRating);
+
+class RedSquare extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({
+      mode: 'open'
+    });
+    this.shadowRoot.innerHTML = `<slot></slot><style>:host {
+  background-color: red;
+  opacity: 0.4;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}</style>`;
+  }
+
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  querySelectorAll(selector) {
+    return this.shadowRoot.querySelectorAll(selector);
+  }
+
+  addEventListener() {
+    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+}
+
+customElements.define('red-square', RedSquare);

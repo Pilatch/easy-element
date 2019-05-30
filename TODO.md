@@ -7,3 +7,8 @@ Better compiled output without multiple "use strict" and other nonsese.
 
 Build nested file structure to match what watch.js does. See TODO in there.
   Then delete the limitation warning in the README.
+
+Error message test for a building a css file without specifying a preprocessor,
+and it blows up on syntax error.
+
+Don't try to build .scss and .sass files that are prefixed with an underscore.
