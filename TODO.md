@@ -12,3 +12,7 @@ Error message test for a building a css file without specifying a preprocessor,
 and it blows up on syntax error.
 
 Don't try to build .scss and .sass files that are prefixed with an underscore.
+
+Ignore any file beginning with an underscore.
+
+Create elements specifically for the nest test and put them in the demos.

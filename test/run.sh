@@ -1,5 +1,7 @@
 rm dist/*
 
+# TODO create elements specifically for the nest test and put them in the demos.
+node ../cli.js build src/nest
 node ../cli.js build src/group
 
 node ../cli.js build src/one-html-file-three-tags/search-bar.html
@@ -21,8 +23,6 @@ node ../cli.js build src/sassy/deeply
 node ../cli.js build src/sassy/deeply/junk-trunk.html
 node ../cli.js build src/sassy/deepinhammer
 node ../cli.js build src/sassy/deeplink/minish-link.html --preprocessor sass
-
-node ../cli.js build src/nest
 
 node ../cli.js build --bundle src/group
 
