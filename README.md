@@ -352,10 +352,6 @@ Then your styles that include a rule of `.electric { ... }` would _not_ style th
 
 Extending things other than `HTMLElement` hasn't really been tested yet. Assume it's McBusted.
 
-### Directory structure
-
-Building multi-level directory trees is not supported. Easy Element won't do recursive directory traversal to search for your source code. So put your element code in one flat folder.
-
 ## Distinctions
 
 What makes Easy Element different from other options?
