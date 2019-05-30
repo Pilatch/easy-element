@@ -1,4 +1,5 @@
 @import '../_colors';
+@import './_local-partial';
 @import 'pretend-sass-thingy/stupid-vars';
 
 :host {
@@ -8,9 +9,9 @@
 
   &::after {
     background-color: $rosypink;
-    content: '?';
+    content: $unsure;
     display: inline-block;
     width: $onePointFiveEm;
-    text-align: center;
+    text-align: $centerized;
   }
 }
