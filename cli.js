@@ -110,6 +110,7 @@ case 'watch':
   watch.nodeVersionCheck()
   watcher.on('add', watch.onAdd(options, reportError, inputIsDirectory, rebuild))
   watcher.on('change', watch.onChange(options, reportError, inputIsDirectory, rebuild))
+  watcher.on('ready', watch.onReady(options, reportError, inputIsDirectory, rebuild))
   watcher.on('unlink', rebuild)
   watcher.on('error', reportError)
   break
