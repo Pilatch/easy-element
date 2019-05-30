@@ -16,3 +16,5 @@ Don't try to build .scss and .sass files that are prefixed with an underscore.
 Ignore any file beginning with an underscore.
 
 Create elements specifically for the nest test and put them in the demos.
+
+Build in deterministic order. Right now it outputs js in a random order.
