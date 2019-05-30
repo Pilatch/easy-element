@@ -270,6 +270,10 @@ If you're building an HTML file you can specify the preprocessor in your style t
 
 If your styles live in a file ending in `.scss` or `.sass` then easy-element will figure out which preprocesser syntax to use.
 
+### Partials
+
+Easy Element understands that partials' file-names start with underscores. So you can `@import '_colors.scss';` and whatnot without it trying to build that partial as a separate web component.
+
 ## Example Elements
 
 Take a look at [the repository's test/src folder](https://github.com/Pilatch/easy-element/tree/master/test/src) to see the different elements we built to test Easy Element.
