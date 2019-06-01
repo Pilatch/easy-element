@@ -1,4 +1,4 @@
-While processing SASS in errors/scss-only-syntax-error.scss, Error: expected ";".
+While processing SCSS in errors/scss-only-syntax-error.scss, Error: expected ";".
   ╷
 4 │   font-weight: bold;
   │              ^

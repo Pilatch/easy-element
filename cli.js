@@ -7,11 +7,11 @@ let positionalInput = command => _ => {
     describe: 'file or directory to use as input for your custom element',
     type: 'string',
   })
-  yargs.usage(`$0 ${command} [-o <output>] <input>`)
+  yargs.usage(`$0 ${command} <input> [options]`)
 }
 
 let argv = yargs
-  .usage('$0 <command> [-o <output>] <input>')
+  .usage('$0 <command> <input> [options]')
   .command('build', 'build a custom element', positionalInput('build'))
   .command('watch', 'watch a file or folder and re-build on chages', positionalInput('watch'))
   .command('demo', 'create a demo HTML page', positionalInput('demo'))
@@ -54,8 +54,8 @@ let options = {
 }
 
 if (!input) {
-  console.error('An input file or folder is required as the last argument.')
-  console.error(`Try running a command like this:\n${argv.$0} ${command} --output dist src/my-element.html\n`)
+  console.error(`Please specify an input file or folder to ${command}.`)
+  console.error(`Try running a command like this:\n${argv.$0} ${command} src/my-element.html\n`)
   console.error('Usage:')
   yargs.showHelp()
   process.exit(1)
@@ -72,6 +72,7 @@ case 'demo':
 
 case 'watch':
   let inputIsDirectory
+  let fail = require('./lib/fail')
 
   try {
     let inputStats = require('fs').statSync(input)
@@ -79,15 +80,15 @@ case 'watch':
     inputIsDirectory = inputStats.isDirectory()
     if (!inputIsDirectory && !inputStats.isFile()) {
       // Stop the process immediately if the input isn't a file or directory. It could be a socket, I suppose.
-      require('./lib/fail')(`Input ${input} is neither a file nor directory. So I dunno what to do with it.`)
+      fail(`Input ${input} is neither a file nor directory. So I dunno what to do with it.`)
     }
   } catch (error) {
     // Stop the process immediately if the input file or directory does not exist.
-    require('./lib/fail')(`Could not stat input file or directory, ${input}`)
+    fail(`Could not stat input file or directory, ${input}`)
   }
 
   // Make further failures throw errors instead of killing the watch process.
-  require('./lib/fail').tossMode()
+  fail.tossMode()
 
   let watcher = require('chokidar').watch(input, {
     persistent: true,
@@ -100,13 +101,18 @@ case 'watch':
     console.error(`Building ${input} to ${argv.output}`)
     try {
       require('./build')(options)
+        .catch(error => reportError(error.message))
     } catch (error) {
-      reportError(error)
+      reportError(error.message)
     }
   }
 
-  watcher.on('add', require('./lib/watch').onAdd(options, reportError, inputIsDirectory, rebuild))
-  watcher.on('change', require('./lib/watch').onChange(options, reportError, inputIsDirectory, rebuild))
+  let watch = require('./lib/watch')
+
+  watch.nodeVersionCheck()
+  watcher.on('add', watch.onAdd(options, reportError, inputIsDirectory, rebuild))
+  watcher.on('change', watch.onChange(options, reportError, inputIsDirectory, rebuild))
+  watcher.on('ready', watch.onReady(options, reportError, inputIsDirectory, rebuild))
   watcher.on('unlink', rebuild)
   watcher.on('error', reportError)
   break

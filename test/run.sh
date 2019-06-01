@@ -1,5 +1,6 @@
 rm dist/*
 
+node ../cli.js build src/nest
 node ../cli.js build src/group
 
 node ../cli.js build src/one-html-file-three-tags/search-bar.html
@@ -27,3 +28,11 @@ node ../cli.js build --bundle src/group
 # Error message testing.
 # Diffs expected vs actual.
 node ../cli.js build errors/scss-only-syntax-error.scss 2>&1 | diff -u - errors/scss-only-syntax-error.txt
+node ../cli.js build errors/scss-only-syntax-error.scss -p postcss 2>&1 | diff -u - errors/wrong-preprocessor.txt
+node ../cli.js build errors/beerflap-does-not-exist 2>&1 | diff -u - errors/building-a-file-that-does-not-exist.txt
+node ../cli.js build 2>&1 | grep 'Please specify an input' | diff -u - errors/no-input.txt
+node ../cli.js build errors/empty-dir 2>&1 | diff -u - errors/empty-dir.txt
+node ../cli.js build -p scss errors/preprocessor-conflict.html 2>&1 | diff -u - errors/preprocessor-conflict.txt
+node ../cli.js build errors/extra-css 2>&1 | diff -u - errors/extra-css.txt
+node ../cli.js build errors/extra-js 2>&1 | diff -u - errors/extra-js.txt
+node ../cli.js build errors/extra-sass -p scss 2>&1 | diff -u - errors/inferred-preprocessor-conflict.txt
