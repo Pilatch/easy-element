@@ -72,6 +72,7 @@ case 'demo':
 
 case 'watch':
   let inputIsDirectory
+  let fail = require('./lib/fail')
 
   try {
     let inputStats = require('fs').statSync(input)
@@ -79,15 +80,15 @@ case 'watch':
     inputIsDirectory = inputStats.isDirectory()
     if (!inputIsDirectory && !inputStats.isFile()) {
       // Stop the process immediately if the input isn't a file or directory. It could be a socket, I suppose.
-      require('./lib/fail')(`Input ${input} is neither a file nor directory. So I dunno what to do with it.`)
+      fail(`Input ${input} is neither a file nor directory. So I dunno what to do with it.`)
     }
   } catch (error) {
     // Stop the process immediately if the input file or directory does not exist.
-    require('./lib/fail')(`Could not stat input file or directory, ${input}`)
+    fail(`Could not stat input file or directory, ${input}`)
   }
 
   // Make further failures throw errors instead of killing the watch process.
-  require('./lib/fail').tossMode()
+  fail.tossMode()
 
   let watcher = require('chokidar').watch(input, {
     persistent: true,
@@ -100,8 +101,9 @@ case 'watch':
     console.error(`Building ${input} to ${argv.output}`)
     try {
       require('./build')(options)
+        .catch(error => reportError(error.message))
     } catch (error) {
-      reportError(error)
+      reportError(error.message)
     }
   }
 

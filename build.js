@@ -23,8 +23,8 @@ module.exports = (options = defaultOptions) => {
   }
 
   if (inputStats.isDirectory()) {
-    helpers.buildDirectory(options, input)
-  } else {
-    helpers.buildOneFile(options)
+    return helpers.buildDirectory(options, input)
   }
+
+  return helpers.buildOneFile(options)
 }
