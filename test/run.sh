@@ -1,6 +1,5 @@
 rm dist/*
 
-# TODO create elements specifically for the nest test and put them in the demos.
 node ../cli.js build src/nest
 node ../cli.js build src/group
 

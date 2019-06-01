@@ -1,0 +1,8 @@
+:host {
+  background-color: brown;
+  color: white;
+
+  &::after {
+    content: "I'm the baby. Gotta feed me!";
+  }
+}
