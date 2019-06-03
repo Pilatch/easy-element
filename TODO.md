@@ -10,3 +10,6 @@ Maybe include JS outside the element's class?
 
 Make one demo page that lets you write codez that are shared between
 es5 and class-based components so you don't have to duplicate stuff.
+
+Support extending things other than HTMLElement.
+  https://blog.revillweb.com/extending-native-dom-elements-with-web-components-233350c8e86a

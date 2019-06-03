@@ -126,6 +126,8 @@ class BlueButton {
 }
 ```
 
+What's the JavaScript API for your custom element? Native [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement).
+
 ## Browser Support
 
 Tested with Chrome, IE 10, Edge, FireFox, and Safari.
@@ -286,7 +288,7 @@ Take a look at [the repository's test/src folder](https://github.com/Pilatch/eas
 
 ### ES6
 
-New stuff like `const`, `let`, `class`, and arrow functions are transpiled down in the ES5 output.
+New stuff like `const`, `let`, `class`, arrow functions, template literals, etc. are transpiled down in the ES5 output.
 
 ### `:host`
 
@@ -315,7 +317,7 @@ We'll also do `customElements.define(...)` at the appropriate time.
 
 ### Querying
 
-We recommend you only query with `this.querySelector` and `this.querySelectorAll`. See the section on [limitations](#limitations) for an explanation why.
+If you support older browsers, we recommend you only query with `this.querySelector` and `this.querySelectorAll`. See the section on [limitations](#limitations) for an explanation why.
 
 `this.querySelector` and `this.querySelectorAll` are aliased to `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output, so you can expect the same results in both old and new browsers.
 
@@ -354,13 +356,13 @@ Then your styles that include a rule of `.electric { ... }` would _not_ style th
 
 ### Extending
 
-Extending things other than `HTMLElement` hasn't really been tested yet. Assume it's McBusted.
+Extending classes other than `HTMLElement` is not yet supported. It may be in the future.
 
 ## Distinctions
 
 What makes Easy Element different from other options?
 
-Well, if web developers want to handle events within a custom element, Easy ELement lets them do so using native JavaScript like `addEventListener`. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
+Well, if web developers want to handle events within a custom element, Easy ELement lets them do so using native JavaScript like `addEventListener`. So they probably already know how to do this. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
 
 Easy Element is intended for lightweight custom elements that are short-lived because a virtual-DOM renderer (such as [Elm](https://elm-lang.org/), [Mithril](https://mithril.js.org/index.html), [React](https://reactjs.org/), [Vue](https://vuejs.org/) etc.) is frequently creating and destroying them. We do _not_ intend to support data-binding like [Angular](https://angular.io/) and [Polymer](https://www.polymer-project.org/) do. Though you can use web components created by Easy Element with any of these technologies, (we have done testing on this), we think they play most nicely with virtual DOM.
 
