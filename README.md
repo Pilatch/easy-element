@@ -258,7 +258,7 @@ $ easy-element build src --preprocessor sass
 ![postcss-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/postcss-logo.png)
 ![sass-logo](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/sass-logo.png)
 
-Supported CSS preprocessors are [postcss](https://postcss.org/) and [Sass](https://sass-lang.com/).
+Easy Element supports [postcss](https://postcss.org/) and [Sass](https://sass-lang.com/).
 
 To use postcss you must also place a `postcss.config.js` file at the base of your project.
 
@@ -272,9 +272,6 @@ If you're building an HTML file you can specify the preprocessor in your style t
 
 If your styles live in a file ending in `.scss` or `.sass` then easy-element will figure out which preprocesser syntax to use.
 
-### Partials
-
-Easy Element understands that partials' file-names start with underscores. So you can `@import '_colors.scss';` and whatnot without it trying to build that partial as a separate web component.
 
 ## Example Elements
 
@@ -315,9 +312,11 @@ The JavaScript `class` you define will automatically `extend HTMLElement` so you
 
 We'll also do `customElements.define(...)` at the appropriate time.
 
+If you don't have a `class` for your element, no worries. Easy Element makes one for you.
+
 ### Querying
 
-If you support older browsers, we recommend you only query with `this.querySelector` and `this.querySelectorAll`. See the section on [limitations](#limitations) for an explanation why.
+If you support older browsers, we recommend you only query with `this.querySelector` and `this.querySelectorAll`. See the section on [caveats](#caveats) for an explanation why.
 
 `this.querySelector` and `this.querySelectorAll` are aliased to `this.shadowRoot.querySelector` and `this.shadowRoot.querySelectorAll` respectively in the class-based output, so you can expect the same results in both old and new browsers.
 
@@ -329,19 +328,39 @@ You can use `this.addEventListener` and expect feature parity in old and new bro
 
 If you don't give your element an internal HTML structure, then in the class-based output its `shadowRoot` will contain a `<slot>`. This is to retain feature parity with older browsers and allow for fast creation of presentational elements.
 
-## Limitations
+### Partials
+
+Easy Element understands that partials' file-names start with underscores, and will not attempt to transform them into web components. So you can `@import './_colors.scss';` and whatnot without surprises.
+
+## Distinctions
+
+What makes Easy Element different from other options?
+
+Well, if web developers want to handle events within a custom element, Easy ELement lets them do so using native JavaScript like `addEventListener`. So they probably already know how to do this. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
+
+Easy Element is intended for lightweight custom elements that are short-lived because a virtual-DOM renderer (such as [Elm](https://elm-lang.org/), [Mithril](https://mithril.js.org/index.html), [React](https://reactjs.org/), [Vue](https://vuejs.org/) etc.) is frequently creating and destroying them. We do _not_ intend to support data-binding like [Angular](https://angular.io/) and [Polymer](https://www.polymer-project.org/) do. Though you can use web components created by Easy Element with any of these technologies, (we have done testing on this), we think they play most nicely with virtual DOM.
+
+If you want something more complex, there are [more feature-complete libraries](https://www.webcomponents.org/introduction#libraries-for-building-web-components) out there.
+
+Or you can use Easy Element as a starting point to build your custom element, then use the generated JavaScript in the `.class.js` file with other tools, as it is [V1 spec](https://www.webcomponents.org/specs) compliant.
+
+## Caveats
+
+### Style Encapsulation
+
+For performance reasons, no attempt is made to polyfill shadow DOM for old browsers. The ES5 output will add your `<template>`'s contents to the element's inner HTML, and your styles will be appended to `document.head`. So encapsulate your styles by starting your selectors with your element's tag-name or `:host` or use something like [BEM](http://getbem.com/).
+
+The class-based output will use shadow DOM.
 
 ### Slots
 
 Slots behave differently between the generated ES5 code and the class-based output with Shadow DOM. For instance, [assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) won't return what you want in ES5-land. If you want full slot support, look elsewhere.
 
-### Shadow DOM
+### Shadow Root
 
-No attempt is made to polyfill shadow DOM for old browsers. The ES5 output will add your `<template>`'s contents to the element's inner HTML, and your styles will be appended to `document.head`. So encapsulate your styles by starting your selectors with your element's tag-name or `:host` or use something like [BEM](http://getbem.com/).
+Do _not_ rely on `this.shadowRoot` in your JavaScript class if you support older browsers, as that will not work in the ES5 output. To manipulate the innards of your web component and retain feature parity, limit yourself to use of `this.querySelector` and `this.querySelectorAll` to get references to elements. Anything else (such as `this.innerHTML` or `this.lastElementChild` or `this.childNodes` or `this.shadowRoot` etc.) would _not_ return the same answers between the ES5 and class-based implementations.
 
-The class-based output will use shadow DOM.
-
-Do _not_ rely on `this.shadowRoot` in your JavaScript class, as that will not work in the ES5 output. To manipulate the innards of your web component and retain feature parity, limit yourself to use of `this.querySelector` and `this.querySelectorAll` to get references to elements. Anything else (such as `this.innerHTML` or `this.lastElementChild` or `this.childNodes` or `this.shadowRoot` etc.) would _not_ return the same answers between the ES5 and class-based implementations.
+### Shadowy Styles
 
 Easy Element has no way of knowing whether your CSS selector was intended to style the element itself or one of its child elements. This can be an issue when stlying shadow DOM because all the styles get dumped into the shadow root. That means if you have an element that renders like this:
 
@@ -357,15 +376,3 @@ Then your styles that include a rule of `.electric { ... }` would _not_ style th
 ### Extending
 
 Extending classes other than `HTMLElement` is not yet supported. It may be in the future.
-
-## Distinctions
-
-What makes Easy Element different from other options?
-
-Well, if web developers want to handle events within a custom element, Easy ELement lets them do so using native JavaScript like `addEventListener`. So they probably already know how to do this. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
-
-Easy Element is intended for lightweight custom elements that are short-lived because a virtual-DOM renderer (such as [Elm](https://elm-lang.org/), [Mithril](https://mithril.js.org/index.html), [React](https://reactjs.org/), [Vue](https://vuejs.org/) etc.) is frequently creating and destroying them. We do _not_ intend to support data-binding like [Angular](https://angular.io/) and [Polymer](https://www.polymer-project.org/) do. Though you can use web components created by Easy Element with any of these technologies, (we have done testing on this), we think they play most nicely with virtual DOM.
-
-If you want something more complex, there are [more feature-complete libraries](https://www.webcomponents.org/introduction#libraries-for-building-web-components) out there.
-
-Or you can use Easy Element as a starting point to build your custom element, then use the generated JavaScript in the `.class.js` file with other tools, as it is [V1 spec](https://www.webcomponents.org/specs) compliant.
