@@ -1,0 +1,23 @@
+<template>
+  <a><slot></slot></a>
+</template>
+<style>
+  :host a {
+    color: green;
+    font-style: italic;
+  }
+</style>
+<script>
+  class HyperLink {
+    connectedCallback() {
+      let anchor = this.querySelector('a')
+
+      ;['href', 'tabindex', 'target'].forEach(attribute => {
+        anchor.setAttribute(
+          attribute,
+          this.getAttribute(attribute)
+        )
+      })
+    }
+  }
+</script>

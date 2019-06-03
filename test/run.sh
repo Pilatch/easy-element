@@ -8,6 +8,7 @@ node ../cli.js build src/only-css/simple-bling.css
 node ../cli.js build src/only-js/inner-logger.js
 node ../cli.js build src/add-more-js/what-fu.html
 node ../cli.js build src/dir-with-one
+node ../cli.js build src/extends-anchor
 node ../cli.js build src/only-html/to-do.html
 node ../cli.js build src/watch-me
 node ../cli.js build src/post-css --preprocessor postcss
