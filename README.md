@@ -19,7 +19,7 @@ $ yo easy-element
 ## How it Works
 
 * An HTML template determines the internal structure of your web component.
-* Style your web component via CSS, with a [preprocessor](#css-preprocessing) if you want.
+* Style your web component with CSS, using a [preprocessor](#css-preprocessing) if you want.
 * A JavaScript class defines how it behaves.
 
 At a minimum, only _one_ of the above is required to build a web component with Easy Element.
@@ -54,7 +54,7 @@ For an element with an internal structure, like our `<name-tag>` logo at the top
 ```html
 <!-- src/name-tag.html -->
 <template>
-  <h2 class="name-tag_heading">Hello, my name is</h2>
+  <header class="name-tag_header">Hello, my name is</header>
   <div class="name-tag_name-container">
     <slot></slot>
   </div>
@@ -68,16 +68,16 @@ For an element with an internal structure, like our `<name-tag>` logo at the top
     display: inline-block;
     width: 400px;
   }
-  .name-tag_heading {
+  .name-tag_header {
     background-color: red;
     color: white;
+    font-size: 1.5em;
     padding: 0.5em;
-    margin: 0;
   }
   .name-tag_name-container {
     background-color: white;
-    padding: 1em 0.5em;
     font-size: 3em;
+    padding: 1em 0.5em;
     text-align: center;
   }
 </style>
@@ -106,7 +106,7 @@ We'll split it between three files in our `src` folder, because we can.
   color: white;
   font-size: 1.5em;
 }
-/* You could write `blue-button.light` instead of `:host(.light)` if you wanted. */
+/* You could write `blue-button.light` instead of `:host(.light)` if you prefer. */
 :host(.light) button {
   background-color: lightblue;
   color: black;
