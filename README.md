@@ -1,8 +1,8 @@
 # Easy Element
 
-Lets web developers leverage technologies they are already familiar with to create cross-browser [V1 spec](https://www.webcomponents.org/specs) web components ([custom elements](https://developers.google.com/web/fundamentals/web-components/customelements)) from native HTML, CSS, and JavaScript classes.
+Creates cross-browser [V1 spec](https://www.webcomponents.org/specs) web components ([custom elements](https://developers.google.com/web/fundamentals/web-components/customelements)) from native HTML, CSS, and JavaScript classes.
 
-Intended for ease of use, simplicity, and performance, especially in virtual-DOM renderers.
+Intended for ease of use, simplicity, and performance.
 
 ![Hello, my name is Easy Element name-tag](https://raw.githubusercontent.com/Pilatch/easy-element/master/readme-images/name-tag-logo.png)
 
@@ -171,20 +171,14 @@ For the following examples you'd use `npx` before `easy-element` to run it from 
 ### `build`
 
 ```bash
-# Build from .html, .css, and .js files in src
+# Build from .html, .css, and .js files in src, and output to dist
 $ easy-element build src
 
-# Build from only one source file, output to dist
-$ easy-element build web-components/my-element.html
-
 # Build from one source file, output to public
-$ easy-element build src/my-element.html --output public
+$ easy-element build my-element.html --output public
 
-# Build all the .html, .css, and .js files in src into bundles
-$ easy-element build src --bundle
-
-# Make stuff smaller for production.
-$ easy-element build src --minify
+# Bundle all the elements in src and minify
+$ easy-element build src --bundle --minify
 ```
 
 ### `watch`
@@ -196,20 +190,20 @@ $ easy-element watch src
 # Watch the src folder and re-build to public when its contents change
 $ easy-element watch src --output public
 
-# Watch the src folder and build bundles when its contents change
+# Watch the src folder and build a bundle when its contents change
 $ easy-element watch src --bundle
 ```
 
 ### `demo`
 
-Make demo pages for your custom elements. Will create one for old browsers, and one for new. If you specify the output folder to be somewhere other than where your custom elements' built files live, you'll probably have to edit the script paths in your demo page.
+Make demo pages for your custom elements. Creates one for old browsers, and one for new. If you specify the output folder to be somewhere other than where your custom elements' built files live, you'll probably have to edit the script paths in your demo page.
 
 ```bash
 # Create dist/index.class.html and dist/index.es5.html to show off <my-element>
 $ easy-element demo src/my-element.html
 
 # Create demo pages in a folder named public
-$ easy-element demo --output public src/my-element.html
+$ easy-element demo src/my-element.html --output public
 
 # Show off all the elements you're building from src as a bundle
 $ easy-element demo src --bundle
@@ -226,7 +220,7 @@ Show the help text and quit.
 Change folder that your generated `.es5.js` and `.class.js` files are written to. Files are output to a folder named `dist` by default.
 
 ```bash
-# Output to a folder named exports
+# Output to a folder named "exports"
 $ easy-element build src --output exports
 ```
 
@@ -271,7 +265,6 @@ If you're building an HTML file you can specify the preprocessor in your style t
 ```
 
 If your styles live in a file ending in `.scss` or `.sass` then easy-element will figure out which preprocesser syntax to use.
-
 
 ## Example Elements
 
@@ -338,7 +331,7 @@ What makes Easy Element different from other options?
 
 Well, if web developers want to handle events within a custom element, Easy ELement lets them do so using native JavaScript like `addEventListener`. So they probably already know how to do this. Compare this to a library like [stencil](https://stenciljs.com/docs/events) where the developer is expected to import event-related decorators and learn to use a proprietary interface.
 
-Easy Element is intended for lightweight custom elements that are short-lived because a virtual-DOM renderer (such as [Elm](https://elm-lang.org/), [Mithril](https://mithril.js.org/index.html), [React](https://reactjs.org/), [Vue](https://vuejs.org/) etc.) is frequently creating and destroying them. We do _not_ intend to support data-binding like [Angular](https://angular.io/) and [Polymer](https://www.polymer-project.org/) do. Though you can use web components created by Easy Element with any of these technologies, (we have done testing on this), we think they play most nicely with virtual DOM.
+Easy Element is intended for lightweight custom elements that are short-lived because a virtual-DOM renderer (such as [Elm](https://elm-lang.org/), [Mithril](https://mithril.js.org/index.html), [React](https://reactjs.org/), [Vue](https://vuejs.org/) etc.) is frequently creating and destroying them. We do _not_ intend to directly support data-binding like [Angular](https://angular.io/) and [Polymer](https://www.polymer-project.org/) do. Though you can use web components created by Easy Element with any of these technologies, (we have done testing on this), our first priority is virtual DOM performance.
 
 If you want something more complex, there are [more feature-complete libraries](https://www.webcomponents.org/introduction#libraries-for-building-web-components) out there.
 
