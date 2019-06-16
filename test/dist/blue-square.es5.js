@@ -47,6 +47,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('blue-square', BlueSquare);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -54,9 +60,3 @@ function (_HTMLElement) {
   style.textContent = 'blue-square {  background-color: blue;  opacity: 0.4;  display: inline-block;  width: 30px;  height: 30px;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('blue-square', BlueSquare);
-});

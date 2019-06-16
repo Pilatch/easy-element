@@ -49,6 +49,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('concentric-blocks', ConcentricBlocks);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -56,9 +62,3 @@ function (_HTMLElement) {
   style.textContent = 'concentric-blocks {  display: inline-block;  background-color: #001199;  height: 100px;  position: relative;  width: 100px;}concentric-blocks div {  background-color: #ff9911;  height: 25px;  left: 25px;  position: absolute;  top: 25px;  width: 25px;}concentric-blocks span {  background-color: #ff9911;  height: 25px;  left: 50px;  position: absolute;  top: 50px;  width: 25px;}/* Testing `:host(::after)` bug. It should output `:host::after`. */concentric-blocks:hover {  background-color: #9f11bb;}concentric-blocks::after {  background-color: #ff9911;  content: \'!\';  height: 25px;  left: 0;  line-height: 25px;  position: absolute;  text-align: center;  top: 0;  width: 25px;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('concentric-blocks', ConcentricBlocks);
-});

@@ -49,6 +49,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('multi-square', MultiSquare);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -56,9 +62,3 @@ function (_HTMLElement) {
   style.textContent = 'multi-square {  display: inline-block;  width: 45px;  height: 30px;  position: relative;}multi-square blue-square,multi-square red-square {  position: absolute;  left: 0;  top: 0;}multi-square blue-square {  left: 15px;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('multi-square', MultiSquare);
-});

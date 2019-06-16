@@ -91,6 +91,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
     RedButton.firstTimeLoaded = false;
+    "use strict";
+
+    window.addEventListener('WebComponentsReady', function () {
+      customElements.define('red-button', RedButton);
+    });
   } else {
     console.error('Refused to load RedButton!');
   }
@@ -105,9 +110,3 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   style.textContent = 'red-button button {  background-color: red;  border: 0;  box-shadow: 2px 2px 2px gray;  color: white;  font-size: 1.5em;}red-button.pushed button {  background-color: orange;  color: black;  font-weight: bold;  font-size: 2.5em;  padding: 1em;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('red-button', RedButton);
-});

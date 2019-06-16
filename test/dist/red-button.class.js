@@ -57,9 +57,8 @@
 
 
     RedButton.firstTimeLoaded = false;
+    customElements.define('red-button', RedButton);
   } else {
     console.error('Refused to load RedButton!');
   }
 })();
-
-customElements.define('red-button', RedButton);

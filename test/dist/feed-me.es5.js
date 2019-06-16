@@ -47,6 +47,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('feed-me', FeedMe);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -54,9 +60,3 @@ function (_HTMLElement) {
   style.textContent = 'feed-me {  background-color: brown;  color: white;}feed-me::after {  content: "I\'m the baby. Gotta feed me!";}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('feed-me', FeedMe);
-});

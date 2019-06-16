@@ -47,6 +47,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('simple-bling', SimpleBling);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -54,9 +60,3 @@ function (_HTMLElement) {
   style.textContent = 'simple-bling {  background-color: black;  color: gold;  font-weight: bold;  padding: 0.25em;}simple-bling:hover {  background-color: gold;  color: black;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('simple-bling', SimpleBling);
-});

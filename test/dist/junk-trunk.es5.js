@@ -68,6 +68,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('junk-trunk', JunkTrunk);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -75,9 +81,3 @@ function (_HTMLElement) {
   style.textContent = 'junk-trunk {  background-color: #c89696;  color: #e8e8e8;  display: inline-block;  font-family: sans-serif;}junk-trunk p {  padding: 0 0.25em;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('junk-trunk', JunkTrunk);
-});
