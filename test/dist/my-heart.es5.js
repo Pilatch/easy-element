@@ -66,6 +66,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('my-heart', MyHeart);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -73,9 +79,3 @@ function (_HTMLElement) {
   style.textContent = '/* Thanks to https: //codepen.io/hana-mignon/pen/HxGmr */my-heart {  display: inline-block;  height: 175px;  position: relative;}.my-heart_heart-container {  background-color: tomato;  width: 100px;  height: 100px;  position: relative;  top: 50px;  left: 50%;  transform: rotate(-45deg);}.my-heart_heart-container:before {  content: "";  width: 100px;  height: 100px;  border-radius: 50%;  background-color: tomato;  position: absolute;  top: -50px;  left: 0;}.my-heart_heart-container:after {  z-index: -1;  content: "";  width: 100px;  height: 100px;  border-radius: 50%;  background-color: tomato;  position: absolute;  top: 0px;  left: 50px;}.my-heart_inner-heart {  background-color: white;  width: 50px;  height: 50px;  position: relative;  top: 25px;  left: 25px;  z-index: 1;}.my-heart_inner-heart[thump],.my-heart_inner-heart[thump]:after,.my-heart_inner-heart[thump]:before {  background-color: pink;}.my-heart_inner-heart:before {  content: "";  width: 50px;  height: 50px;  border-radius: 50%;  background-color: white;  position: absolute;  top: -25px;  left: 0;}.my-heart_inner-heart:after {  z-index: -1;  content: "";  width: 50px;  height: 50px;  border-radius: 50%;  background-color: white;  position: absolute;  top: 0px;  left: 25px;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('my-heart', MyHeart);
-});

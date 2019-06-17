@@ -47,6 +47,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('pill-text-2', PillText2);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -54,9 +60,3 @@ function (_HTMLElement) {
   style.textContent = 'pill-text-2 {  background-color: #80ff80;  border-radius: 1em;  padding-left: 0.5em;}pill-text-2::after {  background-color: #ffd076;  content: "!";  display: inline-block;  width: 1.5em;  text-align: center;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('pill-text-2', PillText2);
-});

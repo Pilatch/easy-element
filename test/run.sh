@@ -36,3 +36,4 @@ node ../cli.js build -p scss errors/preprocessor-conflict.html 2>&1 | diff -u - 
 node ../cli.js build errors/extra-css 2>&1 | diff -u - errors/extra-css.txt
 node ../cli.js build errors/extra-js 2>&1 | diff -u - errors/extra-js.txt
 node ../cli.js build errors/extra-sass -p scss 2>&1 | diff -u - errors/inferred-preprocessor-conflict.txt
+node ../cli.js build errors/ridiculous-eval.js 2>&1 | diff -u - ridiculous-eval.txt

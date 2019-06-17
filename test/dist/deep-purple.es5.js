@@ -47,6 +47,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('deep-purple', DeepPurple);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -54,9 +60,3 @@ function (_HTMLElement) {
   style.textContent = 'deep-purple {  background-color: purple;}deep-purple {  color: white;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('deep-purple', DeepPurple);
-});

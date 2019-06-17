@@ -1,5 +1,3 @@
-Include JS outside the element's class.
-
 Test for build failure error messages, such as:
   css syntax error when not using preprocessor
 

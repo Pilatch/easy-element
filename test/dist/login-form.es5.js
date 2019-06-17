@@ -92,6 +92,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('login-form', LoginForm);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -99,9 +105,3 @@ function (_HTMLElement) {
   style.textContent = 'login-form label {  font-family: sans-serif;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('login-form', LoginForm);
-});

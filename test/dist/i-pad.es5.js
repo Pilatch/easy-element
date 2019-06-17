@@ -49,6 +49,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('i-pad', IPad);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -56,9 +62,3 @@ function (_HTMLElement) {
   style.textContent = 'i-pad {  background-color: white;  border: 1px solid gray;  border-radius: 10px;  display: inline-block;  height: 150px;  padding: 10px;  width: 200px;}i-pad .i-pad_inner {  display: inline-block;  background-color: black;  height: 150px;  width: 100%;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('i-pad', IPad);
-});

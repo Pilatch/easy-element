@@ -21,13 +21,30 @@
 </style>
 
 <script>
-  class RedButton extends HTMLElement {
-    connectedCallback() {
-      this.querySelector('button')
-        .addEventListener('click', event => {
-          this.classList.add('pushed')
-          this.querySelector('slot').textContent = 'BOOM!'
-        })
+  ;(function () {
+    'use strict'
+
+    if (!window.whateverYouDoDontLoadRedButton) {
+      class RedButton extends HTMLElement {
+        constructor() {
+          if (!RedButton.firstTimeLoaded) {
+            // pretend to do stuff on startup
+            RedButton.firstTimeLoaded = true
+          }
+        }
+        connectedCallback() {
+          this.querySelector('button')
+            .addEventListener('click', event => {
+              this.classList.add('pushed')
+              this.querySelector('slot').textContent = 'BOOM!'
+            })
+        }
+      }
+
+      // Do some stuff outside the class to prove that any JS we write gets injected into the finished product.
+      RedButton.firstTimeLoaded = false;
+    } else {
+      console.error('Refused to load RedButton!')
     }
-  }
+  })()
 </script>

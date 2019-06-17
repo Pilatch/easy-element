@@ -1,0 +1,2 @@
+I didn't find a class named "RidiculousEval" in your JavaScript.
+Either delete your JavaScript to build an element with no behavior, or define a class named "RidiculousEval" for custom behavior.

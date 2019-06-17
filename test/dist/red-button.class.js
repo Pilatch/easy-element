@@ -1,9 +1,24 @@
-class RedButton extends HTMLElement {
-  connectedCallback() {
-    this.attachShadow({
-      mode: 'open'
-    });
-    this.shadowRoot.innerHTML = `
+;
+
+(function () {
+  'use strict';
+
+  if (!window.whateverYouDoDontLoadRedButton) {
+    class RedButton extends HTMLElement {
+      constructor() {
+        super();
+
+        if (!RedButton.firstTimeLoaded) {
+          // pretend to do stuff on startup
+          RedButton.firstTimeLoaded = true;
+        }
+      }
+
+      connectedCallback() {
+        this.attachShadow({
+          mode: 'open'
+        });
+        this.shadowRoot.innerHTML = `
   <button><slot>Never click this button!</slot></button>
 <style>:host button {
   background-color: red;
@@ -20,24 +35,30 @@ class RedButton extends HTMLElement {
   font-size: 2.5em;
   padding: 1em;
 }</style>`;
-    this.querySelector('button').addEventListener('click', event => {
-      this.classList.add('pushed');
-      this.querySelector('slot').textContent = 'BOOM!';
-    });
+        this.querySelector('button').addEventListener('click', event => {
+          this.classList.add('pushed');
+          this.querySelector('slot').textContent = 'BOOM!';
+        });
+      }
+
+      querySelector(selector) {
+        return this.shadowRoot.querySelector(selector);
+      }
+
+      querySelectorAll(selector) {
+        return this.shadowRoot.querySelectorAll(selector);
+      }
+
+      addEventListener() {
+        return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+      }
+
+    } // Do some stuff outside the class to prove that any JS we write gets injected into the finished product.
+
+
+    RedButton.firstTimeLoaded = false;
+    customElements.define('red-button', RedButton);
+  } else {
+    console.error('Refused to load RedButton!');
   }
-
-  querySelector(selector) {
-    return this.shadowRoot.querySelector(selector);
-  }
-
-  querySelectorAll(selector) {
-    return this.shadowRoot.querySelectorAll(selector);
-  }
-
-  addEventListener() {
-    return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
-  }
-
-}
-
-customElements.define('red-button', RedButton);
+})();

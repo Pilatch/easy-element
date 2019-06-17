@@ -49,6 +49,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('minish-link', MinishLink);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -56,9 +62,3 @@ function (_HTMLElement) {
   style.textContent = 'minish-link #caja {  width: 190px;  height: 250px;  background-color: navy;  margin: auto;}minish-link .pixel {  width: 10px;  height: 10px;  float: left;  -webkit-animation: color 1.2s infinite alternate;  -moz-animation: color 1.2s infinite alternate;  animation: color 1.2s infinite alternate;}@-webkit-keyframes color {  0% {    -webkit-transform: scale(2.2) rotate(720deg);  }}@-moz-keyframes color {  0% {    -moz-transform: scale(2.2) rotate(720deg);  }}@keyframes color {  0% {    transform: scale(2.2) rotate(720deg);  }}minish-link #contorno {  background-color: black;}minish-link #verdeuno {  background-color: yellowgreen;}minish-link #verdedos {  background-color: darkgreen;}minish-link #amarillo {  background-color: yellow;}minish-link #rosa {  background-color: pink;}minish-link #roml {  background-color: orange;}minish-link #onix {  background-color: white;}minish-link #cafe {  background-color: brown;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('minish-link', MinishLink);
-});

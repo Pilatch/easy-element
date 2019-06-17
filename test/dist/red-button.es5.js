@@ -26,53 +26,80 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var RedButton =
-/*#__PURE__*/
-function (_HTMLElement) {
-  _inherits(RedButton, _HTMLElement);
+;
 
-  function RedButton() {
-    _classCallCheck(this, RedButton);
+(function () {
+  'use strict';
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(RedButton).apply(this, arguments));
-  }
+  if (!window.whateverYouDoDontLoadRedButton) {
+    var RedButton =
+    /*#__PURE__*/
+    function (_HTMLElement) {
+      _inherits(RedButton, _HTMLElement);
 
-  _createClass(RedButton, [{
-    key: "connectedCallback",
-    value: function connectedCallback() {
-      var _this = this;
+      function RedButton() {
+        var _this;
 
-      var contents = "\n  <button><slot>Never click this button!</slot></button>\n";
+        _classCallCheck(this, RedButton);
 
-      if (this.childNodes.length) {
-        var template = document.createElement('div');
-        template.innerHTML = contents;
+        _this = _possibleConstructorReturn(this, _getPrototypeOf(RedButton).call(this));
 
-        var __slot__ = template.querySelector('slot');
-
-        while (__slot__.childNodes.length) {
-          __slot__.removeChild(__slot__.lastChild);
+        if (!RedButton.firstTimeLoaded) {
+          // pretend to do stuff on startup
+          RedButton.firstTimeLoaded = true;
         }
 
-        while (this.childNodes.length) {
-          __slot__.appendChild(this.firstChild);
-        }
-
-        this.innerHTML = template.innerHTML;
-      } else {
-        this.innerHTML = contents;
+        return _this;
       }
 
-      this.querySelector('button').addEventListener('click', function (event) {
-        _this.classList.add('pushed');
+      _createClass(RedButton, [{
+        key: "connectedCallback",
+        value: function connectedCallback() {
+          var _this2 = this;
 
-        _this.querySelector('slot').textContent = 'BOOM!';
-      });
-    }
-  }]);
+          var contents = "\n  <button><slot>Never click this button!</slot></button>\n";
 
-  return RedButton;
-}(_wrapNativeSuper(HTMLElement));
+          if (this.childNodes.length) {
+            var template = document.createElement('div');
+            template.innerHTML = contents;
+
+            var __slot__ = template.querySelector('slot');
+
+            while (__slot__.childNodes.length) {
+              __slot__.removeChild(__slot__.lastChild);
+            }
+
+            while (this.childNodes.length) {
+              __slot__.appendChild(this.firstChild);
+            }
+
+            this.innerHTML = template.innerHTML;
+          } else {
+            this.innerHTML = contents;
+          }
+
+          this.querySelector('button').addEventListener('click', function (event) {
+            _this2.classList.add('pushed');
+
+            _this2.querySelector('slot').textContent = 'BOOM!';
+          });
+        }
+      }]);
+
+      return RedButton;
+    }(_wrapNativeSuper(HTMLElement)); // Do some stuff outside the class to prove that any JS we write gets injected into the finished product.
+
+
+    RedButton.firstTimeLoaded = false;
+    "use strict";
+
+    window.addEventListener('WebComponentsReady', function () {
+      customElements.define('red-button', RedButton);
+    });
+  } else {
+    console.error('Refused to load RedButton!');
+  }
+})();
 
 "use strict";
 
@@ -83,9 +110,3 @@ function (_HTMLElement) {
   style.textContent = 'red-button button {  background-color: red;  border: 0;  box-shadow: 2px 2px 2px gray;  color: white;  font-size: 1.5em;}red-button.pushed button {  background-color: orange;  color: black;  font-weight: bold;  font-size: 2.5em;  padding: 1em;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('red-button', RedButton);
-});

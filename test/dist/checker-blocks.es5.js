@@ -49,6 +49,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('checker-blocks', CheckerBlocks);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -56,9 +62,3 @@ function (_HTMLElement) {
   style.textContent = 'checker-blocks {  display: flex;  height: 400px;  width: 400px;}.checker-blocks-row {  height: calc(400px / 8);  width: 400px;}.checker-blocks-row i {  display: flex;  height: 50px;  width: 50px;}.checker-blocks-row:nth-child(2n+1) i:nth-child(2n) {  background-color: rgb(16, 16, 16);}.checker-blocks-row:nth-child(2n+1) i:nth-child(2n + 1) {  background-color: rgb(255, 12, 12);}.checker-blocks-row:nth-child(2n) i:nth-child(2n) {  background-color: rgb(255, 12, 12);}.checker-blocks-row:nth-child(2n) i:nth-child(2n + 1) {  background-color: rgb(16, 16, 16);}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('checker-blocks', CheckerBlocks);
-});

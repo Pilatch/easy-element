@@ -17,6 +17,7 @@
     "@babel/plugin-transform-classes": "^7.4.0",
     "@babel/plugin-transform-template-literals": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
+    "astq": "^2.6.3",
     "chalk": "^2.4.2",
     "chokidar": "^2.0.4",
     "clean-css": "^4.2.1",

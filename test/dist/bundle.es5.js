@@ -124,6 +124,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('blue-button', BlueButton);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -131,12 +137,6 @@ function (_HTMLElement) {
   style.textContent = 'blue-button button {  background-color: blue;  border: 0;  box-shadow: 2px 2px 2px gray;  color: white;  font-size: 1.5em;}blue-button.light button {  background-color: lightblue;  color: black;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('blue-button', BlueButton);
-});
 
 "use strict";
 
@@ -161,6 +161,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('blue-square', BlueSquare);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -168,12 +174,6 @@ function (_HTMLElement) {
   style.textContent = 'blue-square {  background-color: blue;  opacity: 0.4;  display: inline-block;  width: 30px;  height: 30px;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('blue-square', BlueSquare);
-});
 
 "use strict";
 
@@ -233,6 +233,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('i-pad', IPad);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -240,12 +246,6 @@ function (_HTMLElement) {
   style.textContent = 'i-pad {  background-color: white;  border: 1px solid gray;  border-radius: 10px;  display: inline-block;  height: 150px;  padding: 10px;  width: 200px;}i-pad .i-pad_inner {  display: inline-block;  background-color: black;  height: 150px;  width: 100%;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('i-pad', IPad);
-});
 
 "use strict";
 
@@ -315,6 +315,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('login-form', LoginForm);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -322,12 +328,6 @@ function (_HTMLElement) {
   style.textContent = 'login-form label {  font-family: sans-serif;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('login-form', LoginForm);
-});
 
 "use strict";
 
@@ -354,6 +354,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('multi-square', MultiSquare);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -361,12 +367,6 @@ function (_HTMLElement) {
   style.textContent = 'multi-square {  display: inline-block;  width: 45px;  height: 30px;  position: relative;}multi-square blue-square,multi-square red-square {  position: absolute;  left: 0;  top: 0;}multi-square blue-square {  left: 15px;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('multi-square', MultiSquare);
-});
 
 "use strict";
 
@@ -410,6 +410,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('my-heart', MyHeart);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -417,12 +423,6 @@ function (_HTMLElement) {
   style.textContent = '/* Thanks to https: //codepen.io/hana-mignon/pen/HxGmr */my-heart {  display: inline-block;  height: 175px;  position: relative;}.my-heart_heart-container {  background-color: tomato;  width: 100px;  height: 100px;  position: relative;  top: 50px;  left: 50%;  transform: rotate(-45deg);}.my-heart_heart-container:before {  content: "";  width: 100px;  height: 100px;  border-radius: 50%;  background-color: tomato;  position: absolute;  top: -50px;  left: 0;}.my-heart_heart-container:after {  z-index: -1;  content: "";  width: 100px;  height: 100px;  border-radius: 50%;  background-color: tomato;  position: absolute;  top: 0px;  left: 50px;}.my-heart_inner-heart {  background-color: white;  width: 50px;  height: 50px;  position: relative;  top: 25px;  left: 25px;  z-index: 1;}.my-heart_inner-heart[thump],.my-heart_inner-heart[thump]:after,.my-heart_inner-heart[thump]:before {  background-color: pink;}.my-heart_inner-heart:before {  content: "";  width: 50px;  height: 50px;  border-radius: 50%;  background-color: white;  position: absolute;  top: -25px;  left: 0;}.my-heart_inner-heart:after {  z-index: -1;  content: "";  width: 50px;  height: 50px;  border-radius: 50%;  background-color: white;  position: absolute;  top: 0px;  left: 25px;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('my-heart', MyHeart);
-});
 
 "use strict";
 
@@ -470,6 +470,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('name-tag', NameTag);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -477,12 +483,6 @@ function (_HTMLElement) {
   style.textContent = 'name-tag {  display: inline-block;  width: 400px;}.name-tag_heading {  background-color: red;  border-top-left-radius: 12px;  border-top-right-radius: 12px;  color: white;  padding: 0.5em;  margin: 0;}name-tag.dark {  background-color: black;}.name-tag_name-container {  background-color: white;  border: 1px solid red;  border-bottom-left-radius: 12px;  border-bottom-right-radius: 12px;  padding: 1em 0.5em;  font-size: 3em;  text-align: center;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('name-tag', NameTag);
-});
 
 "use strict";
 
@@ -507,6 +507,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('pill-text-2', PillText2);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -514,12 +520,6 @@ function (_HTMLElement) {
   style.textContent = 'pill-text-2 {  background-color: #80ff80;  border-radius: 1em;  padding-left: 0.5em;}pill-text-2::after {  background-color: #ffd076;  content: "!";  display: inline-block;  width: 1.5em;  text-align: center;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('pill-text-2', PillText2);
-});
 
 "use strict";
 
@@ -546,6 +546,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('radio-button', RadioButton);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -553,12 +559,6 @@ function (_HTMLElement) {
   style.textContent = 'radio-button {  background: #1e1e1e;  border-radius: 50px;  padding: 10px 15px;  color: #626262;  font-weight: bold;  display: flex;  justify-content: space-between;  align-items: center;  height: 45px;  width: 245px;  font-size: 21px;  position: relative;  transition: all 0.5s ease-in-out;  margin-bottom: 20px;}radio-button.off {  background: #fff;}radio-button.off .bar {  background: #ccc;  left: 136px;}radio-button.off label[for=on] {  color: #626262;}radio-button.off label[for=off] {  color: #000;}radio-button .wrap {  width: 100%;  display: flex;  justify-content: space-between;  align-items: center;  border-radius: 50px;  overflow: hidden;  position: relative;  height: 40px;}radio-button input {  opacity: 0;  pointer-events: none;}radio-button label {  position: relative;  z-index: 1;  cursor: pointer;  transition: all 0.5s ease-in-out;  user-select: none;}radio-button label[for=on] {  margin-left: 10px;  color: #000;}radio-button label[for=off] {  margin-right: 10px;}radio-button #on {  position: absolute;  left: 0;  top: 50%;  transform: translateY(-50%);}radio-button #off {  position: absolute;  right: 0;  top: 50%;  transform: translateY(-50%);}radio-button .bar {  position: absolute;  left: -90px;  top: 50%;  transform: translateY(-50%);  background: #fff;  height: 40px;  width: 200px;  border-radius: 50px;  transition: all 0.5s ease-in-out;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('radio-button', RadioButton);
-});
 
 "use strict";
 
@@ -583,6 +583,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('red-square', RedSquare);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -590,12 +596,6 @@ function (_HTMLElement) {
   style.textContent = 'red-square {  background-color: red;  opacity: 0.4;  display: inline-block;  width: 30px;  height: 30px;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('red-square', RedSquare);
-});
 
 "use strict";
 
@@ -648,6 +648,12 @@ function (_HTMLElement) {
 
 "use strict";
 
+window.addEventListener('WebComponentsReady', function () {
+  customElements.define('star-rating', StarRating);
+});
+
+"use strict";
+
 ;
 
 (function () {
@@ -655,9 +661,3 @@ function (_HTMLElement) {
   style.textContent = '.star-rating_star {  display: inline-block;  font-size: 150%;  height: 1em;  position: relative;  width: 1em;}.star-rating_star::before {  content: \'\\2606\';  left: 0;  position: absolute;  top: 0;}.star-rating_solid::before {  content: \'\\2605\';  position: absolute;  top: 0;  left: 0;}';
   document.head.appendChild(style);
 })();
-
-"use strict";
-
-window.addEventListener('WebComponentsReady', function () {
-  customElements.define('star-rating', StarRating);
-});
