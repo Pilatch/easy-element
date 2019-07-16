@@ -217,7 +217,7 @@ Show the help text and quit.
 
 ### `--output` or `-o`
 
-Change folder that your generated `.es5.js` and `.class.js` files are written to. Files are output to a folder named `dist` by default.
+Change the folder that your generated `.es5.js` and `.class.js` files are written to. Files are output to a folder named `dist` by default.
 
 ```bash
 # Output to a folder named "exports"
