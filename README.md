@@ -49,7 +49,7 @@ Then [build](#build).
 
 ### More Complex
 
-For an element with an internal structure, like our `<name-tag>` logo at the top, you can create an HTML file a `template` and a `style`.
+For an element with an internal structure, like our `<name-tag>` logo at the top, you can create an HTML file with a `template` and a `style`.
 
 ```html
 <!-- src/name-tag.html -->
