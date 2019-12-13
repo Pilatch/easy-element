@@ -1504,9 +1504,10 @@ escodegen@~1.9.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-pilatch@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-pilatch/-/eslint-config-pilatch-0.1.0.tgz#683f18c0765b5c14500034a9b092da2c1e97521b"
+eslint-config-pilatch@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-pilatch/-/eslint-config-pilatch-0.1.2.tgz#2d74f459f9059c5bf4cb15d2eb615c695a6af292"
+  integrity sha512-wW3aa9mFVyY5O7GP6AsSh9qnuZ6/HgBDa5VY+EGzYNdYPMkayYgAlzvGUOohHfnnMYrLCMBrTe1sz6jpVwyXsA==
 
 eslint-config-standard@^12.0.0:
   version "12.0.0"
