@@ -1,6 +1,6 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8,17 +8,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
 function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
 
-function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
 
-function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
 
@@ -28,15 +30,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 "use strict";
 
-var AhChoo =
-/*#__PURE__*/
-function (_HTMLElement) {
+var AhChoo = /*#__PURE__*/function (_HTMLElement) {
   _inherits(AhChoo, _HTMLElement);
+
+  var _super = _createSuper(AhChoo);
 
   function AhChoo() {
     _classCallCheck(this, AhChoo);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(AhChoo).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(AhChoo, [{
@@ -66,7 +68,7 @@ function (_HTMLElement) {
   }]);
 
   return AhChoo;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -76,15 +78,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var BlueButton =
-/*#__PURE__*/
-function (_HTMLElement) {
+var BlueButton = /*#__PURE__*/function (_HTMLElement) {
   _inherits(BlueButton, _HTMLElement);
+
+  var _super = _createSuper(BlueButton);
 
   function BlueButton() {
     _classCallCheck(this, BlueButton);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BlueButton).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(BlueButton, [{
@@ -120,7 +122,7 @@ function (_HTMLElement) {
   }]);
 
   return BlueButton;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -140,15 +142,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var BlueSquare =
-/*#__PURE__*/
-function (_HTMLElement) {
+var BlueSquare = /*#__PURE__*/function (_HTMLElement) {
   _inherits(BlueSquare, _HTMLElement);
+
+  var _super = _createSuper(BlueSquare);
 
   function BlueSquare() {
     _classCallCheck(this, BlueSquare);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BlueSquare).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(BlueSquare, [{
@@ -157,7 +159,7 @@ function (_HTMLElement) {
   }]);
 
   return BlueSquare;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -177,17 +179,17 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var ConStruct =
-/*#__PURE__*/
-function (_HTMLElement) {
+var ConStruct = /*#__PURE__*/function (_HTMLElement) {
   _inherits(ConStruct, _HTMLElement);
+
+  var _super = _createSuper(ConStruct);
 
   function ConStruct() {
     var _this;
 
     _classCallCheck(this, ConStruct);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ConStruct).call(this));
+    _this = _super.call(this);
     console.log('I wuz con-structed.'); // Look in the console on the demo page.
     // This shouldn't throw any errors complaining about a lack of super()
 
@@ -200,7 +202,7 @@ function (_HTMLElement) {
   }]);
 
   return ConStruct;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -210,15 +212,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var IPad =
-/*#__PURE__*/
-function (_HTMLElement) {
+var IPad = /*#__PURE__*/function (_HTMLElement) {
   _inherits(IPad, _HTMLElement);
+
+  var _super = _createSuper(IPad);
 
   function IPad() {
     _classCallCheck(this, IPad);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(IPad).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(IPad, [{
@@ -229,7 +231,7 @@ function (_HTMLElement) {
   }]);
 
   return IPad;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -249,21 +251,21 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var LoginForm =
-/*#__PURE__*/
-function (_HTMLElement) {
+var LoginForm = /*#__PURE__*/function (_HTMLElement) {
   _inherits(LoginForm, _HTMLElement);
+
+  var _super = _createSuper(LoginForm);
 
   function LoginForm() {
     _classCallCheck(this, LoginForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(LoginForm).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(LoginForm, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      var contents = "\n  <form>\n    <label><slot name=\"username-label\">Username</slot>:<input type=\"text\" name=\"username\"  /></label>\n    <label><slot name=\"password-label\">Password</slot>:<input type=\"text\" name=\"password\"  /></label>\n  </form>\n";
+      var contents = "\n  <form>\n    <label><slot name=\"username-label\">Username</slot>:<input type=\"text\" name=\"username\" ></label>\n    <label><slot name=\"password-label\">Password</slot>:<input type=\"text\" name=\"password\" ></label>\n  </form>\n";
 
       if (this.childNodes.length) {
         var template = document.createElement('div');
@@ -311,7 +313,7 @@ function (_HTMLElement) {
   }]);
 
   return LoginForm;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -331,15 +333,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var MultiSquare =
-/*#__PURE__*/
-function (_HTMLElement) {
+var MultiSquare = /*#__PURE__*/function (_HTMLElement) {
   _inherits(MultiSquare, _HTMLElement);
+
+  var _super = _createSuper(MultiSquare);
 
   function MultiSquare() {
     _classCallCheck(this, MultiSquare);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MultiSquare).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(MultiSquare, [{
@@ -350,7 +352,7 @@ function (_HTMLElement) {
   }]);
 
   return MultiSquare;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -370,15 +372,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var MyHeart =
-/*#__PURE__*/
-function (_HTMLElement) {
+var MyHeart = /*#__PURE__*/function (_HTMLElement) {
   _inherits(MyHeart, _HTMLElement);
+
+  var _super = _createSuper(MyHeart);
 
   function MyHeart() {
     _classCallCheck(this, MyHeart);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MyHeart).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(MyHeart, [{
@@ -406,7 +408,7 @@ function (_HTMLElement) {
   }]);
 
   return MyHeart;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -426,15 +428,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var NameTag =
-/*#__PURE__*/
-function (_HTMLElement) {
+var NameTag = /*#__PURE__*/function (_HTMLElement) {
   _inherits(NameTag, _HTMLElement);
+
+  var _super = _createSuper(NameTag);
 
   function NameTag() {
     _classCallCheck(this, NameTag);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(NameTag).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(NameTag, [{
@@ -466,7 +468,7 @@ function (_HTMLElement) {
   }]);
 
   return NameTag;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -486,15 +488,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var PillText2 =
-/*#__PURE__*/
-function (_HTMLElement) {
+var PillText2 = /*#__PURE__*/function (_HTMLElement) {
   _inherits(PillText2, _HTMLElement);
+
+  var _super = _createSuper(PillText2);
 
   function PillText2() {
     _classCallCheck(this, PillText2);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PillText2).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(PillText2, [{
@@ -503,7 +505,7 @@ function (_HTMLElement) {
   }]);
 
   return PillText2;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -523,26 +525,26 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var RadioButton =
-/*#__PURE__*/
-function (_HTMLElement) {
+var RadioButton = /*#__PURE__*/function (_HTMLElement) {
   _inherits(RadioButton, _HTMLElement);
+
+  var _super = _createSuper(RadioButton);
 
   function RadioButton() {
     _classCallCheck(this, RadioButton);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(RadioButton).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(RadioButton, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      this.innerHTML = "\n<div class=\"wrap\">\n  <input type=\"radio\" id=\"on\" name=\"radio\" />\n  <label for=\"on\">ON</label>\n\n  <input type=\"radio\" id=\"off\" name=\"radio\" />\n  <label for=\"off\">OFF</label>\n\n  <div class=\"bar\"></div>\n</div>\n";
+      this.innerHTML = "\n<div class=\"wrap\">\n  <input type=\"radio\" id=\"on\" name=\"radio\">\n  <label for=\"on\">ON</label>\n\n  <input type=\"radio\" id=\"off\" name=\"radio\">\n  <label for=\"off\">OFF</label>\n\n  <div class=\"bar\"></div>\n</div>\n";
     }
   }]);
 
   return RadioButton;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -562,15 +564,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var RedSquare =
-/*#__PURE__*/
-function (_HTMLElement) {
+var RedSquare = /*#__PURE__*/function (_HTMLElement) {
   _inherits(RedSquare, _HTMLElement);
+
+  var _super = _createSuper(RedSquare);
 
   function RedSquare() {
     _classCallCheck(this, RedSquare);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(RedSquare).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(RedSquare, [{
@@ -579,7 +581,7 @@ function (_HTMLElement) {
   }]);
 
   return RedSquare;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 
@@ -599,15 +601,15 @@ window.addEventListener('WebComponentsReady', function () {
 
 "use strict";
 
-var StarRating =
-/*#__PURE__*/
-function (_HTMLElement) {
+var StarRating = /*#__PURE__*/function (_HTMLElement) {
   _inherits(StarRating, _HTMLElement);
+
+  var _super = _createSuper(StarRating);
 
   function StarRating() {
     _classCallCheck(this, StarRating);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(StarRating).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(StarRating, [{
@@ -644,7 +646,7 @@ function (_HTMLElement) {
   }]);
 
   return StarRating;
-}(_wrapNativeSuper(HTMLElement));
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 "use strict";
 

@@ -5,7 +5,7 @@ class SearchBar extends HTMLElement {
     });
     this.shadowRoot.innerHTML = `
   <form class="search-bar_form">
-    <input class="search-bar_input" placeholder="Search" />
+    <input class="search-bar_input" placeholder="Search">
     <button class="search-bar_button" type="submit">Submit to THanos!</button>
   </form>
 <style>.search-bar_form {
