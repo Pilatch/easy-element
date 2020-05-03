@@ -171,8 +171,8 @@ class LoginForm extends HTMLElement {
     });
     this.shadowRoot.innerHTML = `
   <form>
-    <label><slot name="username-label">Username</slot>:<input type="text" name="username"  /></label>
-    <label><slot name="password-label">Password</slot>:<input type="text" name="password"  /></label>
+    <label><slot name="username-label">Username</slot>:<input type="text" name="username" ></label>
+    <label><slot name="password-label">Password</slot>:<input type="text" name="password" ></label>
   </form>
 <style>:host label {
   font-family: sans-serif;
@@ -456,10 +456,10 @@ class RadioButton extends HTMLElement {
     });
     this.shadowRoot.innerHTML = `
 <div class="wrap">
-  <input type="radio" id="on" name="radio" />
+  <input type="radio" id="on" name="radio">
   <label for="on">ON</label>
 
-  <input type="radio" id="off" name="radio" />
+  <input type="radio" id="off" name="radio">
   <label for="off">OFF</label>
 
   <div class="bar"></div>
