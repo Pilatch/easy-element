@@ -97,32 +97,33 @@ case 'watch':
   // which might mean calling .close() the current watcher and making a new one.
   // Gotta account for easy-element trying to build a partial that's changed in the directory
   // we are watching.
-  let importsToWatch = require('./lib/imports-to-watch')(input, inputIsDirectory)
-  console.log("importsToWatch", importsToWatch)
-  let filesToWatch = [input].concat(importsToWatch)
-  let watcher = require('chokidar').watch(filesToWatch, {persistent: true})
-  let reportError = error => {
-    console.error(`Error while watching ${input}`, error)
-    process.stderr.write('\x07') // System bell sound
-  }
-  let rebuild = _ => {
-    console.error(`Building ${input} to ${argv.output}`)
-    try {
-      require('./build')(options)
-        .catch(error => reportError(error.message))
-    } catch (error) {
-      reportError(error.message)
+  require('./lib/imports-to-watch')(input, inputIsDirectory).then(importMap => {
+    let importsToWatch = [] // TODO base this on importMap's keys!
+    let filesToWatch = input // TODO make a smart watcher that re-builds the parent files in the importMap!
+    let watcher = require('chokidar').watch(filesToWatch, {persistent: true})
+    let reportError = error => {
+      console.error(`Error while watching ${input}`, error)
+      process.stderr.write('\x07') // System bell sound
     }
-  }
+    let rebuild = _ => {
+      console.error(`Building ${input} to ${argv.output}`)
+      try {
+        require('./build')(options)
+          .catch(error => reportError(error.message))
+      } catch (error) {
+        reportError(error.message)
+      }
+    }
 
-  let watch = require('./lib/watch')
+    let watch = require('./lib/watch')
 
-  watch.nodeVersionCheck()
-  watcher.on('add', watch.onAdd(options, reportError, inputIsDirectory, rebuild))
-  watcher.on('change', watch.onChange(options, reportError, inputIsDirectory, importsToWatch, rebuild))
-  watcher.on('ready', watch.onReady(options, reportError, inputIsDirectory, rebuild))
-  watcher.on('unlink', rebuild)
-  watcher.on('error', reportError)
+    watch.nodeVersionCheck()
+    watcher.on('add', watch.onAdd(options, reportError, inputIsDirectory, rebuild))
+    watcher.on('change', watch.onChange(options, reportError, inputIsDirectory, importsToWatch, rebuild))
+    watcher.on('ready', watch.onReady(options, reportError, inputIsDirectory, rebuild))
+    watcher.on('unlink', rebuild)
+    watcher.on('error', reportError)
+  })
   break
 
 default:
