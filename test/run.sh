@@ -39,3 +39,8 @@ node ../cli.js build errors/extra-sass -p scss 2>&1 | diff -u - errors/inferred-
 node ../cli.js build errors/ridiculous-eval.js 2>&1 | diff -u - errors/ridiculous-eval.txt
 node ../cli.js build errors/js-syntax-error-in-html 2>&1 | diff -u - errors/js-syntax-error-in-html.txt
 node ../cli.js build errors/js-syntax-error-in-js 2>&1 | diff -u - errors/js-syntax-error-in-js.txt
+
+
+# Run unit tests too
+cd unit
+npx mocha *.spec.js

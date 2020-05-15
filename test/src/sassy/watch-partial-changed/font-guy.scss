@@ -1,0 +1,8 @@
+@import "../font-families";
+@import "../colors";
+
+:host {
+    color: $babyblue;
+    font-family: $silly;
+    font-size: $size;
+}
