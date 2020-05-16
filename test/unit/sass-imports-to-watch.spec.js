@@ -115,6 +115,9 @@ describe('sass imports to watch', () => {
         [`${srcDir}/sassy/watch-partial-changed/_ugly-colors.scss`]: [
           `${srcDir}/sassy/watch-partial-changed/font-guy.scss`
         ],
+        [`${srcDir}/sassy/hues.css`]: [
+          `${srcDir}/sassy/watch-partial-changed/text-alicious.css`,
+        ],
       })
     })
   })
