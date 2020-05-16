@@ -87,9 +87,6 @@ case 'watch':
     fail(`Could not stat input file or directory, ${input}`)
   }
 
-  // Make further failures throw errors instead of killing the watch process.
-  fail.tossMode()
-
   // TODO for issue 31,
   // check for .scss files or .sass files, then get a sass import graph
   // and, in addition to the input, have chokidar watch the entire array of imports
@@ -97,30 +94,96 @@ case 'watch':
   // which might mean calling .close() the current watcher and making a new one.
   // Gotta account for easy-element trying to build a partial that's changed in the directory
   // we are watching.
-  require('./lib/imports-to-watch')(input, inputIsDirectory).then(importMap => {
-    let importsToWatch = [] // TODO base this on importMap's keys!
-    let filesToWatch = input // TODO make a smart watcher that re-builds the parent files in the importMap!
-    let watcher = require('chokidar').watch(filesToWatch, {persistent: true})
-    let reportError = error => {
-      console.error(`Error while watching ${input}`, error)
-      process.stderr.write('\x07') // System bell sound
+  let reportError = error => {
+    console.error(`Error while watching ${input}`, error)
+    process.stderr.write('\x07') // System bell sound
+  }
+
+  // Make further failures report errors instead of killing the watch process.
+  fail.reportMode(reportError)
+  let rebuild = _ => {
+    console.error(`Building ${input} to ${argv.output}`)
+    try {
+      return require('./build')(options)
+        .catch(error => reportError(error.message))
+    } catch (error) {
+      reportError(error.message)
+      return Promise.reject(error)
     }
-    let rebuild = _ => {
-      console.error(`Building ${input} to ${argv.output}`)
-      try {
-        require('./build')(options)
-          .catch(error => reportError(error.message))
-      } catch (error) {
-        reportError(error.message)
-      }
+  }
+  let watch = require('./lib/watch')
+  let importsToWatch = require('./lib/imports-to-watch')
+  let watcher
+  // let watcher = require('chokidar').watch(input, {persistent: true})
+  // Provide the result from watcher.getWatched() for the first parameter.
+  let cachedNotYetWatched = watched => filePath => {
+    let path = require('path')
+    let fileDir = path.dirname(filePath)
+    let fileBase = path.basename(filePath)
+    let watchedDir = watcher.getWatched()[fileDir]
+
+    if (watchedDir) {
+      return !watchedDir.includes(fileBase)
     }
 
-    let watch = require('./lib/watch')
+    return true
+  }
+  let notYetWatched = filePath => cachedNotYetWatched(watcher.getWatched())(filePath)
+  let startWatcher = () => importsToWatch(input, inputIsDirectory, fail)
+    .then(importMap => {
+      let toWatch = Object.keys(importMap).concat([input])
 
-    watch.nodeVersionCheck()
-    watcher.on('add', watch.onAdd(options, reportError, inputIsDirectory, rebuild))
-    watcher.on('change', watch.onChange(options, reportError, inputIsDirectory, importsToWatch, rebuild))
-    watcher.on('ready', watch.onReady(options, reportError, inputIsDirectory, rebuild))
+      watcher = require('chokidar').watch(toWatch, {persistent: true})
+      getImportMap.importMap = importMap
+    })
+    .catch(fail)
+  // Here it gets wonky.
+  // Because updating the watcher can be expensive, depending on how many elements we're building,
+  // we need to do that off the main thread.
+  // We also need a way to update the importMap so the watcher event listeners like onChange
+  // can pull in the newness should the import structure change.
+  let getImportMap = () => getImportMap.importMap || {}
+  let updateWatcher = () => {
+    if (!updateWatcher.isRunning) {
+      updateWatcher.isRunning = true
+
+      let pathsToWatch = []
+
+      return importsToWatch(input, inputIsDirectory, fail)
+        .then(importMap => {
+          let watched = watcher.getWatched()
+
+          getImportMap.importMap = importMap
+          pathsToWatch = Object.keys(importMap)
+            .filter(cachedNotYetWatched(watched))
+
+          if (pathsToWatch.length) {
+            watcher.add(pathsToWatch)
+          }
+        })
+        .catch(fail)
+        .then(() => {
+          if (pathsToWatch.length) {
+            // Give the onAdd event listener a chance to run and do nothing.
+            setTimeout(() => {
+              updateWatcher.isRunning = false
+            }, 100)
+          } else {
+            // Do it immediately
+            updateWatcher.isRunning = false
+          }
+        })
+    }
+
+    return Promise.resolve()
+  }
+
+  watch.nodeVersionCheck()
+
+  startWatcher().then(() => {
+    watcher.on('add', watch.onAdd(options, inputIsDirectory, getImportMap, rebuild, notYetWatched, updateWatcher))
+    watcher.on('change', watch.onChange(options, inputIsDirectory, getImportMap, rebuild, updateWatcher))
+    watcher.on('ready', watch.onReady(options, inputIsDirectory, rebuild))
     watcher.on('unlink', rebuild)
     watcher.on('error', reportError)
   })

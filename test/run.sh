@@ -44,3 +44,5 @@ node ../cli.js build errors/js-syntax-error-in-js 2>&1 | diff -u - errors/js-syn
 # Run unit tests too
 cd unit
 npx mocha *.spec.js
+
+echo "Remember to run some watch tests too." >&2

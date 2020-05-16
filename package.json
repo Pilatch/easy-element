@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
     "test": "cd test; ./run.sh;",
+    "test/unit": "cd test/unit; mocha **/*.spec.js",
     "test/watch": "./cli.js watch -o test/dist test/src/watch-me"
   },
   "dependencies": {
