@@ -4,7 +4,7 @@ class HighLight extends HTMLElement {
       mode: 'open'
     });
     this.shadowRoot.innerHTML = `<slot></slot><style>/**
-This file is intended to test the watcher functionality.
+This file is intended to be a simple test of watcher functionality.
 Change the background-color and see if your page automatically refreshes.
 **/
 

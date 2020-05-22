@@ -8,9 +8,10 @@
   "scripts": {
     "lint": "eslint .",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
-    "test": "cd test; ./run.sh;",
+    "test": "yarn test/unit; yarn test/build; yarn test/watch",
+    "test/build": "cd test; ./build.sh;",
     "test/unit": "cd test/unit; mocha **/*.spec.js",
-    "test/watch": "./cli.js watch -o test/dist test/src/watch-me"
+    "test/watch": "cd test/watch; ./run.sh"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",

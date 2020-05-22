@@ -1,0 +1,5 @@
+@import "../hues.css";
+
+p {
+  color: var(--my-red);
+}
