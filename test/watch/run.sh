@@ -5,7 +5,6 @@ cd $DIR
 
 pid=0
 log=./log.txt
-testName=""
 exitCode=0
 
 clean() {
@@ -18,9 +17,8 @@ copy_base() {
 }
 
 start_watch() {
-  testName=$1
-  path=src/$2
-  options=$3
+  path=src/$1
+  options=$2
 
   node ../../cli.js watch $path $options > $log 2>&1 &
   pid=$!
@@ -37,18 +35,20 @@ run_test() {
 
   clean
   copy_base
-  start_watch $name $pathToWatch
+  start_watch $pathToWatch
   sleep 3
   node -e "require('./expectations/$name').before()"
   [[ $? != 0 ]] && exitCode=1
-  ./steps/$name.sh
+  sh ./steps/$name.sh
   sleep 2
   node -e "require('./expectations/$name').after()"
   [[ $? != 0 ]] && exitCode=1
   end_watch
   diff $log expectations/$name.log
+  [[ $? != 0 ]] && exitCode=1
 }
 
 run_test change-font sassy/partials
+run_test do-not-build-partial sassy/partials
 
 exit $exitCode
