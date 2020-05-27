@@ -6,6 +6,7 @@ cd $DIR
 pid=0
 log=./log.txt
 testName=""
+exitCode=0
 
 clean() {
   rm -rf src/*
@@ -32,18 +33,22 @@ end_watch() {
 
 run_test() {
   name=$1
-  watchMe=$2
+  pathToWatch=$2
 
   clean
   copy_base
-  start_watch $name $watchMe
-  sleep 2
+  start_watch $name $pathToWatch
+  sleep 3
   node -e "require('./expectations/$name').before()"
+  [[ $? != 0 ]] && exitCode=1
   ./steps/$name.sh
   sleep 2
   node -e "require('./expectations/$name').after()"
+  [[ $? != 0 ]] && exitCode=1
   end_watch
   diff $log expectations/$name.log
 }
 
 run_test change-font sassy/partials
+
+exit $exitCode

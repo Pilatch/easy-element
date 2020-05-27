@@ -1,18 +1,5 @@
 let fs = require('fs')
-let getFontGuy = () => new Promise((resolve, reject) => {
-  // XXX: readFileSync is busted because it caches, and we can't have that.
-  fs.readFile(
-    'dist/font-guy.class.js',
-    {encoding: 'utf8', flag: 'rs+'},
-    (err, data) => {
-      if (err) {
-        return reject(err)
-      }
-
-      return resolve(data)
-    })
-})
-
+let getFontGuy = require('./helpers').noCacheReadFile('dist/font-guy.class.js')
 
 module.exports = {
   before: () => {
