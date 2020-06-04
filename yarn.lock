@@ -1260,7 +1260,7 @@ chokidar@3.3.0:
   optionalDependencies:
     fsevents "~2.1.1"
 
-"chokidar@>=2.0.0 <4.0.0":
+"chokidar@>=2.0.0 <4.0.0", chokidar@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.0.tgz#b30611423ce376357c765b9b8f904b9fba3c0be8"
   integrity sha512-aXAaho2VJtisB/1fg1+3nlLJqGOuewTzQpd/Tz0yTg2R0e4IGtshYvtjowyEumcBv2z+y4+kc75Mz7j5xJskcQ==
@@ -1855,6 +1855,15 @@ escodegen@~1.9.0:
     optionator "^0.8.1"
   optionalDependencies:
     source-map "~0.6.1"
+
+eslint-auto-fix@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/eslint-auto-fix/-/eslint-auto-fix-1.0.3.tgz#b44fcca60bc39fd14772f9e4e923179a4c06552b"
+  integrity sha512-IUs7pvVxUbWpHTMe/QPf3gqIN+u+BdqaP67dZzL4adtKlPHvFvb4zJcaiYmNe0EJakvYZkpW1O/FySQYSHrOFA==
+  dependencies:
+    chokidar "^3.4.0"
+    eslint "^5.14.1"
+    yargs "^13.2.1"
 
 eslint-config-pilatch@^0.1.2:
   version "0.1.2"
@@ -4922,7 +4931,7 @@ yargs-unparser@1.6.0:
     lodash "^4.17.15"
     yargs "^13.3.0"
 
-yargs@13.3.2, yargs@^13.3.0, yargs@^13.3.2:
+yargs@13.3.2, yargs@^13.2.1, yargs@^13.3.0, yargs@^13.3.2:
   version "13.3.2"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-13.3.2.tgz#ad7ffefec1aa59565ac915f82dccb38a9c31a2dd"
   integrity sha512-AX3Zw5iPruN5ie6xGRIDgqkT+ZhnRlZMLMHAs8tg7nRruy2Nb+i5o9bwghAogtM08q1dpr2LVoS8KSTMYpWXUw==

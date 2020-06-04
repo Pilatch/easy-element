@@ -6,6 +6,7 @@
     "easy-element": "cli.js"
   },
   "scripts": {
+    "autofix": "eslint-auto-fix",
     "lint": "eslint .",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
     "test": "yarn test/unit; yarn test/build; yarn test/watch",
@@ -40,6 +41,7 @@
     "@webcomponents/webcomponentsjs": "^2.2.1",
     "browser-sync": "^2.26.3",
     "eslint": "^5.14.1",
+    "eslint-auto-fix": "^1.0.3",
     "eslint-config-pilatch": "^0.1.2",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
