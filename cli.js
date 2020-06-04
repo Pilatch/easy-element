@@ -115,7 +115,7 @@ case 'watch':
   let importsToWatch = require('./lib/imports-to-watch')
   let watcher
   // Provide the result from watcher.getWatched() for the first parameter.
-  let cachedNotYetWatched = watched => filePath => {
+  let notYetWatched = watched => filePath => {
     let path = require('path')
     let fileDir = path.dirname(filePath)
     let fileBase = path.basename(filePath)
@@ -127,7 +127,6 @@ case 'watch':
 
     return true
   }
-  let notYetWatched = filePath => cachedNotYetWatched(watcher.getWatched())(filePath)
   let startWatcher = () => importsToWatch(input, inputIsDirectory, fail)
     .then(importMap => {
       let toWatch = Object.keys(importMap).concat([input])
@@ -154,7 +153,7 @@ case 'watch':
 
           getImportMap.importMap = importMap
           pathsToWatch = Object.keys(importMap)
-            .filter(cachedNotYetWatched(watched))
+            .filter(notYetWatched(watched))
 
           if (pathsToWatch.length) {
             watcher.add(pathsToWatch)
