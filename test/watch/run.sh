@@ -25,13 +25,15 @@ start_watch() {
 }
 
 end_watch() {
-  kill $pid
+  kill -s INT $pid
   pid=0
 }
 
 run_test() {
   name=$1
   pathToWatch=$2
+
+  echo "Running $name"
 
   clean
   copy_base
