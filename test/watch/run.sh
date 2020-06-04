@@ -50,5 +50,6 @@ run_test() {
 
 run_test change-font sassy/partials
 run_test do-not-build-partial sassy/partials
+run_test add-new-element sassy/partials
 
 exit $exitCode

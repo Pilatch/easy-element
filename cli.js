@@ -114,13 +114,12 @@ case 'watch':
   let watch = require('./lib/watch')
   let importsToWatch = require('./lib/imports-to-watch')
   let watcher
-  // let watcher = require('chokidar').watch(input, {persistent: true})
   // Provide the result from watcher.getWatched() for the first parameter.
   let cachedNotYetWatched = watched => filePath => {
     let path = require('path')
     let fileDir = path.dirname(filePath)
     let fileBase = path.basename(filePath)
-    let watchedDir = watcher.getWatched()[fileDir]
+    let watchedDir = watched[fileDir]
 
     if (watchedDir) {
       return !watchedDir.includes(fileBase)
@@ -181,7 +180,7 @@ case 'watch':
   watch.nodeVersionCheck()
 
   startWatcher().then(() => {
-    watcher.on('add', watch.onAdd(options, inputIsDirectory, getImportMap, rebuild, notYetWatched, updateWatcher))
+    watcher.on('add', watch.onAdd(options, inputIsDirectory, getImportMap, rebuild, updateWatcher))
     watcher.on('change', watch.onChange(options, inputIsDirectory, getImportMap, rebuild, updateWatcher))
     watcher.on('ready', watch.onReady(options, inputIsDirectory, rebuild))
     watcher.on('unlink', rebuild)
