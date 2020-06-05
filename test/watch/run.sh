@@ -38,18 +38,23 @@ run_test() {
   clean
   copy_base
   start_watch $pathToWatch
-  sleep 3
-  node -e "require('./expectations/$name').before()"
-  [[ $? != 0 ]] && exitCode=1
-  sh ./steps/$name.sh
   sleep 2
-  node -e "require('./expectations/$name').after()"
-  [[ $? != 0 ]] && exitCode=1
-  end_watch
-  diff $log expectations/$name.log
-  [[ $? != 0 ]] && exitCode=1
+  node -e "require('./expectations/$name').before()"
+  if [[ $? == 0 ]]
+  then
+    sh ./steps/$name.sh
+    sleep 2
+    node -e "require('./expectations/$name').after()"
+    [[ $? != 0 ]] && exitCode=1
+    end_watch
+    diff $log expectations/$name.log
+    [[ $? != 0 ]] && exitCode=1
+  else
+    exitCode=1
+  fi
 }
 
+run_test change-colors sassy/partials
 run_test change-font sassy/partials
 run_test do-not-build-partial sassy/partials
 run_test add-new-element sassy/partials
