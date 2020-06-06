@@ -39,7 +39,7 @@ run_test() {
   clean
   copy_base
   start_watch $pathToWatch
-  sleep 2
+  sleep 4
   node -e "require('./expectations/$name').before()"
   if [[ $? == 0 ]]
   then
