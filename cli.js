@@ -87,13 +87,6 @@ case 'watch':
     fail(`Could not stat input file or directory, ${input}`)
   }
 
-  // TODO for issue 31,
-  // check for .scss files or .sass files, then get a sass import graph
-  // and, in addition to the input, have chokidar watch the entire array of imports
-  // A nice-to-have feature would also be to update the graph when any sass file changes,
-  // which might mean calling .close() the current watcher and making a new one.
-  // Gotta account for easy-element trying to build a partial that's changed in the directory
-  // we are watching.
   let reportError = error => {
     console.error(`Error while watching ${input}`, error)
     process.stderr.write('\x07') // System bell sound

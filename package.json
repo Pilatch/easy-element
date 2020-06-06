@@ -6,8 +6,8 @@
     "easy-element": "cli.js"
   },
   "scripts": {
-    "autofix": "eslint-auto-fix",
-    "lint": "eslint .",
+    "autofix": "eslint-auto-fix '*.js' 'lib/*.js'",
+    "lint": "eslint '*.js' 'lib/*.js'",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
     "test": "yarn test/unit; yarn test/build; yarn test/watch",
     "test/build": "cd test; ./build.sh;",

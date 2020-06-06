@@ -10,6 +10,7 @@ exitCode=0
 clean() {
   rm -rf src/*
   rm -rf dist/*
+  rm $log
 }
 
 copy_base() {
@@ -58,5 +59,6 @@ run_test change-colors sassy/partials
 run_test change-font sassy/partials
 run_test do-not-build-partial sassy/partials
 run_test add-new-element sassy/partials
+run_test css-import sassy/partials
 
 exit $exitCode
