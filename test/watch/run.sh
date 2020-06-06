@@ -39,7 +39,7 @@ run_test() {
   clean
   copy_base
   start_watch $pathToWatch
-  sleep 4
+  sleep 2
   node -e "require('./expectations/$name').before()"
   if [[ $? == 0 ]]
   then
@@ -51,9 +51,13 @@ run_test() {
     diff $log expectations/$name.log
     [[ $? != 0 ]] && exitCode=1
   else
+    echo "Failed at before assertion" >&2
     exitCode=1
+    end_watch
   fi
 }
+
+trap 'end_watch' INT
 
 run_test change-colors sassy/partials
 run_test change-font sassy/partials
