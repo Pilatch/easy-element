@@ -1,3 +1,5 @@
+# Build tests
+set -v
 rm dist/*
 
 node ../cli.js build src/nest

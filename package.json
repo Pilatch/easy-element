@@ -6,10 +6,13 @@
     "easy-element": "cli.js"
   },
   "scripts": {
-    "lint": "eslint .",
+    "autofix": "eslint-auto-fix '*.js' 'lib/*.js'",
+    "lint": "eslint '*.js' 'lib/*.js'",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
-    "test": "cd test; ./run.sh;",
-    "test/watch": "./cli.js watch -o test/dist test/src/watch-me"
+    "test": "yarn test/unit; yarn test/build; yarn test/watch",
+    "test/build": "cd test; ./build.sh;",
+    "test/unit": "cd test/unit; mocha **/*.spec.js",
+    "test/watch": "cd test/watch; ./run.sh"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",
@@ -29,6 +32,7 @@
     "postcss": "^7.0.14",
     "postcss-selector-parser": "^6.0.2",
     "sass": "^1.20.1",
+    "sass-graph": "^3.0.5",
     "terser": "^4.6.13",
     "to-pascal-case": "^1.0.0",
     "yargs": "^12.0.5"
@@ -37,12 +41,14 @@
     "@webcomponents/webcomponentsjs": "^2.2.1",
     "browser-sync": "^2.26.3",
     "eslint": "^5.14.1",
+    "eslint-auto-fix": "^1.0.3",
     "eslint-config-pilatch": "^0.1.2",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^7.1.2",
     "postcss-css-variables": "^0.11.0",
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.1.1"

@@ -1,0 +1,7 @@
+Building src/sassy/partials to dist
+Building font-guy from:
+  src/sassy/partials/font-guy.html
+  src/sassy/partials/font-guy.scss
+Building typo-negative from:
+  src/sassy/partials/typo-negative.html
+  src/sassy/partials/typo-negative.sass

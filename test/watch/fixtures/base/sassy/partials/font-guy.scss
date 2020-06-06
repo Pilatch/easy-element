@@ -1,0 +1,12 @@
+@import "../font-families";
+@import "../colors";
+@import "../positions";
+@import "./ugly-colors";
+
+:host {
+    background-color: $ghostly;
+    color: $babyblue;
+    font-family: $silly;
+    font-size: $size;
+    position: $sta;
+}
