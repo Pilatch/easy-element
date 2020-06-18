@@ -50,6 +50,10 @@ class NameTag extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('name-tag', NameTag);

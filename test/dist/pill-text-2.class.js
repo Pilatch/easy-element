@@ -30,6 +30,10 @@ class PillText2 extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('pill-text-2', PillText2);

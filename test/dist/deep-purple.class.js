@@ -24,6 +24,10 @@ class DeepPurple extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('deep-purple', DeepPurple);

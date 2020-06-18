@@ -25,6 +25,10 @@ Change the background-color and see if your page automatically refreshes.
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('high-light', HighLight);
