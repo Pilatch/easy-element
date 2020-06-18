@@ -1,6 +1,6 @@
 {
   "name": "easy-element",
-  "version": "1.8.6",
+  "version": "1.8.7",
   "repository": "https://github.com/Pilatch/easy-element",
   "bin": {
     "easy-element": "cli.js"
