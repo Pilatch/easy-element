@@ -20,6 +20,10 @@ class AhChoo extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('ah-choo', AhChoo);
@@ -59,6 +63,10 @@ class BlueButton extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('blue-button', BlueButton);
@@ -89,6 +97,10 @@ class BlueSquare extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('blue-square', BlueSquare);
@@ -117,6 +129,10 @@ class ConStruct extends HTMLElement {
 
   addEventListener() {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
   }
 
 }
@@ -160,6 +176,10 @@ class IPad extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('i-pad', IPad);
@@ -189,6 +209,10 @@ class LoginForm extends HTMLElement {
 
   addEventListener() {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
   }
 
 }
@@ -232,6 +256,10 @@ class MultiSquare extends HTMLElement {
 
   addEventListener() {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
   }
 
 }
@@ -353,6 +381,10 @@ class MyHeart extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('my-heart', MyHeart);
@@ -409,6 +441,10 @@ class NameTag extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('name-tag', NameTag);
@@ -443,6 +479,10 @@ class PillText2 extends HTMLElement {
 
   addEventListener() {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
   }
 
 }
@@ -570,6 +610,10 @@ class RadioButton extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('radio-button', RadioButton);
@@ -598,6 +642,10 @@ class RedSquare extends HTMLElement {
 
   addEventListener() {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
   }
 
 }
@@ -673,6 +721,10 @@ class StarRating extends HTMLElement {
 
   addEventListener() {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
+  }
+
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
   }
 
 }

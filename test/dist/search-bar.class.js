@@ -111,6 +111,10 @@ class SearchBar extends HTMLElement {
     return this.shadowRoot.addEventListener.apply(this.shadowRoot, arguments);
   }
 
+  dispatchEvent(event) {
+    return this.shadowRoot.dispatchEvent(event);
+  }
+
 }
 
 customElements.define('search-bar', SearchBar);
