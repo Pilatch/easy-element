@@ -356,11 +356,13 @@ class MyHeart extends HTMLElement {
     let innerHeart = document.createElement('div');
     innerHeart.classList.add('my-heart_inner-heart'); // Test querySelector in both ES5 and shadowDOM
 
+    // Test querySelector in both ES5 and shadowDOM
     this.querySelector('.my-heart_heart-container').appendChild(innerHeart);
     setInterval(() => {
       // Test querySelectorAll in both ES5 and shadowDOM
       let inner = this.querySelectorAll('.my-heart_inner-heart')[0]; // .toggleAttribute doesn't exist in old IE
 
+      // .toggleAttribute doesn't exist in old IE
       if (inner.getAttribute('thump') === '') {
         inner.removeAttribute('thump');
       } else {
