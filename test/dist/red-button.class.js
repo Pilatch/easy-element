@@ -60,6 +60,7 @@
     } // Do some stuff outside the class to prove that any JS we write gets injected into the finished product.
 
 
+    // Do some stuff outside the class to prove that any JS we write gets injected into the finished product.
     RedButton.firstTimeLoaded = false;
     customElements.define('red-button', RedButton);
   } else {
