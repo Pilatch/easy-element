@@ -55,7 +55,9 @@
   "resolutions": {
     "acorn": "^6.4.1",
     "ajv": "^6.12.6",
-    "axios": "^0.18.1",
+    "axios": "^0.21.2",
+    "follow-redirects": "^1.14.8",
+    "glob-parent": "^3.1.0",
     "hosted-git-info": "2.8.9",
     "kind-of": "^6.0.3",
     "lodash": "^4.17.21",
