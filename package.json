@@ -9,7 +9,7 @@
     "autofix": "eslint-auto-fix '*.js' 'lib/*.js'",
     "lint": "eslint '*.js' 'lib/*.js'",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
-    "test": "npm run test/unit; npm run test/build; sleep 2; npm run test/watch",
+    "test": "yarn test/unit; yarn test/build; sleep 2; yarn test/watch",
     "test/build": "cd test; ./build.sh;",
     "test/unit": "cd test/unit; mocha **/*.spec.js",
     "test/watch": "cd test/watch; ./run.sh"
@@ -21,7 +21,7 @@
     "@babel/plugin-transform-template-literals": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "astq": "^2.6.3",
-    "browserslist": "^4.16.5",
+    "browserslist": "^4.20.2",
     "chalk": "^2.4.2",
     "chokidar": "^2.0.4",
     "clean-css": "^4.2.3",
@@ -55,8 +55,6 @@
   "resolutions": {
     "acorn": "^6.4.1",
     "axios": "^0.18.1",
-    "browserslist": "^4.16.5",
-    "caniuse-lite": "^1.0.30001325",
     "hosted-git-info": "2.8.9",
     "kind-of": "^6.0.3",
     "lodash": "^4.17.21",
