@@ -22,7 +22,6 @@
     "@babel/preset-env": "^7.2.3",
     "astq": "^2.6.3",
     "browserslist": "^4.16.5",
-    "caniuse-lite": "^1.0.30000974",
     "chalk": "^2.4.2",
     "chokidar": "^2.0.4",
     "clean-css": "^4.2.3",
