@@ -1,8 +1,0 @@
-Error parsing script for naughty-plopper
-unknown: Unexpected token, expected "{" (1:14)
-
-> 1 | class Naughty Plopper {
-    |               ^
-  2 | 
-  3 | }
-  4 | 

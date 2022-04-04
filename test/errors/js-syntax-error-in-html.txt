@@ -1,8 +1,0 @@
-Error parsing script for bad-fu
-unknown: Unexpected token, expected "{" (3:14)
-
-  1 | 
-  2 | 
-> 3 |   class BadFu /=
-    |               ^
-  4 | 
