@@ -1,8 +1,0 @@
-Error parsing script for naughty-plopper
-unknown: Unexpected token, expected "{" (1:14)
-
-[0m[31m[1m>[22m[39m[90m 1 |[39m [36mclass[39m [33mNaughty[39m [33mPlopper[39m {[0m
-[0m [90m   |[39m               [31m[1m^[22m[39m[0m
-[0m [90m 2 |[39m[0m
-[0m [90m 3 |[39m }[0m
-[0m [90m 4 |[39m[0m
