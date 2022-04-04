@@ -36,25 +36,18 @@ run_test() {
 
   echo "Running $name"
 
-  echo "clean..."
   clean
-  echo "copy base..."
   copy_base
-  echo "start watch $pathToWatch"
   start_watch $pathToWatch
   sleep 2
-  echo "before expectations"
   node -e "require('./expectations/$name').before()"
   if [[ $? == 0 ]]
   then
-    echo "step"
     sh ./steps/$name.sh
     sleep 2
-    echo "after expectations"
     node -e "require('./expectations/$name').after()"
     [[ $? != 0 ]] && exitCode=1
     end_watch
-    echo "diff"
     diff $log expectations/$name.log
     [[ $? != 0 ]] && exitCode=1
   else
