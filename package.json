@@ -56,7 +56,7 @@
     "acorn": "^6.4.1",
     "axios": "^0.18.1",
     "browserslist": "^4.16.5",
-    "caniuse-lite": "^1.0.30000974",
+    "caniuse-lite": "^1.0.30001325",
     "hosted-git-info": "2.8.9",
     "kind-of": "^6.0.3",
     "lodash": "^4.17.21",
