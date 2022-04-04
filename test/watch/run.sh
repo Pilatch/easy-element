@@ -10,7 +10,7 @@ exitCode=0
 clean() {
   rm -rf src/*
   rm -rf dist/*
-  rm $log
+  rm -f $log
 }
 
 copy_base() {
