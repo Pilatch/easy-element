@@ -54,6 +54,7 @@
   },
   "resolutions": {
     "acorn": "^6.4.1",
+    "ajv": "^6.12.6",
     "axios": "^0.18.1",
     "hosted-git-info": "2.8.9",
     "kind-of": "^6.0.3",
