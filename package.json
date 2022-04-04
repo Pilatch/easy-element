@@ -9,7 +9,7 @@
     "autofix": "eslint-auto-fix '*.js' 'lib/*.js'",
     "lint": "eslint '*.js' 'lib/*.js'",
     "start": "browser-sync start -c bs-config.js --files \"test/dist/*, test/demo/*\"",
-    "test": "browserslist@latest --update-db; yarn test/unit; yarn test/build; sleep 2; yarn test/watch",
+    "test": "yarn test/unit; yarn test/build; sleep 2; yarn test/watch",
     "test/build": "cd test; ./build.sh;",
     "test/unit": "cd test/unit; mocha **/*.spec.js",
     "test/watch": "cd test/watch; ./run.sh"
