@@ -1,6 +1,6 @@
 {
   "name": "easy-element",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "repository": "https://github.com/Pilatch/easy-element",
   "bin": {
     "easy-element": "cli.js"
@@ -55,6 +55,7 @@
   "resolutions": {
     "acorn": "^6.4.1",
     "ajv": "^6.12.6",
+    "async": "2.6.4",
     "axios": "^0.21.2",
     "follow-redirects": "^1.14.8",
     "hosted-git-info": "2.8.9",
